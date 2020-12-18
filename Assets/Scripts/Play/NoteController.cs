@@ -39,18 +39,21 @@ public class NoteController : MonoBehaviour
             case NoteType.MicInput:
                 break;
         }*/
-        Note n;
+        Tap n;
         if (note.Information == 1)
         {
-            n = Instantiate(tap_R, startPos.position, Quaternion.identity).GetComponent<Note>();
+            n = Instantiate(tap_R, startPos.position, Quaternion.identity).GetComponent<Tap>();
+            n.type = 1;
         }
         else if (note.Information == 2)
         {
-            n = Instantiate(tap_B, startPos.position, Quaternion.identity).GetComponent<Note>();
+            n = Instantiate(tap_B, startPos.position, Quaternion.identity).GetComponent<Tap>();
+            n.type = 2;
         }
         else
         {
-            n = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Note>();
+            n = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Tap>();
+            n.type = 3;
         }
         n.endPos = endPos.position;
 
