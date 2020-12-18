@@ -9,7 +9,7 @@ public class NoteController : MonoBehaviour
     public GameObject quickTap, slider, micInput;
     public Transform startPos, endPos;
     public List<NoteData> notes = new List<NoteData>();
-    public float noteSpeed = 0.45f;
+    public static float noteSpeed = 0.65f;
     void Start()
     {
         foreach (NoteData note in notes)
@@ -40,25 +40,6 @@ public class NoteController : MonoBehaviour
             case NoteType.MicInput:
                 break;
         };
-        /*Tap n;
-        if (note.Information == 1)
-        {
-            n = Instantiate(tap_R, startPos.position, Quaternion.identity).GetComponent<Tap>();
-            n.type = 1;
-        }
-        else if (note.Information == 2)
-        {
-            n = Instantiate(tap_B, startPos.position, Quaternion.identity).GetComponent<Tap>();
-            n.type = 2;
-        }
-        else
-        {
-            n = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Tap>();
-            n.type = 3;
-        }
-        n.endPos = endPos.position;
-
-        Debug.Log(note.Time);*/
     }
     private void CreateTap(NoteData note)
     {
@@ -75,26 +56,27 @@ public class NoteController : MonoBehaviour
         {
             tap = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Tap>();
         }
-        tap.data = note;
+        tap.Data = note;
         tap.startPos = startPos.position;
         tap.endPos = endPos.position;
+        tap.type = note.Information;
     }
     private void CreateHold(NoteData note)
     {
         Hold hold;
         if (note.Information == 1)
         {
-            hold=Instantiate(hold_R, startPos.position, Quaternion.identity).GetComponent<Hold>();
+            hold = Instantiate(hold_R, startPos.position, Quaternion.identity).GetComponent<Hold>();
         }
         else if (note.Information == 2)
         {
-            hold=Instantiate(hold_B, startPos.position, Quaternion.identity).GetComponent<Hold>();
+            hold = Instantiate(hold_B, startPos.position, Quaternion.identity).GetComponent<Hold>();
         }
         else
         {
-            hold=Instantiate(hold_P, startPos.position, Quaternion.identity).GetComponent<Hold>();
+            hold = Instantiate(hold_P, startPos.position, Quaternion.identity).GetComponent<Hold>();
         }
-        hold.data = note;
+        hold.Data = note;
         hold.startPos = startPos.position;
         hold.endPos = endPos.position;
     }

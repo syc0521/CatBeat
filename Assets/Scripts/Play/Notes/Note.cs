@@ -1,30 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class Note : MonoBehaviour
 {
-    public NoteData data { set;get; }
-    
-    public Vector3 startPos,endPos;
-    public float noteDropTime = 0.21f;
-    //public float speed = 0.1f;
-    public abstract void Move();
-    /*{
-       
-        else if (!isDestroyed)
+    public NoteData Data { set; get; }
+
+    public Vector3 startPos, endPos;
+    [HideInInspector]
+    public float moveTime;
+    private void Awake()
+    {
+        moveTime = NoteController.noteSpeed;
+    }
+    public virtual void Move()
+    {
+        if (gameObject.transform.position.x > endPos.x)
         {
-            isDestroyed = true;
-            StartCoroutine(DestroyNote());
-        }*/
-        /*if (transform.position.x >= endPos.x)
-        {
-            transform.position += Vector3.left * speed;
+            var time = Time.timeSinceLevelLoad;
+            var endTime = Data.Time + moveTime;
+            transform.position = new Vector3(Utils.Lerp(time, Data.Time, endTime, startPos.x, endPos.x),
+                transform.position.y);
         }
-        else
-        {
-            transform.position = endPos;
-        }
-    }*/
+    }
     public abstract void Judge();
 }
