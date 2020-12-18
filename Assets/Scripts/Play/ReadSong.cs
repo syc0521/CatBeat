@@ -14,12 +14,12 @@ public class ReadSong : MonoBehaviour
     private void Awake()
     {
         source = GetComponent<AudioSource>();
+        GetMap();
+        StartCoroutine(GetSong());
     }
 
     void Start()
     {
-        GetMap();
-        StartCoroutine(GetSong());
     }
 
     void Update()
@@ -50,7 +50,7 @@ public class ReadSong : MonoBehaviour
         var clip = Resources.Load<AudioClip>("Songs/" + path + "/song");
         source.clip = clip;
         source.playOnAwake = false;
-        yield return null;
+        yield return new WaitForSeconds(2f);
         source.Play();
     }
 }

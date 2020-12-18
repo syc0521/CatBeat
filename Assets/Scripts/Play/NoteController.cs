@@ -8,53 +8,70 @@ public class NoteController : MonoBehaviour
     public GameObject hold_R, hold_B, hold_P;
     public GameObject quickTap, slider, micInput;
     public Transform startPos, endPos;
-    public List<NoteData> notes;
+    public List<NoteData> notes = new List<NoteData>();
+    public float noteSpeed = 0.45f;
     void Start()
     {
-        StartCoroutine(CreateNote());
+        foreach (NoteData note in notes)
+        {
+            StartCoroutine(CreateNote(note));
+        }
     }
 
     void Update()
     {
         
     }
-    private IEnumerator CreateNote()
+    private IEnumerator CreateNote(NoteData note)
     {
-        foreach (NoteData note in notes)
+        yield return new WaitForSeconds(note.Time);
+        /*switch (note.Type)
         {
-            yield return new WaitForSeconds(note.Time);
-            switch (note.Type)
-            {
-                case NoteType.Tap:
-                    CreateTap(note);
-                    break;
-                case NoteType.Hold:
-                    break;
-                case NoteType.QuickTap:
-                    break;
-                case NoteType.Slider:
-                    break;
-                case NoteType.MicInput:
-                    break;
-            }
-            Debug.Log(note.Time);
-        }
-        yield break;
-    }
-    private void CreateTap(NoteData note)
-    {
+            case NoteType.Tap:
+                CreateTap(note);
+                break;
+            case NoteType.Hold:
+                break;
+            case NoteType.QuickTap:
+                break;
+            case NoteType.Slider:
+                break;
+            case NoteType.MicInput:
+                break;
+        }*/
+        Note n;
         if (note.Information == 1)
         {
-            Instantiate(tap_R, startPos.position, Quaternion.identity);
+            n = Instantiate(tap_R, startPos.position, Quaternion.identity).GetComponent<Note>();
         }
         else if (note.Information == 2)
         {
-            Instantiate(tap_B, startPos.position, Quaternion.identity);
+            n = Instantiate(tap_B, startPos.position, Quaternion.identity).GetComponent<Note>();
         }
-        else if (note.Information == 3)
+        else
         {
-            Instantiate(tap_P, startPos.position, Quaternion.identity);
+            n = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Note>();
         }
+        n.endPos = endPos.position;
+
+        Debug.Log(note.Time);
+    }
+    private void CreateTap(NoteData note)
+    {
+        Note n;
+        if (note.Information == 1)
+        {
+            n = Instantiate(tap_R, startPos.position, Quaternion.identity).GetComponent<Note>();
+        }
+        else if (note.Information == 2)
+        {
+            n = Instantiate(tap_B, startPos.position, Quaternion.identity).GetComponent<Note>();
+        }
+        else
+        {
+            n = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Note>();
+        }
+        n.endPos = endPos.position;
     }
     private void CreateHold(NoteData note)
     {

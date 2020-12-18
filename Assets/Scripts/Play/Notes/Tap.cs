@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tap : MonoBehaviour
+public class Tap : Note
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Judge()
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        speed = 0.15f;
+    }
+
     void Update()
     {
-        
+        if (transform.position == endPos)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void FixedUpdate()
+    {
+        Move();
     }
 }

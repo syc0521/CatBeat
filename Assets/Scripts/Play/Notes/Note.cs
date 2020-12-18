@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Note : MonoBehaviour
+public abstract class Note : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Vector3 endPos;
+    public float speed = 0.1f;
+    public virtual void Move()
     {
-        
+        if (transform.position.x >= endPos.x)
+        {
+            transform.position += Vector3.left * speed;
+        }
+        else
+        {
+            transform.position = endPos;
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void Judge();
 }
