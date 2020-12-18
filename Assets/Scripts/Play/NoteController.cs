@@ -26,6 +26,7 @@ public class NoteController : MonoBehaviour
             switch (note.Type)
             {
                 case NoteType.Tap:
+                    CreateTap(note);
                     break;
                 case NoteType.Hold:
                     break;
@@ -36,21 +37,50 @@ public class NoteController : MonoBehaviour
                 case NoteType.MicInput:
                     break;
             }
-            if (note.Information == 1)
-            {
-                Instantiate(tap_R, startPos.position, Quaternion.identity);
-            }
-            else if (note.Information == 2)
-            {
-                Instantiate(tap_B, startPos.position, Quaternion.identity);
-            }
-            else if (note.Information == 3)
-            {
-                Instantiate(tap_P, startPos.position, Quaternion.identity);
-            }
             Debug.Log(note.Time);
         }
-
         yield break;
+    }
+    private void CreateTap(NoteData note)
+    {
+        if (note.Information == 1)
+        {
+            Instantiate(tap_R, startPos.position, Quaternion.identity);
+        }
+        else if (note.Information == 2)
+        {
+            Instantiate(tap_B, startPos.position, Quaternion.identity);
+        }
+        else if (note.Information == 3)
+        {
+            Instantiate(tap_P, startPos.position, Quaternion.identity);
+        }
+    }
+    private void CreateHold(NoteData note)
+    {
+        if (note.Information == 1)
+        {
+            Instantiate(hold_R, startPos.position, Quaternion.identity);
+        }
+        else if (note.Information == 2)
+        {
+            Instantiate(hold_B, startPos.position, Quaternion.identity);
+        }
+        else if (note.Information == 3)
+        {
+            Instantiate(hold_P, startPos.position, Quaternion.identity);
+        }
+    }
+    private void CreateQuickTap(NoteData note)
+    {
+
+    }
+    private void CreateSlider(NoteData note)
+    {
+
+    }
+    private void CreateMicInput(NoteData note)
+    {
+
     }
 }
