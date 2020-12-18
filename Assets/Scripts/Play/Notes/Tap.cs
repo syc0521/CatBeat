@@ -13,9 +13,11 @@ public class Tap : Note
 
     void Start()
     {
-        speed = 0.15f;
+        //speed = 0.15f;
     }
-
+    /// <summary>
+    /// 生成打击音效
+    /// </summary>
     void Update()
     {
         if (transform.position == endPos)
@@ -39,5 +41,17 @@ public class Tap : Note
     private void FixedUpdate()
     {
         Move();
+    }
+    public override void Move()
+    {
+        if (this.gameObject.transform.position.y > endPos.y)
+        {
+            transform.position = new Vector3(transform.position.x,
+                Utils.Lerp(Time.timeSinceLevelLoad, data.Time, noteDropTime + data.Time,startPos.y,endPos.y));
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 }

@@ -4,11 +4,20 @@ using UnityEngine;
 
 public abstract class Note : MonoBehaviour
 {
-    public Vector3 endPos;
-    public float speed = 0.1f;
-    public virtual void Move()
-    {
-        if (transform.position.x >= endPos.x)
+    public NoteData data { set;get; }
+    
+    public Vector3 startPos,endPos;
+    public float noteDropTime = 0.21f;
+    //public float speed = 0.1f;
+    public abstract void Move();
+    /*{
+       
+        else if (!isDestroyed)
+        {
+            isDestroyed = true;
+            StartCoroutine(DestroyNote());
+        }*/
+        /*if (transform.position.x >= endPos.x)
         {
             transform.position += Vector3.left * speed;
         }
@@ -16,6 +25,6 @@ public abstract class Note : MonoBehaviour
         {
             transform.position = endPos;
         }
-    }
+    }*/
     public abstract void Judge();
 }

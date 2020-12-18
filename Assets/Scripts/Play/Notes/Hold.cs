@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hold : MonoBehaviour
+public class Hold : Note
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   public override void Judge()
+   {
 
-    // Update is called once per frame
-    void Update()
+   }
+    public override void Move()
     {
-        
+        if (this.gameObject.transform.position.y>endPos.y)
+        {
+            transform.position = new Vector3(transform.position.x,
+                Utils.Lerp(Time.timeSinceLevelLoad, data.Time, noteDropTime + data.Time,startPos.y , endPos.y));
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 }
