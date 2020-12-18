@@ -10,10 +10,16 @@ public class ReadSong : MonoBehaviour
     public string path;
     public NoteController controller;
     public Diff diff;
+    private AudioSource source;
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
         GetMap();
+        StartCoroutine(GetSong());
     }
 
     void Update()
@@ -34,6 +40,17 @@ public class ReadSong : MonoBehaviour
             NoteData note = new NoteData(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]), int.Parse(line[3]));
             controller.notes.Add(note);
         }
-
+    }
+    /// <summary>
+    /// 播放音乐
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator GetSong()
+    {
+        var clip = Resources.Load<AudioClip>("Songs/" + path + "/song");
+        source.clip = clip;
+        source.playOnAwake = false;
+        yield return null;
+        source.Play();
     }
 }

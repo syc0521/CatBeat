@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum NoteType { Tap = 1, Hold = 2, QuickTap = 3, Slider = 4, MicInput = 5 }
 public class NoteData
 {
     public NoteData(int type, int time, int dur, int information)
     {
-        Type = type;
+        Type = (NoteType)type;
         Time = time / 1000.0f;
         Dur = dur / 1000.0f;
         Information = information;
@@ -15,7 +15,7 @@ public class NoteData
     /// <summary>
     /// 1tap 2hold 3连打 4摇杆 5语音
     /// </summary>
-    public int Type { set; get; }
+    public NoteType Type { set; get; }
     /// <summary>
     /// note出现的时间
     /// </summary>
