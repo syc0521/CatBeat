@@ -12,6 +12,7 @@ public class Hold : Note
     private bool key = false;
     private void Start()
     {
+        type = Data.Information;
         holdEndPos = new Vector3(Data.Dur * (Mathf.Abs(startPos.x - endPos.x) / moveTime) + startPos.x, endPos.y);
         start = transform.GetChild(0).gameObject;
         start.transform.position = startPos;
@@ -20,10 +21,6 @@ public class Hold : Note
         end.transform.position = holdEndPos;
         trail.SetPosition(0, startPos);
         trail.SetPosition(1, holdEndPos);
-    }
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
     }
     public override void Judge()
     {
@@ -46,7 +43,6 @@ public class Hold : Note
         }
         else if (time < Data.Time + moveTime + Data.Dur)
         {
-            //start.transform.position = endPos;
             end.transform.position = new Vector3(Utils.Lerp(time, Data.Time + moveTime, Data.Time + moveTime + Data.Dur, endPos.x + durPos, endPos.x),
                 start.transform.position.y);
             trail.SetPosition(0, endPos);
@@ -65,8 +61,6 @@ public class Hold : Note
             GenerateHitSound();
             Destroy(gameObject);
         }
-
-        
     }
     private void GenerateHitSound()
     {

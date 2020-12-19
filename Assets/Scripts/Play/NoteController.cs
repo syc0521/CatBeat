@@ -21,26 +21,30 @@ public class NoteController : MonoBehaviour
     private IEnumerator CreateNote(NoteData note)
     {
         yield return new WaitForSeconds(note.Time);
+        Note noteObj = null;
         switch (note.Type)
         {
             case NoteType.Tap:
-                CreateTap(note);
+                noteObj = CreateTap(note);
                 break;
             case NoteType.Hold:
-                CreateHold(note);
+                noteObj = CreateHold(note);
                 break;
             case NoteType.QuickTap:
-                CreateQuickTap(note);
+                noteObj = CreateQuickTap(note);
                 break;
             case NoteType.Slider:
-                CreateSlider(note);
+                noteObj = CreateSlider(note);
                 break;
             case NoteType.MicInput:
-                CreateMicInput(note);
+                noteObj = CreateMicInput(note);
                 break;
         };
+        noteObj.Data = note;
+        noteObj.startPos = startPos.position;
+        noteObj.endPos = endPos.position;
     }
-    private void CreateTap(NoteData note)
+    private Note CreateTap(NoteData note)
     {
         Tap tap;
         if (note.Information == 1)
@@ -55,12 +59,9 @@ public class NoteController : MonoBehaviour
         {
             tap = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Tap>();
         }
-        tap.Data = note;
-        tap.startPos = startPos.position;
-        tap.endPos = endPos.position;
-        tap.type = note.Information;
+        return tap;
     }
-    private void CreateHold(NoteData note)
+    private Note CreateHold(NoteData note)
     {
         Hold hold;
         if (note.Information == 1)
@@ -75,21 +76,21 @@ public class NoteController : MonoBehaviour
         {
             hold = Instantiate(hold_P, startPos.position, Quaternion.identity).GetComponent<Hold>();
         }
-        hold.Data = note;
-        hold.startPos = startPos.position;
-        hold.endPos = endPos.position;
-        hold.type = note.Information;
+        return hold;
     }
-    private void CreateQuickTap(NoteData note)
+    private Note CreateQuickTap(NoteData note)
     {
-
+        QuickTap qtap = Instantiate(quickTap, startPos.position, Quaternion.identity).GetComponent<QuickTap>();
+        return qtap;
     }
-    private void CreateSlider(NoteData note)
+    private Note CreateSlider(NoteData note)
     {
-
+        Slider sli = Instantiate(slider, startPos.position, Quaternion.identity).GetComponent<Slider>();
+        return sli;
     }
-    private void CreateMicInput(NoteData note)
+    private Note CreateMicInput(NoteData note)
     {
-
+        MicInput mic = Instantiate(micInput, startPos.position, Quaternion.identity).GetComponent<MicInput>();
+        return mic;
     }
 }

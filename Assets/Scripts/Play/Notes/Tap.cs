@@ -6,6 +6,10 @@ public class Tap : Note
 {
     public GameObject R_FX, B_FX;
     public int type;
+    private void Start()
+    {
+        type = Data.Information;
+    }
     public override void Judge()
     {
         throw new System.NotImplementedException();
