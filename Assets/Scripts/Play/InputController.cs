@@ -5,22 +5,63 @@ using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
-    Input InputControls;
+    //Input思路：在这里面更改Data的canJudge，和canDestroy，如果canDestroy为true的话，销毁这个物体
+    Input controls;
+    public List<NoteData> noteList = new List<NoteData>();
     private void Awake()
     {
-        InputControls = new Input();
+        controls = new Input();
 
-        InputControls.PlayController.Tap_Red.performed += ctx => DestroyTapRed();
+        controls.PlayController.Tap_Red.performed += ctx => Debug.Log("DestroyRedTap");
+        controls.PlayController.Tap_Blue.performed += ctx => Debug.Log("DestroyBlueTap");
     }
 
-    private void DestroyTapRed()
+    private void DestroyRedTap()
     {
+        Debug.Log("DestroyRedTap");
+        /*foreach (NoteData noteData in noteList)
+        {
+            if (noteData.CanJudge == true&&noteData.Type==NoteType.Tap&&noteData.Information==1)
+            {
+                noteData.CanDestroy = true;
+            }
+        }*/
+    } 
 
+    private void DestroyBlueTap()
+    {
+        Debug.Log("DestroyBlueTap");
+        /*foreach (NoteData noteData in noteList)
+        {
+            if (noteData.CanJudge == true && noteData.Type == NoteType.Tap && noteData.Information == 2)
+            {
+                noteData.CanDestroy = true;
+            }
+        }*/
     }
+    /*private void GetFirstNotes()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            int firstIndex = noteList.FindIndex(
+                delegate (NoteData note1)
+                {
+                    return note1.Pos == i;
+                });
+            if (firstIndex != -1)
+            {
+                noteList[firstIndex].CanJudge = true;
+            }
+        }
+    }*/
 
     void OnEnable()
     {
-        InputControls.PlayController.Enable();
+        controls.PlayController.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.PlayController.Disable();
     }
 
 }

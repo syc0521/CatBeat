@@ -10,13 +10,22 @@ public class Tap : Note
     {
         throw new System.NotImplementedException();
     }
-    
+
     /// <summary>
     /// 生成打击音效
     /// </summary>
     void Update()
     {
-        if (transform.position.x == endPos.x)
+        noteDestroy();
+    }
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    public override void noteDestroy()
+    {
+        if(Data.CanDestroy)
         {
             if (type == 1)
             {
@@ -31,11 +40,10 @@ public class Tap : Note
                 Instantiate(R_FX);
                 Instantiate(B_FX);
             }
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
+            
     }
-    private void FixedUpdate()
-    {
-        Move();
-    }
+
+
 }

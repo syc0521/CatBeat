@@ -8,4 +8,8 @@ public class Hold : Note
    {
 
    }
+    public override void noteDestroy()
+    {
+        
+    }
 }
