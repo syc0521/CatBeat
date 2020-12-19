@@ -9,7 +9,7 @@ public class NoteController : MonoBehaviour
     public GameObject quickTap, slider, micInput;
     public Transform startPos, endPos;
     public List<NoteData> notes = new List<NoteData>();
-    public static float noteSpeed = 0.65f;
+    public static float noteSpeed = 1.05f;
     void Start()
     {
         foreach (NoteData note in notes)
@@ -79,6 +79,7 @@ public class NoteController : MonoBehaviour
         hold.Data = note;
         hold.startPos = startPos.position;
         hold.endPos = endPos.position;
+        hold.type = note.Information;
     }
     private void CreateQuickTap(NoteData note)
     {

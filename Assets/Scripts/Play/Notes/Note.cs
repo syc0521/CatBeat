@@ -11,6 +11,10 @@ public abstract class Note : MonoBehaviour
     {
         moveTime = NoteController.noteSpeed;
     }
+    public virtual void FixedUpdate()
+    {
+        Move();
+    }
     public virtual void Move()
     {
         if (gameObject.transform.position.x > endPos.x)

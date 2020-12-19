@@ -50,7 +50,7 @@ public class ReadSong : MonoBehaviour
         var clip = Resources.Load<AudioClip>("Songs/" + path + "/song");
         source.clip = clip;
         source.playOnAwake = false;
-        yield return new WaitForSeconds(2.1f);
+        yield return new WaitForSeconds(NoteController.noteSpeed);
         source.Play();
     }
 }
