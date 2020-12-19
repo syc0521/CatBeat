@@ -18,10 +18,6 @@ public class NoteController : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
     private IEnumerator CreateNote(NoteData note)
     {
         yield return new WaitForSeconds(note.Time);
@@ -34,10 +30,13 @@ public class NoteController : MonoBehaviour
                 CreateHold(note);
                 break;
             case NoteType.QuickTap:
+                CreateQuickTap(note);
                 break;
             case NoteType.Slider:
+                CreateSlider(note);
                 break;
             case NoteType.MicInput:
+                CreateMicInput(note);
                 break;
         };
     }

@@ -8,9 +8,11 @@ public class Hold : Note
     private LineRenderer trail;
     private Vector3 holdEndPos;
     public int type;
+    public GameObject R_FX, B_FX;
+    private bool key = false;
     private void Start()
     {
-        holdEndPos = new Vector3(Data.Dur * (Mathf.Abs(startPos.x - endPos.x) / moveTime), endPos.y);
+        holdEndPos = new Vector3(Data.Dur * (Mathf.Abs(startPos.x - endPos.x) / moveTime) + startPos.x, endPos.y);
         start = transform.GetChild(0).gameObject;
         start.transform.position = startPos;
         trail = transform.GetChild(1).gameObject.GetComponent<LineRenderer>();
@@ -30,52 +32,56 @@ public class Hold : Note
     public override void Move()
     {
         var time = Time.timeSinceLevelLoad;
+        var durPos = Data.Dur * (Mathf.Abs(startPos.x - endPos.x) / moveTime);
         if (time < Data.Time + moveTime)
         {
             start.transform.position = new Vector3(Utils.Lerp(time, Data.Time, Data.Time + moveTime, startPos.x, endPos.x),
                 start.transform.position.y);
-            end.transform.position = new Vector3(Utils.Lerp(time, Data.Time, Data.Time + moveTime + Data.Dur, holdEndPos.x, endPos.x),
-                start.transform.position.y);
             trail.SetPosition(0, new Vector3(Utils.Lerp(time, Data.Time, Data.Time + moveTime, startPos.x, endPos.x),
                 startPos.y));
-            trail.SetPosition(1, new Vector3(Utils.Lerp(time, Data.Time, Data.Time + moveTime + Data.Dur, holdEndPos.x, endPos.x),
+            end.transform.position = new Vector3(Utils.Lerp(time, Data.Time, Data.Time + moveTime, holdEndPos.x, endPos.x + durPos),
+                start.transform.position.y);
+            trail.SetPosition(1, new Vector3(Utils.Lerp(time, Data.Time, Data.Time + moveTime, holdEndPos.x, endPos.x + durPos),
                 startPos.y));
         }
         else if (time < Data.Time + moveTime + Data.Dur)
         {
             //start.transform.position = endPos;
-            end.transform.position = new Vector3(Utils.Lerp(time, Data.Time, Data.Time + moveTime + Data.Dur, holdEndPos.x, endPos.x),
+            end.transform.position = new Vector3(Utils.Lerp(time, Data.Time + moveTime, Data.Time + moveTime + Data.Dur, endPos.x + durPos, endPos.x),
                 start.transform.position.y);
             trail.SetPosition(0, endPos);
-            trail.SetPosition(1, new Vector3(Utils.Lerp(time, Data.Time, Data.Time + moveTime + Data.Dur, holdEndPos.x, endPos.x),
+            trail.SetPosition(1, new Vector3(Utils.Lerp(time, Data.Time + moveTime, Data.Time + moveTime + Data.Dur, endPos.x + durPos, endPos.x),
                 startPos.y));
+            if (!key)
+            {
+                key = true;
+                GenerateHitSound();
+            }
         }
         else
         {
             start.GetComponent<SpriteRenderer>().enabled = false;
             end.GetComponent<SpriteRenderer>().enabled = false;
+            GenerateHitSound();
             Destroy(gameObject);
         }
+
+        
     }
-    private void MoveTap(GameObject obj, Vector3 endPos)
+    private void GenerateHitSound()
     {
-        if (obj.transform.position.x > endPos.x)
+        if (type == 1)
         {
-            var time = Time.timeSinceLevelLoad;
-            var endTime = Data.Time + moveTime;
-            obj.transform.position = new Vector3(Utils.Lerp(time, Data.Time, endTime, startPos.x, endPos.x),
-                obj.transform.position.y);
+            Instantiate(R_FX);
         }
-    }
-    private void MoveHold()
-    {
-        var time = Time.timeSinceLevelLoad;
-        var endTime = Data.Time + moveTime;
-        var newStartPos = new Vector3(Utils.Lerp(time, Data.Time, endTime, startPos.x, endPos.x),
-                startPos.y);
-        var newEndPos = new Vector3(Utils.Lerp(time, Data.Time, endTime, startPos.x, endPos.x),
-        startPos.y);
-        trail.SetPosition(0, newStartPos);
-        trail.SetPosition(1, newEndPos);
+        else if (type == 2)
+        {
+            Instantiate(B_FX);
+        }
+        else
+        {
+            Instantiate(R_FX);
+            Instantiate(B_FX);
+        }
     }
 }
