@@ -37,6 +37,7 @@ public class Slider : Note
         }
         else
         {
+            NoteController.combo++;
             Destroy(gameObject);
         }
     }

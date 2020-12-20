@@ -6,6 +6,8 @@ public class QuickTap : Note
 {
     [HideInInspector]
     public int tapCount = 0;
+    private TextMesh text;
+    public GameObject fx;
     public override void Judge()
     {
         throw new System.NotImplementedException();
@@ -13,19 +15,29 @@ public class QuickTap : Note
 
     void Start()
     {
-        
+        tapCount = Data.Information;
+        text = transform.GetChild(1).GetComponent<TextMesh>();
+        text.text = "";
+        StartCoroutine(ReduceCount());
     }
 
     void Update()
     {
-        
+        if (tapCount == 0)
+        {
+            NoteController.combo++;
+            Destroy(gameObject);
+        }
     }
     private IEnumerator ReduceCount()
     {
-        while (tapCount > 0)
+        yield return new WaitForSeconds(NoteController.noteSpeed);
+        do
         {
+            yield return new WaitForSeconds(0.05f);
             tapCount--;
-            yield return new WaitForSeconds(0.02f);
-        }
+            text.text = tapCount.ToString();
+            Instantiate(fx);
+        } while (tapCount > 0);
     }
 }

@@ -34,6 +34,7 @@ public class Tap : Note
                 Instantiate(R_FX);
                 Instantiate(B_FX);
             }
+            NoteController.combo++;
             Destroy(gameObject);
         }
     }

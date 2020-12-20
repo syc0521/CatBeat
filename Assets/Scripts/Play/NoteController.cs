@@ -10,8 +10,10 @@ public class NoteController : MonoBehaviour
     public Transform startPos, endPos;
     public List<NoteData> notes = new List<NoteData>();
     public static float noteSpeed = 1.05f;
+    public static int combo;
     void Start()
     {
+        combo = 0;
         foreach (NoteData note in notes)
         {
             StartCoroutine(CreateNote(note));
@@ -90,7 +92,8 @@ public class NoteController : MonoBehaviour
     }
     private Note CreateMicInput(NoteData note)
     {
-        MicInput mic = Instantiate(micInput, startPos.position, Quaternion.identity).GetComponent<MicInput>();
-        return mic;
+        //MicInput mic = Instantiate(micInput, startPos.position, Quaternion.identity).GetComponent<MicInput>();
+        //return mic;
+        return null;
     }
 }
