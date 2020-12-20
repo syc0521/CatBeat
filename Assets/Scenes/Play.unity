@@ -414,6 +414,7 @@ MonoBehaviour:
   micInput: {fileID: 414875825664216034, guid: af967bd598f40094a8cdf1a885263e24, type: 3}
   startPos: {fileID: 113855946}
   endPos: {fileID: 1867715124}
+  comboText: {fileID: 397237235}
 --- !u!114 &2001768308
 MonoBehaviour:
   m_ObjectHideFlags: 0

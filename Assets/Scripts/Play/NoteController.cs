@@ -11,6 +11,7 @@ public class NoteController : MonoBehaviour
     public List<NoteData> notes = new List<NoteData>();
     public static float noteSpeed = 1.05f;
     public static int combo;
+    public TextMesh comboText;
     void Start()
     {
         combo = 0;
@@ -19,7 +20,10 @@ public class NoteController : MonoBehaviour
             StartCoroutine(CreateNote(note));
         }
     }
-
+    private void Update()
+    {
+        comboText.text = combo.ToString();
+    }
     private IEnumerator CreateNote(NoteData note)
     {
         yield return new WaitForSeconds(note.Time);
@@ -92,8 +96,7 @@ public class NoteController : MonoBehaviour
     }
     private Note CreateMicInput(NoteData note)
     {
-        //MicInput mic = Instantiate(micInput, startPos.position, Quaternion.identity).GetComponent<MicInput>();
-        //return mic;
-        return null;
+        MicInput mic = Instantiate(micInput, startPos.position, Quaternion.identity).GetComponent<MicInput>();
+        return mic;
     }
 }
