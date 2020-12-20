@@ -35,6 +35,7 @@ public class Tap : Note
                 Instantiate(B_FX);
             }
             NoteController.combo++;
+            NoteController.score += (int)(NoteController.Multiplier * 100);
             Destroy(gameObject);
         }
     }

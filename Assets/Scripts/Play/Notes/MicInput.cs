@@ -16,7 +16,11 @@ public class MicInput : Note
     }
     private void Update()
     {
-        if (Time.timeSinceLevelLoad >= Data.Time + Data.Dur * 0.8f)
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime)
+        {
+            NoteController.score += (int)(NoteController.Multiplier * 5);
+        }
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur * 0.8f)
         {
             NoteController.combo++;
             Instantiate(fx);
