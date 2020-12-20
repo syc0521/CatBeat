@@ -38,8 +38,9 @@ public class ReadSong : MonoBehaviour
         {
             var line = lines[i].Split(',');
             NoteData note = new NoteData(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]), int.Parse(line[3]));
-            controller.notes.Add(note);
+            NoteController.notes.Add(note);
         }
+        NoteController.notes[0].CanJudge = true;
     }
     /// <summary>
     /// 播放音乐

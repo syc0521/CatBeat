@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Hold : Note
 {
@@ -10,6 +11,8 @@ public class Hold : Note
     public int type;
     public GameObject R_FX, B_FX;
     private bool key = false;
+    public InputMaster inputs;
+
     private void Start()
     {
         type = Data.Information;
@@ -21,11 +24,47 @@ public class Hold : Note
         end.transform.position = holdEndPos;
         trail.SetPosition(0, startPos);
         trail.SetPosition(1, holdEndPos);
+        type = Data.Information;
+        inputs = new InputMaster();
+        switch (Data.Information)
+        {
+            case 1:
+                inputs.PlayController.Tap_Red.Enable();
+                inputs.PlayController.Tap_Red.performed += Hold_Red_performed;
+                break;
+            case 2:
+                inputs.PlayController.Tap_Blue.Enable();
+                inputs.PlayController.Tap_Blue.performed += Hold_Blue_performed;
+                break;
+            case 3:
+                inputs.PlayController.Tap_Red.Enable();
+                inputs.PlayController.Tap_Red.performed += Hold_Red_performed;
+                break;
+        }
     }
     public override void Judge()
     {
 
     }
+    private void Hold_Blue_performed(InputAction.CallbackContext obj)
+    {
+        Judge();
+        Debug.Log("performed");
+        NoteController.notes[NoteController.notes.FindIndex(item => item.Equals(Data)) + 1].CanJudge = true;
+        Instantiate(B_FX);
+        Destroy(gameObject);
+    }
+
+    private void Hold_Red_performed(InputAction.CallbackContext obj)
+    {
+        Judge();
+        Debug.Log("performed");
+        NoteController.notes[NoteController.notes.FindIndex(item => item.Equals(Data)) + 1].CanJudge = true;
+        Instantiate(R_FX);
+        Destroy(gameObject);
+    }
+
+
     public override void Move()
     {
         var time = Time.timeSinceLevelLoad;

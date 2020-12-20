@@ -9,8 +9,8 @@ public class NoteController : MonoBehaviour
     public GameObject hold_R, hold_B, hold_P;
     public GameObject quickTap, slider, micInput;
     public Transform startPos, endPos;
-    public List<NoteData> notes = new List<NoteData>();
-    public static float noteSpeed = 1.05f;
+    public static List<NoteData> notes = new List<NoteData>();
+    public static float noteSpeed = 1.15f;
     public static int combo;
     public TextMesh comboText;
     public TextMesh scoreText;

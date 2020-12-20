@@ -5,17 +5,17 @@ using UnityEngine.InputSystem;
 public class InputController : MonoBehaviour
 {
     //Input思路：在这里面更改Data的canJudge，和canDestroy，如果canDestroy为true的话，销毁这个物体
-    Input controls;
+    InputMaster controls;
     public List<NoteData> noteList = new List<NoteData>();
 
-    Input InputControls;
+    InputMaster InputControls;
     public static readonly float perfectTime = 0.055f;
     public static readonly float greatTime = 0.09f;
     public static readonly float goodTime = 0.15f;
 
     private void Awake()
     {
-        controls = new Input();
+        controls = new InputMaster();
 
         controls.PlayController.Tap_Red.performed += ctx => Debug.Log("DestroyRedTap");
         controls.PlayController.Tap_Blue.performed += ctx => Debug.Log("DestroyBlueTap");

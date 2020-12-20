@@ -1,31 +1,80 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Tap : Note
 {
     public GameObject R_FX, B_FX;
     public int type;
+	public InputMaster inputs;
     private void Start()
     {
-        type = Data.Information;
-    }
+		type = Data.Information;
+		inputs = new InputMaster();
+        switch (Data.Information)
+        {
+			case 1:
+				inputs.PlayController.Tap_Red.Enable();
+				inputs.PlayController.Tap_Red.performed += Tap_Red_performed;
+				break;
+			case 2:
+				inputs.PlayController.Tap_Blue.Enable();
+				inputs.PlayController.Tap_Blue.performed += Tap_Blue_performed;
+				break;
+			case 3:
+				inputs.PlayController.Tap_Red.Enable();
+				inputs.PlayController.Tap_Red.performed += Tap_Red_performed;
+				break;
+        }
+
+	}
+
+    private void Tap_Blue_performed(InputAction.CallbackContext obj)
+    {
+		Judge();
+		Debug.Log("performed");
+		NoteController.notes[NoteController.notes.FindIndex(item => item.Equals(Data)) + 1].CanJudge = true;
+		Instantiate(B_FX);
+		Destroy(gameObject);
+	}
+
     public override void Judge()
     {
-        throw new System.NotImplementedException();
-    }
-    void Update()
-    {
-        if (transform.position.x <= endPos.x)
-        {
-            GenerateHitSound();
-            NoteController.combo++;
-            NoteController.score += (int)(NoteController.Multiplier * 100);
-            Destroy(gameObject);
-        }
-    }
+		JudgeNote();
 
-    private void GenerateHitSound()
+	}
+
+    private void Tap_Red_performed(InputAction.CallbackContext obj)
+    {
+		Judge();
+		Debug.Log("performed");
+		NoteController.notes[NoteController.notes.FindIndex(item => item.Equals(Data)) + 1].CanJudge = true;
+		Instantiate(R_FX);
+		Destroy(gameObject);
+	}
+
+	void Update()
+    {
+
+	}
+
+    private void AutoPlayMode()
+    {
+		if (transform.position.x <= endPos.x)
+		{
+			GenerateHitSound();
+			NoteController.combo++;
+			NoteController.score += (int)(NoteController.Multiplier * 100);
+			Destroy(gameObject);
+		}
+	}
+	private void UserPlayMode()
+    {
+		Judge();
+
+	}
+	private void GenerateHitSound()
     {
         if (type == 1)
         {
@@ -42,49 +91,5 @@ public class Tap : Note
         }
     }
 
-    public JudgeType JudgeNote(NoteData note)
-	{
-		float sceneTime = Time.timeSinceLevelLoad;
-		float time = note.Time;
-		float exactTime = time + moveTime;
-		var perfectTime = NoteController.perfectTime;
-		var greatTime = NoteController.greatTime;
-		var goodTime = NoteController.goodTime;
-		if (sceneTime <= exactTime + perfectTime && sceneTime > exactTime - perfectTime)
-		{
-			Debug.Log(note + "perfect");
-			NoteController.perfect++;
-			return JudgeType.Perfect;
-		}
-		else if (sceneTime < exactTime + greatTime && sceneTime > exactTime + perfectTime)
-		{
-			Debug.Log(note + "Lgreat");
-			NoteController.great++;
-			return JudgeType.LateGreat;
-		}
-		else if (sceneTime > exactTime - greatTime && sceneTime < exactTime - perfectTime)
-		{
-			Debug.Log(note + "Egreat");
-			NoteController.great++;
-			return JudgeType.EarlyGreat;
-		}
-		else if (sceneTime < exactTime + goodTime && sceneTime > exactTime + greatTime)
-		{
-			Debug.Log(note + "Lgood");
-			NoteController.good++;
-			return JudgeType.LateGood;
-		}
-		else if (sceneTime > exactTime - goodTime && sceneTime < exactTime - greatTime)
-		{
-			Debug.Log(note + "Egood");
-			NoteController.good++;
-			return JudgeType.EarlyGood;
-		}
-		else if (sceneTime < exactTime - goodTime)
-		{
-			return JudgeType.Miss;
-		}
-		return JudgeType.Default;
-	}
 
 }

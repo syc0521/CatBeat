@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 public enum NoteType { Tap = 1, Hold = 2, QuickTap = 3, Slider = 4, MicInput = 5 }
 public class NoteData
 {
-   
     public NoteData(int type, int time, int dur, int information)
     {
         Type = (NoteType)type;
@@ -38,6 +35,7 @@ public class NoteData
     public bool CanDestroy { set; get; }
     public override string ToString()
     {
-        return base.ToString();
+        float dt = Time - UnityEngine.Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        return "time=" + (Time * 1000f) + ", deltaTime=" + dt + ", judge=";
     }
 }
