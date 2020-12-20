@@ -9,7 +9,7 @@ public class NoteController : MonoBehaviour
     public GameObject quickTap, slider, micInput;
     public Transform startPos, endPos;
     public List<NoteData> notes = new List<NoteData>();
-    public float noteSpeed = 0.45f;
+    public static float noteSpeed = 1.05f;
     void Start()
     {
         foreach (NoteData note in notes)
@@ -18,86 +18,79 @@ public class NoteController : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
     private IEnumerator CreateNote(NoteData note)
     {
         yield return new WaitForSeconds(note.Time);
-        /*switch (note.Type)
+        Note noteObj = null;
+        switch (note.Type)
         {
             case NoteType.Tap:
-                CreateTap(note);
+                noteObj = CreateTap(note);
                 break;
             case NoteType.Hold:
+                noteObj = CreateHold(note);
                 break;
             case NoteType.QuickTap:
+                noteObj = CreateQuickTap(note);
                 break;
             case NoteType.Slider:
+                noteObj = CreateSlider(note);
                 break;
             case NoteType.MicInput:
+                noteObj = CreateMicInput(note);
                 break;
-        }*/
-        Note n;
+        };
+        noteObj.Data = note;
+        noteObj.startPos = startPos.position;
+        noteObj.endPos = endPos.position;
+    }
+    private Note CreateTap(NoteData note)
+    {
+        Tap tap;
         if (note.Information == 1)
         {
-            n = Instantiate(tap_R, startPos.position, Quaternion.identity).GetComponent<Note>();
+            tap = Instantiate(tap_R, startPos.position, Quaternion.identity).GetComponent<Tap>();
         }
         else if (note.Information == 2)
         {
-            n = Instantiate(tap_B, startPos.position, Quaternion.identity).GetComponent<Note>();
+            tap = Instantiate(tap_B, startPos.position, Quaternion.identity).GetComponent<Tap>();
         }
         else
         {
-            n = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Note>();
+            tap = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Tap>();
         }
-        n.endPos = endPos.position;
-
-        Debug.Log(note.Time);
+        return tap;
     }
-    private void CreateTap(NoteData note)
+    private Note CreateHold(NoteData note)
     {
-        Note n;
+        Hold hold;
         if (note.Information == 1)
         {
-            n = Instantiate(tap_R, startPos.position, Quaternion.identity).GetComponent<Note>();
+            hold = Instantiate(hold_R, startPos.position, Quaternion.identity).GetComponent<Hold>();
         }
         else if (note.Information == 2)
         {
-            n = Instantiate(tap_B, startPos.position, Quaternion.identity).GetComponent<Note>();
+            hold = Instantiate(hold_B, startPos.position, Quaternion.identity).GetComponent<Hold>();
         }
         else
         {
-            n = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Note>();
+            hold = Instantiate(hold_P, startPos.position, Quaternion.identity).GetComponent<Hold>();
         }
-        n.endPos = endPos.position;
+        return hold;
     }
-    private void CreateHold(NoteData note)
+    private Note CreateQuickTap(NoteData note)
     {
-        if (note.Information == 1)
-        {
-            Instantiate(hold_R, startPos.position, Quaternion.identity);
-        }
-        else if (note.Information == 2)
-        {
-            Instantiate(hold_B, startPos.position, Quaternion.identity);
-        }
-        else if (note.Information == 3)
-        {
-            Instantiate(hold_P, startPos.position, Quaternion.identity);
-        }
+        QuickTap qtap = Instantiate(quickTap, startPos.position, Quaternion.identity).GetComponent<QuickTap>();
+        return qtap;
     }
-    private void CreateQuickTap(NoteData note)
+    private Note CreateSlider(NoteData note)
     {
-
+        Slider sli = Instantiate(slider, startPos.position, Quaternion.identity).GetComponent<Slider>();
+        return sli;
     }
-    private void CreateSlider(NoteData note)
+    private Note CreateMicInput(NoteData note)
     {
-
-    }
-    private void CreateMicInput(NoteData note)
-    {
-
+        MicInput mic = Instantiate(micInput, startPos.position, Quaternion.identity).GetComponent<MicInput>();
+        return mic;
     }
 }

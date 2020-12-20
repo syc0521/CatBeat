@@ -145,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113855945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.23, y: -1.6, z: 0}
+  m_LocalPosition: {x: 9.7, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -258,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867715123}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.65, y: -1.6, z: 0}
+  m_LocalPosition: {x: -6, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -312,15 +312,15 @@ MonoBehaviour:
   tap_R: {fileID: 438750550914658638, guid: 7b21da35e1508894bbf2c2936bd1c772, type: 3}
   tap_B: {fileID: 3621520855773429631, guid: 4ef2436762c20cf45b0fde8403bdb1b9, type: 3}
   tap_P: {fileID: 3781551958620171987, guid: 8ede96eeea521dd4ab22f51c8b322da2, type: 3}
-  hold_R: {fileID: 0}
-  hold_B: {fileID: 0}
-  hold_P: {fileID: 0}
-  quickTap: {fileID: 0}
-  slider: {fileID: 0}
-  micInput: {fileID: 0}
+  hold_R: {fileID: 6023554678401246616, guid: fe92a108574940e4c88aace169e68360, type: 3}
+  hold_B: {fileID: 8569944909793269066, guid: 21c843c6e9f5f594488f766ac1aa34b1, type: 3}
+  hold_P: {fileID: 414875825664216034, guid: 055147ac59b4d90458369c25000b33e1, type: 3}
+  quickTap: {fileID: 4302448771065904204, guid: 38453327afc960542ac6f5caff16fef3,
+    type: 3}
+  slider: {fileID: 414875825664216034, guid: f4d2076a5983aba4ead5b5cb8b678103, type: 3}
+  micInput: {fileID: 414875825664216034, guid: af967bd598f40094a8cdf1a885263e24, type: 3}
   startPos: {fileID: 113855946}
   endPos: {fileID: 1867715124}
-  noteSpeed: 0.45
 --- !u!114 &2001768308
 MonoBehaviour:
   m_ObjectHideFlags: 0
