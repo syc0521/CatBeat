@@ -59,6 +59,8 @@ public class Hold : Note
             start.GetComponent<SpriteRenderer>().enabled = false;
             end.GetComponent<SpriteRenderer>().enabled = false;
             GenerateHitSound();
+            NoteController.combo++;
+            NoteController.score += (int)(NoteController.Multiplier * 200);
             Destroy(gameObject);
         }
     }
