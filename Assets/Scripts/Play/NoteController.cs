@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum JudgeType { Perfect = 0, EarlyGreat = 1, LateGreat = 2, EarlyGood = 3, LateGood = 4, Miss = -1, Default = -2 };
 
 public class NoteController : MonoBehaviour
 {
@@ -14,11 +15,16 @@ public class NoteController : MonoBehaviour
     public TextMesh comboText;
     public TextMesh scoreText;
     public static int score;
+    public static readonly float perfectTime = 0.055f;
+    public static readonly float greatTime = 0.09f;
+    public static readonly float goodTime = 0.15f;
+    public static int perfect, great, good, miss;
+
     public static float Multiplier => 1.00f + combo / 50 * 0.05f;
     void Start()
     {
-        score = 0;
-        combo = 0;
+        score = 0; combo = 0;
+        perfect = 0; great = 0; good = 0; miss = 0;
         foreach (NoteData note in notes)
         {
             StartCoroutine(CreateNote(note));

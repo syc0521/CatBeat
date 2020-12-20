@@ -36,4 +36,8 @@ public class NoteData
     /// </summary>
     public bool CanJudge { set; get; }
     public bool CanDestroy { set; get; }
+    public override string ToString()
+    {
+        return base.ToString();
+    }
 }
