@@ -10,25 +10,14 @@ public class NoteController : MonoBehaviour
     public Transform startPos, endPos;
     public List<NoteData> notes = new List<NoteData>();
     public static float noteSpeed = 1.05f;
-    public static int combo;
-    public TextMesh comboText;
-    public TextMesh scoreText;
-    public static int score;
-    public static float Multiplier => 1.00f + combo / 50 * 0.05f;
     void Start()
     {
-        score = 0;
-        combo = 0;
         foreach (NoteData note in notes)
         {
             StartCoroutine(CreateNote(note));
         }
     }
-    private void Update()
-    {
-        comboText.text = combo.ToString();
-        scoreText.text = score.ToString();
-    }
+
     private IEnumerator CreateNote(NoteData note)
     {
         yield return new WaitForSeconds(note.Time);

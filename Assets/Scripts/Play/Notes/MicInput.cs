@@ -2,29 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MicInput : Note
+public class MicInput : Hold //暂时用hold的功能
 {
-    public GameObject fx;
-    public override void Judge()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    private void Start()
-    {
-        
-    }
-    private void Update()
-    {
-        if (Time.timeSinceLevelLoad >= Data.Time + moveTime)
-        {
-            NoteController.score += (int)(NoteController.Multiplier * 5);
-        }
-        if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur * 0.8f)
-        {
-            NoteController.combo++;
-            Instantiate(fx);
-            Destroy(gameObject);
-        }
-    }
+    
 }
