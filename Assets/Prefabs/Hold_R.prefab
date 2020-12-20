@@ -213,6 +213,9 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   moveTime: 0
+  type: 0
+  R_FX: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
+  B_FX: {fileID: 0}
 --- !u!1 &6023554678931067355
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,17 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuickTap : MonoBehaviour
+public class QuickTap : Note
 {
-    // Start is called before the first frame update
+    [HideInInspector]
+    public int tapCount = 0;
+    public override void Judge()
+    {
+        throw new System.NotImplementedException();
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+    private IEnumerator ReduceCount()
+    {
+        while (tapCount > 0)
+        {
+            tapCount--;
+            yield return new WaitForSeconds(0.02f);
+        }
     }
 }
