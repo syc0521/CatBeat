@@ -27,5 +27,4 @@ public abstract class Note : MonoBehaviour
         }
     }
     public abstract void Judge();
-    public abstract void noteDestroy();
 }
