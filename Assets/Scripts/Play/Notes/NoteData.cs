@@ -8,7 +8,6 @@ public class NoteData
         Time = time / 1000.0f;
         Dur = dur / 1000.0f;
         Information = information;
-        CanJudge = false;
         CanDestroy = false;
     }
     /// <summary>
@@ -33,9 +32,10 @@ public class NoteData
     /// </summary>
     public bool CanJudge { set; get; }
     public bool CanDestroy { set; get; }
+    public int Index { get; set; }
     public override string ToString()
     {
-        float dt = Time - UnityEngine.Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        float dt = Time - UnityEngine.Time.timeSinceLevelLoad + NoteController.noteSpeed;
         return "time=" + (Time * 1000f) + ", deltaTime=" + dt + ", judge=";
     }
 }

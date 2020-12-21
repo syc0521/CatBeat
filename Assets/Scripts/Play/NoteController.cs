@@ -19,6 +19,7 @@ public class NoteController : MonoBehaviour
     public static readonly float greatTime = 0.09f;
     public static readonly float goodTime = 0.15f;
     public static int perfect, great, good, miss;
+    public static int noteCount;
 
     public static float Multiplier => 1.00f + combo / 50 * 0.05f;
     void Start()

@@ -37,9 +37,13 @@ public class ReadSong : MonoBehaviour
         for (int i = 1; i < lines.Length; i++)
         {
             var line = lines[i].Split(',');
-            NoteData note = new NoteData(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]), int.Parse(line[3]));
+            NoteData note = new NoteData(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]), int.Parse(line[3]))
+            {
+                Index = i - 1, CanJudge = false
+            };
             NoteController.notes.Add(note);
         }
+        NoteController.noteCount = NoteController.notes.Count;
         NoteController.notes[0].CanJudge = true;
     }
     /// <summary>

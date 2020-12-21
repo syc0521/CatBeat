@@ -22,8 +22,13 @@ public abstract class Note : MonoBehaviour
         {
             var time = Time.timeSinceLevelLoad;
             var endTime = Data.Time + moveTime;
-            transform.position = new Vector3(Utils.Lerp(time, Data.Time, endTime, startPos.x, endPos.x),
+			var fixedEndPos = endPos.x + 0.1f;
+			transform.position = new Vector3(Utils.Lerp(time, Data.Time, endTime, startPos.x, fixedEndPos),
                 transform.position.y);
+        }
+        else
+        {
+			transform.position = endPos;
         }
     }
     public abstract void Judge();
@@ -40,7 +45,7 @@ public abstract class Note : MonoBehaviour
 	public virtual JudgeType JudgeNote()
 	{
 		float sceneTime = Time.timeSinceLevelLoad;
-		float exactTime = Data.Time + NoteController.noteSpeed;
+		float exactTime = Data.Time + NoteController.noteSpeed + 0.045f;
 		var perfectTime = NoteController.perfectTime;
 		var greatTime = NoteController.greatTime;
 		var goodTime = NoteController.goodTime;
@@ -76,9 +81,9 @@ public abstract class Note : MonoBehaviour
 		}
 		else if (sceneTime < exactTime - goodTime)
 		{
-			Debug.Log(Data + "miss");
-			return JudgeType.Miss;
+			return JudgeType.Default;
 		}
+		Debug.Log(Data + "Not Judge");
 		return JudgeType.Default;
 	}
 

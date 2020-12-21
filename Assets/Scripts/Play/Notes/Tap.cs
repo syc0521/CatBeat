@@ -8,12 +8,47 @@ public class Tap : Note
     public GameObject R_FX, B_FX;
     public int type;
 	public InputMaster inputs;
+	private JudgeType judgeType;
     private void Start()
     {
 		type = Data.Information;
 		inputs = new InputMaster();
-        switch (Data.Information)
+		Judge();
+	}
+	private void Tap_Red_performed(InputAction.CallbackContext obj)
+	{
+		if (Data.CanJudge)
+		{
+			judgeType = JudgeNote();
+			if (Data.Index + 1 < NoteController.noteCount)
+			{
+				NoteController.notes[Data.Index + 1].CanJudge = true;
+			}
+			Instantiate(R_FX);
+			inputs.PlayController.Tap_Red.Disable();
+			Destroy(gameObject);
+		}	
+	}
+
+	private void Tap_Blue_performed(InputAction.CallbackContext obj)
+    {
+		if (Data.CanJudge)
         {
+			judgeType = JudgeNote();
+			if (Data.Index + 1 < NoteController.noteCount)
+			{
+				NoteController.notes[Data.Index + 1].CanJudge = true;
+			}
+			Instantiate(B_FX);
+			inputs.PlayController.Tap_Blue.Disable();
+			Destroy(gameObject);
+		}		
+	}
+
+    public override void Judge()
+    {
+		switch (Data.Information)
+		{
 			case 1:
 				inputs.PlayController.Tap_Red.Enable();
 				inputs.PlayController.Tap_Red.performed += Tap_Red_performed;
@@ -26,39 +61,23 @@ public class Tap : Note
 				inputs.PlayController.Tap_Red.Enable();
 				inputs.PlayController.Tap_Red.performed += Tap_Red_performed;
 				break;
-        }
-
+		}
 	}
 
-    private void Tap_Blue_performed(InputAction.CallbackContext obj)
-    {
-		Judge();
-		Debug.Log("performed");
-		NoteController.notes[NoteController.notes.FindIndex(item => item.Equals(Data)) + 1].CanJudge = true;
-		Instantiate(B_FX);
-		Destroy(gameObject);
-	}
-
-    public override void Judge()
-    {
-		JudgeNote();
-
-	}
-
-    private void Tap_Red_performed(InputAction.CallbackContext obj)
-    {
-		Judge();
-		Debug.Log("performed");
-		NoteController.notes[NoteController.notes.FindIndex(item => item.Equals(Data)) + 1].CanJudge = true;
-		Instantiate(R_FX);
-		Destroy(gameObject);
-	}
 
 	void Update()
     {
-
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime + NoteController.goodTime)
+        {
+			StartCoroutine(DestroyNote());
+        }
 	}
-
+	private IEnumerator DestroyNote()
+	{
+		yield return new WaitForSeconds(0.02f);
+		NoteController.combo = 0;
+		Destroy(gameObject);
+	}
     private void AutoPlayMode()
     {
 		if (transform.position.x <= endPos.x)

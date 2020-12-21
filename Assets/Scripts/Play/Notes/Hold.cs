@@ -16,6 +16,13 @@ public class Hold : Note
     private void Start()
     {
         type = Data.Information;
+        GenerateHold();
+        inputs = new InputMaster();
+        Judge();
+    }
+
+    private void GenerateHold()
+    {
         holdEndPos = new Vector3(Data.Dur * (Mathf.Abs(startPos.x - endPos.x) / moveTime) + startPos.x, endPos.y);
         start = transform.GetChild(0).gameObject;
         start.transform.position = startPos;
@@ -24,8 +31,10 @@ public class Hold : Note
         end.transform.position = holdEndPos;
         trail.SetPosition(0, startPos);
         trail.SetPosition(1, holdEndPos);
-        type = Data.Information;
-        inputs = new InputMaster();
+    }
+
+    public override void Judge()
+    {
         switch (Data.Information)
         {
             case 1:
@@ -42,26 +51,32 @@ public class Hold : Note
                 break;
         }
     }
-    public override void Judge()
-    {
-
-    }
     private void Hold_Blue_performed(InputAction.CallbackContext obj)
     {
-        Judge();
-        Debug.Log("performed");
-        NoteController.notes[NoteController.notes.FindIndex(item => item.Equals(Data)) + 1].CanJudge = true;
-        Instantiate(B_FX);
-        Destroy(gameObject);
+        if (Data.CanJudge)
+        {
+            JudgeNote();
+            if (Data.Index + 1 < NoteController.noteCount)
+            {
+                NoteController.notes[Data.Index + 1].CanJudge = true;
+            }
+            GenerateHitSound();
+            inputs.PlayController.Tap_Blue.Disable();
+        }
     }
 
     private void Hold_Red_performed(InputAction.CallbackContext obj)
     {
-        Judge();
-        Debug.Log("performed");
-        NoteController.notes[NoteController.notes.FindIndex(item => item.Equals(Data)) + 1].CanJudge = true;
-        Instantiate(R_FX);
-        Destroy(gameObject);
+        if (Data.CanJudge)
+        {
+            JudgeNote();
+            if (Data.Index + 1 < NoteController.noteCount)
+            {
+                NoteController.notes[Data.Index + 1].CanJudge = true;
+            }
+            GenerateHitSound();
+            inputs.PlayController.Tap_Red.Disable();
+        }
     }
 
 
@@ -82,6 +97,7 @@ public class Hold : Note
         }
         else if (time < Data.Time + moveTime + Data.Dur)
         {
+            start.transform.position = endPos;
             end.transform.position = new Vector3(Utils.Lerp(time, Data.Time + moveTime, Data.Time + moveTime + Data.Dur, endPos.x + durPos, endPos.x),
                 start.transform.position.y);
             trail.SetPosition(0, endPos);
@@ -90,18 +106,21 @@ public class Hold : Note
             if (!key)
             {
                 key = true;
-                GenerateHitSound();
+                
             }
         }
         else
         {
             start.GetComponent<SpriteRenderer>().enabled = false;
             end.GetComponent<SpriteRenderer>().enabled = false;
-            GenerateHitSound();
-            NoteController.combo++;
-            NoteController.score += (int)(NoteController.Multiplier * 200);
             Destroy(gameObject);
         }
+    }
+    private void AutoPlayMode()
+    {
+        GenerateHitSound();
+        NoteController.combo++;
+        NoteController.score += (int)(NoteController.Multiplier * 200);
     }
     private void GenerateHitSound()
     {
