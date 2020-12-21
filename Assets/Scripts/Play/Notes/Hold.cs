@@ -12,13 +12,18 @@ public class Hold : Note
     public GameObject R_FX, B_FX;
     private bool key = false;
     public InputMaster inputs;
+    private JudgeType judgeType = JudgeType.Miss;
+
 
     private void Start()
     {
         type = Data.Information;
         GenerateHold();
         inputs = new InputMaster();
-        Judge();
+        if (!NoteController.isAutoPlay)
+        {
+            Judge();
+        }
     }
 
     private void GenerateHold()
@@ -46,8 +51,8 @@ public class Hold : Note
                 inputs.PlayController.Tap_Blue.performed += Hold_Blue_performed;
                 break;
             case 3:
-                inputs.PlayController.Tap_Red.Enable();
-                inputs.PlayController.Tap_Red.performed += Hold_Red_performed;
+                inputs.PlayController.Tap_Purple.Enable();
+                inputs.PlayController.Tap_Purple.performed += Hold_Purple_performed;
                 break;
         }
     }
@@ -55,13 +60,19 @@ public class Hold : Note
     {
         if (Data.CanJudge)
         {
-            JudgeNote();
-            if (Data.Index + 1 < NoteController.noteCount)
+            judgeType = JudgeNote();
+            if (judgeType != JudgeType.Default && judgeType != JudgeType.Miss)
             {
-                NoteController.notes[Data.Index + 1].CanJudge = true;
+                if (Data.Index + 1 < NoteController.noteCount)
+                {
+                    NoteController.notes[Data.Index + 1].CanJudge = true;
+                }
+                Instantiate(B_FX);
+                NoteController.combo++;
+                NoteController.score += (int)(NoteController.Multiplier * 100);
+                inputs.PlayController.Tap_Blue.Disable();
+                Destroy(gameObject);
             }
-            GenerateHitSound();
-            inputs.PlayController.Tap_Blue.Disable();
         }
     }
 
@@ -69,16 +80,40 @@ public class Hold : Note
     {
         if (Data.CanJudge)
         {
-            JudgeNote();
-            if (Data.Index + 1 < NoteController.noteCount)
+            judgeType = JudgeNote();
+            if (judgeType != JudgeType.Default && judgeType != JudgeType.Miss)
             {
-                NoteController.notes[Data.Index + 1].CanJudge = true;
+                if (Data.Index + 1 < NoteController.noteCount)
+                {
+                    NoteController.notes[Data.Index + 1].CanJudge = true;
+                }
+                Instantiate(R_FX);
+                NoteController.combo++;
+                NoteController.score += (int)(NoteController.Multiplier * 100);
+                inputs.PlayController.Tap_Red.Disable();
+                Destroy(gameObject);
             }
-            GenerateHitSound();
-            inputs.PlayController.Tap_Red.Disable();
         }
     }
-
+    private void Hold_Purple_performed(InputAction.CallbackContext obj)
+    {
+        if (Data.CanJudge)
+        {
+            judgeType = JudgeNote();
+            if (judgeType != JudgeType.Default && judgeType != JudgeType.Miss)
+            {
+                if (Data.Index + 1 < NoteController.noteCount)
+                {
+                    NoteController.notes[Data.Index + 1].CanJudge = true;
+                }
+                Instantiate(B_FX);
+                NoteController.combo++;
+                NoteController.score += (int)(NoteController.Multiplier * 100);
+                inputs.PlayController.Tap_Purple.Disable();
+                Destroy(gameObject);
+            }
+        }
+    }
 
     public override void Move()
     {
@@ -106,13 +141,20 @@ public class Hold : Note
             if (!key)
             {
                 key = true;
-                
+                if (NoteController.isAutoPlay)
+                {
+                    GenerateHitSound();
+                }
             }
         }
         else
         {
             start.GetComponent<SpriteRenderer>().enabled = false;
             end.GetComponent<SpriteRenderer>().enabled = false;
+            if (NoteController.isAutoPlay)
+            {
+                AutoPlayMode();
+            }
             Destroy(gameObject);
         }
     }

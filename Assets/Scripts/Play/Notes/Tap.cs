@@ -13,7 +13,10 @@ public class Tap : Note
     {
 		type = Data.Information;
 		inputs = new InputMaster();
-		Judge();
+        if (!NoteController.isAutoPlay)
+        {
+			Invoke(nameof(Judge), moveTime - NoteController.goodTime);
+		}
 	}
 	private void Tap_Red_performed(InputAction.CallbackContext obj)
 	{
@@ -62,6 +65,7 @@ public class Tap : Note
 				{
 					NoteController.notes[Data.Index + 1].CanJudge = true;
 				}
+				Instantiate(R_FX);
 				Instantiate(B_FX);
 				inputs.PlayController.Tap_Purple.Disable();
 				Destroy(gameObject);
@@ -75,15 +79,15 @@ public class Tap : Note
 		{
 			case 1:
 				inputs.PlayController.Tap_Red.Enable();
-				inputs.PlayController.Tap_Red.started += Tap_Red_performed;
+				inputs.PlayController.Tap_Red.performed += Tap_Red_performed;
 				break;
 			case 2:
 				inputs.PlayController.Tap_Blue.Enable();
-				inputs.PlayController.Tap_Blue.started += Tap_Blue_performed;
+				inputs.PlayController.Tap_Blue.performed += Tap_Blue_performed;
 				break;
 			case 3:
 				inputs.PlayController.Tap_Purple.Enable();
-				inputs.PlayController.Tap_Purple.started += Tap_Purple_performed;
+				inputs.PlayController.Tap_Purple.performed += Tap_Purple_performed;
 				break;
 		}
 	}
@@ -91,7 +95,15 @@ public class Tap : Note
 
 	void Update()
     {
-        if (Time.timeSinceLevelLoad >= Data.Time + moveTime + NoteController.goodTime && judgeType == JudgeType.Miss)
+        if (!NoteController.isAutoPlay)
+        {
+			if (Time.timeSinceLevelLoad >= Data.Time + moveTime + NoteController.goodTime)
+			{
+				judgeType = JudgeType.Miss;
+				DestroyMissNote();
+			}
+		}
+        else
         {
 			StartCoroutine(DestroyMissNote());
         }
@@ -104,6 +116,8 @@ public class Tap : Note
 		{
 			NoteController.notes[Data.Index + 1].CanJudge = true;
 		}
+		Debug.Log(Data + "Miss");
+		Data.CanDestroy = true;
 		Destroy(gameObject);
 	}
     private void AutoPlayMode()

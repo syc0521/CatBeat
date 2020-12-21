@@ -10,6 +10,7 @@ public class NoteController : MonoBehaviour
     public GameObject quickTap, slider, micInput;
     public Transform startPos, endPos;
     public static List<NoteData> notes = new List<NoteData>();
+    public static List<Note> noteObjs = new List<Note>();
     public static float noteSpeed = 1.15f;
     public static int combo;
     public TextMesh comboText;
@@ -20,6 +21,7 @@ public class NoteController : MonoBehaviour
     public static readonly float goodTime = 0.15f;
     public static int perfect, great, good, miss;
     public static int noteCount;
+    public static bool isAutoPlay = false;
 
     public static float Multiplier => 1.00f + combo / 50 * 0.05f;
     void Start()
@@ -61,6 +63,7 @@ public class NoteController : MonoBehaviour
         noteObj.Data = note;
         noteObj.startPos = startPos.position;
         noteObj.endPos = endPos.position;
+        noteObjs.Add(noteObj);
     }
     private Note CreateTap(NoteData note)
     {

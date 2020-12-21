@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,9 +7,6 @@ public class InputController : MonoBehaviour
 {
     //Input思路：在这里面更改Data的canJudge，和canDestroy，如果canDestroy为true的话，销毁这个物体
     InputMaster controls;
-    public List<NoteData> noteList = new List<NoteData>();
-
-    InputMaster InputControls;
     public static readonly float perfectTime = 0.055f;
     public static readonly float greatTime = 0.09f;
     public static readonly float goodTime = 0.15f;
@@ -16,22 +14,37 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         controls = new InputMaster();
-
-        controls.PlayController.Tap_Red.performed += ctx => Debug.Log("DestroyRedTap");
+        controls.PlayController.Tap_Red.performed += DestroyRedTap;
         controls.PlayController.Tap_Blue.performed += ctx => Debug.Log("DestroyBlueTap");
     }
 
-    private void DestroyRedTap()
+    private void DestroyRedTap(InputAction.CallbackContext obj)
     {
-        Debug.Log("DestroyRedTap");
-        /*foreach (NoteData noteData in noteList)
+        var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        var note = NoteController.notes.Find(item => item.Time > time - goodTime 
+                                                  && item.Time < time + goodTime 
+                                                  && item.Information == 1 && item.CanJudge && !item.CanDestroy);
+        if (note != null && !note.CanDestroy)
         {
-            if (noteData.CanJudge == true&&noteData.Type==NoteType.Tap&&noteData.Information==1)
+            var noteObj = NoteController.noteObjs[note.Index];
+            note.CanDestroy = true;
+            note.CanJudge = false;
+            if (note.Index < NoteController.noteCount)
             {
-                noteData.CanDestroy = true;
+                NoteController.notes[note.Index + 1].CanJudge = true;
             }
-        }*/
+            Debug.Log(note + "destroy");
+            try
+            {
+                Destroy(noteObj.gameObject);
+            }
+            catch (Exception)
+            {
+                Debug.LogError(note + "destroyWrong");
+            }
+        }
     }
+
 
     private void DestroyBlueTap()
     {
@@ -44,21 +57,6 @@ public class InputController : MonoBehaviour
             }
         }*/
     }
-    /*private void GetFirstNotes()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            int firstIndex = noteList.FindIndex(
-                delegate (NoteData note1)
-                {
-                    return note1.Pos == i;
-                });
-            if (firstIndex != -1)
-            {
-                noteList[firstIndex].CanJudge = true;
-            }
-        }
-    }*/
 
     void OnEnable()
     {

@@ -39,44 +39,47 @@ public abstract class Note : MonoBehaviour
 		var perfectTime = NoteController.perfectTime;
 		var greatTime = NoteController.greatTime;
 		var goodTime = NoteController.goodTime;
-		if (sceneTime <= exactTime + perfectTime && sceneTime > exactTime - perfectTime)
-		{
-			Debug.Log(Data + "perfect");
-			NoteController.perfect++;
-			return JudgeType.Perfect;
-		}
-		else if (sceneTime < exactTime + greatTime && sceneTime > exactTime + perfectTime)
-		{
-			Debug.Log(Data + "Lgreat");
-			NoteController.great++;
-			return JudgeType.LateGreat;
-		}
-		else if (sceneTime > exactTime - greatTime && sceneTime < exactTime - perfectTime)
-		{
-			Debug.Log(Data + "Egreat");
-			NoteController.great++;
-			return JudgeType.EarlyGreat;
-		}
-		else if (sceneTime < exactTime + goodTime && sceneTime > exactTime + greatTime)
-		{
-			Debug.Log(Data + "Lgood");
-			NoteController.good++;
-			return JudgeType.LateGood;
-		}
-		else if (sceneTime > exactTime - goodTime && sceneTime < exactTime - greatTime)
-		{
-			Debug.Log(Data + "Egood");
-			NoteController.good++;
-			return JudgeType.EarlyGood;
-		}
-		else if (sceneTime < exactTime - goodTime)
-		{
-			return JudgeType.Default;
-		}
-        else if (sceneTime > exactTime - goodTime)
+        if (Data.CanJudge)
         {
-			return JudgeType.Miss;
-        }
+			if (sceneTime <= exactTime + perfectTime && sceneTime > exactTime - perfectTime)
+			{
+				Debug.Log(Data + "perfect");
+				NoteController.perfect++;
+				return JudgeType.Perfect;
+			}
+			else if (sceneTime < exactTime + greatTime && sceneTime > exactTime + perfectTime)
+			{
+				Debug.Log(Data + "Lgreat");
+				NoteController.great++;
+				return JudgeType.LateGreat;
+			}
+			else if (sceneTime > exactTime - greatTime && sceneTime < exactTime - perfectTime)
+			{
+				Debug.Log(Data + "Egreat");
+				NoteController.great++;
+				return JudgeType.EarlyGreat;
+			}
+			else if (sceneTime < exactTime + goodTime - 0.05f && sceneTime > exactTime + greatTime)
+			{
+				Debug.Log(Data + "Lgood");
+				NoteController.good++;
+				return JudgeType.LateGood;
+			}
+			else if (sceneTime > exactTime - goodTime && sceneTime < exactTime - greatTime)
+			{
+				Debug.Log(Data + "Egood");
+				NoteController.good++;
+				return JudgeType.EarlyGood;
+			}
+			else if (sceneTime < exactTime - goodTime)
+			{
+				return JudgeType.Default;
+			}
+			else if (sceneTime > exactTime + goodTime - 0.05f)
+			{
+				return JudgeType.Miss;
+			}
+		}
 		return JudgeType.Default;
 	}
 
