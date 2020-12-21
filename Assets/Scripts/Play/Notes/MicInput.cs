@@ -5,10 +5,7 @@ using UnityEngine;
 public class MicInput : Note
 {
     public GameObject fx;
-    public override void Judge()
-    {
-        throw new System.NotImplementedException();
-    }
+
 
     private void Start()
     {

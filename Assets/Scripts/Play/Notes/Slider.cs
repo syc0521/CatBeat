@@ -6,11 +6,6 @@ public class Slider : Note
 {
     private LineRenderer trail;
     private Vector3 holdEndPos;
-    public override void Judge()
-    {
-        throw new System.NotImplementedException();
-    }
-
     void Start()
     {
         trail = transform.GetChild(0).gameObject.GetComponent<LineRenderer>();

@@ -31,7 +31,6 @@ public abstract class Note : MonoBehaviour
 			transform.position = endPos;
         }
     }
-    public abstract void Judge();
 	public virtual JudgeType JudgeNote()
 	{
 		float sceneTime = Time.timeSinceLevelLoad;
@@ -75,7 +74,7 @@ public abstract class Note : MonoBehaviour
 			{
 				return JudgeType.Default;
 			}
-			else if (sceneTime > exactTime + goodTime - 0.05f)
+			else if (sceneTime > exactTime + goodTime)
 			{
 				return JudgeType.Miss;
 			}

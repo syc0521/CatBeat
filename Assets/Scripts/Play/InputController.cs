@@ -15,7 +15,8 @@ public class InputController : MonoBehaviour
     {
         controls = new InputMaster();
         controls.PlayController.Tap_Red.performed += DestroyRedTap;
-        controls.PlayController.Tap_Blue.performed += ctx => Debug.Log("DestroyBlueTap");
+        controls.PlayController.Tap_Blue.performed += DestroyBlueTap;
+        controls.PlayController.Tap_Purple.performed += DestroyPurpleTap;
     }
 
     private void DestroyRedTap(InputAction.CallbackContext obj)
@@ -28,12 +29,64 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             note.CanDestroy = true;
-            note.CanJudge = false;
             if (note.Index < NoteController.noteCount)
             {
                 NoteController.notes[note.Index + 1].CanJudge = true;
             }
-            Debug.Log(note + "destroy");
+            JudgeType judgeType = JudgeTap(note);
+            note.CanJudge = false;
+            try
+            {
+                Destroy(noteObj.gameObject);
+            }
+            catch (Exception)
+            {
+                Debug.LogError(note + "destroyWrong");
+            }
+        }
+    }
+    private void DestroyBlueTap(InputAction.CallbackContext obj)
+    {
+        var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        var note = NoteController.notes.Find(item => item.Time > time - goodTime
+                                                  && item.Time < time + goodTime
+                                                  && item.Information == 2 && item.CanJudge && !item.CanDestroy);
+        if (note != null && !note.CanDestroy)
+        {
+            var noteObj = NoteController.noteObjs[note.Index];
+            note.CanDestroy = true;
+            if (note.Index < NoteController.noteCount)
+            {
+                NoteController.notes[note.Index + 1].CanJudge = true;
+            }
+            JudgeType judgeType = JudgeTap(note);
+            note.CanJudge = false;
+            try
+            {
+                Destroy(noteObj.gameObject);
+            }
+            catch (Exception)
+            {
+                Debug.LogError(note + "destroyWrong");
+            }
+        }
+    }
+    private void DestroyPurpleTap(InputAction.CallbackContext obj)
+    {
+        var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        var note = NoteController.notes.Find(item => item.Time > time - goodTime
+                                                  && item.Time < time + goodTime
+                                                  && item.Information == 2 && item.CanJudge && !item.CanDestroy);
+        if (note != null && !note.CanDestroy)
+        {
+            var noteObj = NoteController.noteObjs[note.Index];
+            note.CanDestroy = true;
+            if (note.Index < NoteController.noteCount)
+            {
+                NoteController.notes[note.Index + 1].CanJudge = true;
+            }
+            JudgeType judgeType = JudgeTap(note);
+            note.CanJudge = false;
             try
             {
                 Destroy(noteObj.gameObject);
@@ -45,17 +98,55 @@ public class InputController : MonoBehaviour
         }
     }
 
-
-    private void DestroyBlueTap()
+    private JudgeType JudgeTap(NoteData note)
     {
-        Debug.Log("DestroyBlueTap");
-        /*foreach (NoteData noteData in noteList)
+        float sceneTime = Time.timeSinceLevelLoad;
+        float exactTime = note.Time + NoteController.noteSpeed + 0.045f;
+        var perfectTime = NoteController.perfectTime;
+        var greatTime = NoteController.greatTime;
+        var goodTime = NoteController.goodTime;
+        if (note.CanJudge)
         {
-            if (noteData.CanJudge == true && noteData.Type == NoteType.Tap && noteData.Information == 2)
+            if (sceneTime <= exactTime + perfectTime && sceneTime > exactTime - perfectTime)
             {
-                noteData.CanDestroy = true;
+                Debug.Log(note + "perfect");
+                NoteController.perfect++;
+                return JudgeType.Perfect;
             }
-        }*/
+            else if (sceneTime < exactTime + greatTime && sceneTime > exactTime + perfectTime)
+            {
+                Debug.Log(note + "Lgreat");
+                NoteController.great++;
+                return JudgeType.LateGreat;
+            }
+            else if (sceneTime > exactTime - greatTime && sceneTime < exactTime - perfectTime)
+            {
+                Debug.Log(note + "Egreat");
+                NoteController.great++;
+                return JudgeType.EarlyGreat;
+            }
+            else if (sceneTime < exactTime + goodTime - 0.05f && sceneTime > exactTime + greatTime)
+            {
+                Debug.Log(note + "Lgood");
+                NoteController.good++;
+                return JudgeType.LateGood;
+            }
+            else if (sceneTime > exactTime - goodTime && sceneTime < exactTime - greatTime)
+            {
+                Debug.Log(note + "Egood");
+                NoteController.good++;
+                return JudgeType.EarlyGood;
+            }
+            else if (sceneTime < exactTime - goodTime)
+            {
+                return JudgeType.Default;
+            }
+            else if (sceneTime > exactTime + goodTime)
+            {
+                return JudgeType.Miss;
+            }
+        }
+        return JudgeType.Default;
     }
 
     void OnEnable()

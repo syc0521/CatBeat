@@ -8,10 +8,6 @@ public class QuickTap : Note
     public int tapCount = 0;
     private TextMesh text;
     public GameObject fx;
-    public override void Judge()
-    {
-        throw new System.NotImplementedException();
-    }
 
     void Start()
     {
