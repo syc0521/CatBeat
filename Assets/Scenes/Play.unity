@@ -561,6 +561,7 @@ MonoBehaviour:
   endPos: {fileID: 1867715124}
   comboText: {fileID: 397237235}
   scoreText: {fileID: 1695471978}
+  isAutoPlay: 0
 --- !u!114 &2001768308
 MonoBehaviour:
   m_ObjectHideFlags: 0

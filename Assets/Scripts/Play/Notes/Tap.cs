@@ -8,28 +8,33 @@ public class Tap : Note
     public GameObject R_FX, B_FX;
     public int type;
 	public InputMaster inputs;
-	private JudgeType judgeType;
+	private JudgeType judgeType = JudgeType.Miss;
     private void Start()
     {
 		type = Data.Information;
 		inputs = new InputMaster();
-		Judge();
+        if (!NoteController.isAutoPlay)
+        {
+			Judge();
+		}
 	}
 	private void Tap_Red_performed(InputAction.CallbackContext obj)
 	{
 		if (Data.CanJudge)
 		{
 			judgeType = JudgeNote();
-			Debug.Log(judgeType);
-            if (judgeType != JudgeType.Default)
+            if (judgeType != JudgeType.Default && judgeType != JudgeType.Miss)
             {
 				if (Data.Index + 1 < NoteController.noteCount)
 				{
 					NoteController.notes[Data.Index + 1].CanJudge = true;
 				}
 				Instantiate(R_FX);
+				NoteController.combo++;
+				NoteController.score += (int)(NoteController.Multiplier * 100);
 				inputs.PlayController.Tap_Red.Disable();
 				Destroy(gameObject);
+				Destroy(this);
 			}
 		}	
 	}
@@ -39,14 +44,16 @@ public class Tap : Note
 		if (Data.CanJudge)
 		{
 			judgeType = JudgeNote();
-			if (judgeType != JudgeType.Default)
+			if (judgeType != JudgeType.Default && judgeType != JudgeType.Miss)
 			{
 				if (Data.Index + 1 < NoteController.noteCount)
 				{
 					NoteController.notes[Data.Index + 1].CanJudge = true;
 				}
 				Instantiate(B_FX);
-				inputs.PlayController.Tap_Red.Disable();
+				NoteController.combo++;
+				NoteController.score += (int)(NoteController.Multiplier * 100);
+				inputs.PlayController.Tap_Blue.Disable();
 				Destroy(gameObject);
 			}
 		}
@@ -56,13 +63,15 @@ public class Tap : Note
 		if (Data.CanJudge)
 		{
 			judgeType = JudgeNote();
-			if (judgeType != JudgeType.Default)
+			if (judgeType != JudgeType.Default && judgeType != JudgeType.Miss)
 			{
 				if (Data.Index + 1 < NoteController.noteCount)
 				{
 					NoteController.notes[Data.Index + 1].CanJudge = true;
 				}
 				Instantiate(B_FX);
+				NoteController.combo++;
+				NoteController.score += (int)(NoteController.Multiplier * 100);
 				inputs.PlayController.Tap_Purple.Disable();
 				Destroy(gameObject);
 			}
@@ -91,19 +100,27 @@ public class Tap : Note
 
 	void Update()
     {
-        if (Time.timeSinceLevelLoad >= Data.Time + moveTime + NoteController.goodTime && judgeType == JudgeType.Miss)
+        if (!NoteController.isAutoPlay)
         {
-			StartCoroutine(DestroyMissNote());
-        }
+			if (Time.timeSinceLevelLoad >= Data.Time + moveTime + NoteController.goodTime - 0.05f)
+			{
+				judgeType = JudgeType.Miss;
+				DestroyMissNote();
+			}
+		}
+        else
+        {
+			AutoPlayMode();
+		}
 	}
-	private IEnumerator DestroyMissNote()
-	{
-		yield return new WaitForSeconds(0.02f);
+	private void DestroyMissNote()
+    {
 		NoteController.combo = 0;
 		if (Data.Index + 1 < NoteController.noteCount)
 		{
 			NoteController.notes[Data.Index + 1].CanJudge = true;
 		}
+		Debug.Log(Data + "Miss");
 		Destroy(gameObject);
 	}
     private void AutoPlayMode()
@@ -115,11 +132,6 @@ public class Tap : Note
 			NoteController.score += (int)(NoteController.Multiplier * 100);
 			Destroy(gameObject);
 		}
-	}
-	private void UserPlayMode()
-    {
-		Judge();
-
 	}
 	private void GenerateHitSound()
     {
@@ -137,6 +149,4 @@ public class Tap : Note
             Instantiate(B_FX);
         }
     }
-
-
 }
