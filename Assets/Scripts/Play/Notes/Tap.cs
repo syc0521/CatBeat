@@ -20,46 +20,70 @@ public class Tap : Note
 		if (Data.CanJudge)
 		{
 			judgeType = JudgeNote();
-			if (Data.Index + 1 < NoteController.noteCount)
-			{
-				NoteController.notes[Data.Index + 1].CanJudge = true;
+			Debug.Log(judgeType);
+            if (judgeType != JudgeType.Default)
+            {
+				if (Data.Index + 1 < NoteController.noteCount)
+				{
+					NoteController.notes[Data.Index + 1].CanJudge = true;
+				}
+				Instantiate(R_FX);
+				inputs.PlayController.Tap_Red.Disable();
+				Destroy(gameObject);
 			}
-			Instantiate(R_FX);
-			inputs.PlayController.Tap_Red.Disable();
-			Destroy(gameObject);
 		}	
 	}
 
 	private void Tap_Blue_performed(InputAction.CallbackContext obj)
     {
 		if (Data.CanJudge)
-        {
+		{
 			judgeType = JudgeNote();
-			if (Data.Index + 1 < NoteController.noteCount)
+			if (judgeType != JudgeType.Default)
 			{
-				NoteController.notes[Data.Index + 1].CanJudge = true;
+				if (Data.Index + 1 < NoteController.noteCount)
+				{
+					NoteController.notes[Data.Index + 1].CanJudge = true;
+				}
+				Instantiate(B_FX);
+				inputs.PlayController.Tap_Red.Disable();
+				Destroy(gameObject);
 			}
-			Instantiate(B_FX);
-			inputs.PlayController.Tap_Blue.Disable();
-			Destroy(gameObject);
-		}		
+		}
+	}
+	private void Tap_Purple_performed(InputAction.CallbackContext obj)
+	{
+		if (Data.CanJudge)
+		{
+			judgeType = JudgeNote();
+			if (judgeType != JudgeType.Default)
+			{
+				if (Data.Index + 1 < NoteController.noteCount)
+				{
+					NoteController.notes[Data.Index + 1].CanJudge = true;
+				}
+				Instantiate(B_FX);
+				inputs.PlayController.Tap_Purple.Disable();
+				Destroy(gameObject);
+			}
+		}
 	}
 
-    public override void Judge()
+	public override void Judge()
     {
 		switch (Data.Information)
 		{
 			case 1:
 				inputs.PlayController.Tap_Red.Enable();
-				inputs.PlayController.Tap_Red.performed += Tap_Red_performed;
+				inputs.PlayController.Tap_Red.started += Tap_Red_performed;
 				break;
 			case 2:
 				inputs.PlayController.Tap_Blue.Enable();
-				inputs.PlayController.Tap_Blue.performed += Tap_Blue_performed;
+				inputs.PlayController.Tap_Blue.started += Tap_Blue_performed;
 				break;
 			case 3:
-				inputs.PlayController.Tap_Red.Enable();
-				inputs.PlayController.Tap_Red.performed += Tap_Red_performed;
+				inputs.PlayController.Tap_Purple.Enable();
+				inputs.PlayController.Tap_Purple.started += Tap_Purple_performed;
 				break;
 		}
 	}
@@ -67,15 +91,19 @@ public class Tap : Note
 
 	void Update()
     {
-        if (Time.timeSinceLevelLoad >= Data.Time + moveTime + NoteController.goodTime)
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime + NoteController.goodTime && judgeType == JudgeType.Miss)
         {
-			StartCoroutine(DestroyNote());
+			StartCoroutine(DestroyMissNote());
         }
 	}
-	private IEnumerator DestroyNote()
+	private IEnumerator DestroyMissNote()
 	{
 		yield return new WaitForSeconds(0.02f);
 		NoteController.combo = 0;
+		if (Data.Index + 1 < NoteController.noteCount)
+		{
+			NoteController.notes[Data.Index + 1].CanJudge = true;
+		}
 		Destroy(gameObject);
 	}
     private void AutoPlayMode()

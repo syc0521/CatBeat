@@ -33,6 +33,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Tap_Purple"",
+                    ""type"": ""Button"",
+                    ""id"": ""f876fdc6-1584-48fe-a46d-7219f68f6949"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -178,6 +186,138 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Tap_Blue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1"",
+                    ""id"": ""e67fbd79-0f47-4387-b7ef-d8322b7c8252"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""025ddaef-a32d-401f-8e9d-fbf85cd4c91c"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""8b9a169d-941e-491f-9ebd-3d98acd9a236"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2"",
+                    ""id"": ""381c1429-d128-4bd8-b3cd-f23a3a38868f"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""fae9feac-d844-420e-ac30-eecf1c41806f"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""1a4cf18e-7951-407f-b3b2-49fdb636439f"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""3"",
+                    ""id"": ""9b9878be-5a75-46e4-b7e5-097ce1856bae"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""4688d36d-4181-45d2-9a00-c659599a1ee0"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""c024bf4e-5c1d-4104-8c0a-3d3f43d986af"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""4"",
+                    ""id"": ""7b8eacbc-7179-4b85-88ea-0a11ccaebbda"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""b6bbf7fe-6a61-4e96-92c8-e70f904b3ef6"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""c8b768ec-a2b1-4c72-ac8e-44c23f8753a3"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Purple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -211,6 +351,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_PlayController = asset.FindActionMap("PlayController", throwIfNotFound: true);
         m_PlayController_Tap_Red = m_PlayController.FindAction("Tap_Red", throwIfNotFound: true);
         m_PlayController_Tap_Blue = m_PlayController.FindAction("Tap_Blue", throwIfNotFound: true);
+        m_PlayController_Tap_Purple = m_PlayController.FindAction("Tap_Purple", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,12 +403,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private IPlayControllerActions m_PlayControllerActionsCallbackInterface;
     private readonly InputAction m_PlayController_Tap_Red;
     private readonly InputAction m_PlayController_Tap_Blue;
+    private readonly InputAction m_PlayController_Tap_Purple;
     public struct PlayControllerActions
     {
         private @InputMaster m_Wrapper;
         public PlayControllerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Tap_Red => m_Wrapper.m_PlayController_Tap_Red;
         public InputAction @Tap_Blue => m_Wrapper.m_PlayController_Tap_Blue;
+        public InputAction @Tap_Purple => m_Wrapper.m_PlayController_Tap_Purple;
         public InputActionMap Get() { return m_Wrapper.m_PlayController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -283,6 +426,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Tap_Blue.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue;
                 @Tap_Blue.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue;
                 @Tap_Blue.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue;
+                @Tap_Purple.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Purple;
+                @Tap_Purple.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Purple;
+                @Tap_Purple.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Purple;
             }
             m_Wrapper.m_PlayControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -293,6 +439,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Tap_Blue.started += instance.OnTap_Blue;
                 @Tap_Blue.performed += instance.OnTap_Blue;
                 @Tap_Blue.canceled += instance.OnTap_Blue;
+                @Tap_Purple.started += instance.OnTap_Purple;
+                @Tap_Purple.performed += instance.OnTap_Purple;
+                @Tap_Purple.canceled += instance.OnTap_Purple;
             }
         }
     }
@@ -319,5 +468,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnTap_Red(InputAction.CallbackContext context);
         void OnTap_Blue(InputAction.CallbackContext context);
+        void OnTap_Purple(InputAction.CallbackContext context);
     }
 }

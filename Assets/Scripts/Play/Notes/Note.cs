@@ -32,16 +32,6 @@ public abstract class Note : MonoBehaviour
         }
     }
     public abstract void Judge();
-    public virtual bool KeyJudge(KeyCode key)
-    {
-        return Input.GetKeyDown(key);// && Data.CanJudge;
-    }
-    public virtual bool JoystickUJudge()
-    {
-        var tmp = Input.GetAxisRaw("UpDown") == 1 && !isStickJudged;
-        isStickJudged = true;
-        return tmp;
-    }
 	public virtual JudgeType JudgeNote()
 	{
 		float sceneTime = Time.timeSinceLevelLoad;
@@ -83,7 +73,10 @@ public abstract class Note : MonoBehaviour
 		{
 			return JudgeType.Default;
 		}
-		Debug.Log(Data + "Not Judge");
+        else if (sceneTime > exactTime - goodTime)
+        {
+			return JudgeType.Miss;
+        }
 		return JudgeType.Default;
 	}
 
