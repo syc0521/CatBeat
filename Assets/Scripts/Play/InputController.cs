@@ -24,6 +24,9 @@ public class InputController : MonoBehaviour
             controls.PlayController.Tap_Purple.started += DestroyPurpleTap;
             controls.PlayController.Tap_Red.started += DestroyQuickTap;
             controls.PlayController.Tap_Blue.started += DestroyQuickTap;
+            controls.PlayController.Tap_Red.started += DestroyRedHold;
+            controls.PlayController.Tap_Blue.started += DestroyBlueHold;
+
         }
     }
 
@@ -112,6 +115,63 @@ public class InputController : MonoBehaviour
             }
         }
     }
+    private void DestroyRedHold(InputAction.CallbackContext obj)
+    {
+        var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        var note = NoteController.notes.Find(item => item.Time > time - goodTime
+                                                  && item.Time < time + goodTime && item.Type.Equals(NoteType.Hold)
+                                                  && item.Information == 1 && item.CanJudge && !item.CanDestroy);
+        if (note != null && !note.CanDestroy)
+        {
+            var noteObj = NoteController.noteObjs[note.Index];
+            note.CanDestroy = true;
+            if (note.Index < NoteController.noteCount - 1)
+            {
+                NoteController.notes[note.Index + 1].CanJudge = true;
+            }
+            JudgeType judgeType = JudgeTap(note);
+            TapJudgeFinished(judgeType);
+            note.CanJudge = false;
+            Instantiate(R_FX);
+            try
+            {
+                Destroy(noteObj.gameObject);
+            }
+            catch (Exception)
+            {
+                Debug.LogError(note + "destroyWrong");
+            }
+        }
+    }
+    private void DestroyBlueHold(InputAction.CallbackContext obj)
+    {
+        var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        var note = NoteController.notes.Find(item => item.Time > time - goodTime
+                                                  && item.Time < time + goodTime && item.Type.Equals(NoteType.Hold)
+                                                  && item.Information == 2 && item.CanJudge && !item.CanDestroy);
+        if (note != null && !note.CanDestroy)
+        {
+            var noteObj = NoteController.noteObjs[note.Index];
+            note.CanDestroy = true;
+            if (note.Index < NoteController.noteCount - 1)
+            {
+                NoteController.notes[note.Index + 1].CanJudge = true;
+            }
+            JudgeType judgeType = JudgeTap(note);
+            TapJudgeFinished(judgeType);
+            note.CanJudge = false;
+            Instantiate(B_FX);
+            try
+            {
+                Destroy(noteObj.gameObject);
+            }
+            catch (Exception)
+            {
+                Debug.LogError(note + "destroyWrong");
+            }
+        }
+    }
+
     private void DestroyQuickTap(InputAction.CallbackContext obj)
     {
         if (currentQuickTap == null)

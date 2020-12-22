@@ -32,7 +32,7 @@ public class Tap : Note
 	private void DestroyMissNote()
 	{
 		NoteController.combo = 0;
-		if (Data.Index < NoteController.noteCount + 1)
+		if (Data.Index < NoteController.noteCount - 1)
 		{
 			NoteController.notes[Data.Index + 1].CanJudge = true;
 		}
