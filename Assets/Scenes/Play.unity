@@ -576,9 +576,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bpm: 0
-  path: test
+  path: wish
   controller: {fileID: 2001768307}
-  diff: 0
+  diff: 1
 --- !u!82 &2001768309
 AudioSource:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ public class Slider : Note
         else
         {
             NoteController.combo++;
-            NoteController.score += (int)(NoteController.Multiplier * 200);
+            NoteController.score += (int)(NoteController.Multiplier * 200.0f);
             Destroy(gameObject);
         }
     }

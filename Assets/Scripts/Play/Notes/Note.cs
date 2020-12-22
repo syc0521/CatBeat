@@ -12,13 +12,13 @@ public abstract class Note : MonoBehaviour
     {
         moveTime = NoteController.noteSpeed;
     }
-    public virtual void FixedUpdate()
+    public virtual void LateUpdate()
     {
         Move();
     }
     public virtual void Move()
     {
-        if (gameObject.transform.position.x > endPos.x)
+        if (Time.timeSinceLevelLoad < Data.Time + moveTime)
         {
             var time = Time.timeSinceLevelLoad;
             var endTime = Data.Time + moveTime;

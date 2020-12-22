@@ -12,7 +12,6 @@ public class Hold : Note
     public GameObject R_FX, B_FX;
     private bool key = false;
     public InputMaster inputs;
-    private JudgeType judgeType = JudgeType.Miss;
 
 
     private void Start()
@@ -33,7 +32,6 @@ public class Hold : Note
         trail.SetPosition(0, startPos);
         trail.SetPosition(1, holdEndPos);
     }
-
 
     public override void Move()
     {
@@ -82,7 +80,7 @@ public class Hold : Note
     {
         GenerateHitSound();
         NoteController.combo++;
-        NoteController.score += (int)(NoteController.Multiplier * 200);
+        NoteController.score += (int)(NoteController.Multiplier * 200.0f);
     }
     private void GenerateHitSound()
     {

@@ -17,14 +17,14 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         controls = new InputMaster();
-        controls.PlayController.Tap_Red.started += DestroyRedTap;
-        controls.PlayController.Tap_Blue.started += DestroyBlueTap;
-        controls.PlayController.Tap_Purple.started += DestroyPurpleTap;
-        controls.PlayController.Tap_Red.started += DestroyQuickTap;
-        controls.PlayController.Tap_Blue.started += DestroyQuickTap;
-        controls.PlayController.Tap_Red.started += ctx=>Debug.Log("red");
-        controls.PlayController.Tap_Blue.started += ctx => Debug.Log("blue");
-
+        if (!NoteController.isAutoPlay)
+        {
+            controls.PlayController.Tap_Red.started += DestroyRedTap;
+            controls.PlayController.Tap_Blue.started += DestroyBlueTap;
+            controls.PlayController.Tap_Purple.started += DestroyPurpleTap;
+            controls.PlayController.Tap_Red.started += DestroyQuickTap;
+            controls.PlayController.Tap_Blue.started += DestroyQuickTap;
+        }
     }
 
     private void DestroyRedTap(InputAction.CallbackContext obj)
@@ -37,13 +37,14 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             note.CanDestroy = true;
-            if (note.Index < NoteController.noteCount)
+            if (note.Index < NoteController.noteCount - 1)
             {
                 NoteController.notes[note.Index + 1].CanJudge = true;
             }
             JudgeType judgeType = JudgeTap(note);
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
+            Instantiate(R_FX);
             try
             {
                 Destroy(noteObj.gameObject);
@@ -64,13 +65,14 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             note.CanDestroy = true;
-            if (note.Index < NoteController.noteCount)
+            if (note.Index < NoteController.noteCount - 1)
             {
                 NoteController.notes[note.Index + 1].CanJudge = true;
             }
             JudgeType judgeType = JudgeTap(note);
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
+            Instantiate(B_FX);
             try
             {
                 Destroy(noteObj.gameObject);
@@ -91,13 +93,15 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             note.CanDestroy = true;
-            if (note.Index < NoteController.noteCount)
+            if (note.Index < NoteController.noteCount - 1)
             {
                 NoteController.notes[note.Index + 1].CanJudge = true;
             }
             JudgeType judgeType = JudgeTap(note);
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
+            Instantiate(R_FX);
+            Instantiate(B_FX);
             try
             {
                 Destroy(noteObj.gameObject);
@@ -122,6 +126,7 @@ public class InputController : MonoBehaviour
                 currentQuickTap = noteObj;
                 Debug.Log(currentQuickTap.Data);
                 currentQuickTap.tapCount--;
+                Instantiate(R_FX);
                 note.CanJudge = false;
             }
         }
@@ -129,10 +134,11 @@ public class InputController : MonoBehaviour
         {
             Debug.Log("count--");
             currentQuickTap.tapCount--;
+            Instantiate(R_FX);
             if (currentQuickTap.tapCount <= 0)
             {
                 currentQuickTap.Data.CanDestroy = true;
-                if (currentQuickTap.Data.Index < NoteController.noteCount)
+                if (currentQuickTap.Data.Index < NoteController.noteCount - 1)
                 {
                     NoteController.notes[currentQuickTap.Data.Index + 1].CanJudge = true;
                 }

@@ -32,10 +32,10 @@ public class QuickTap : Note
     void Update()
     {
         text.text = tapCount.ToString();
-        if (tapCount == 0)
+        if (tapCount == 0 && NoteController.isAutoPlay)
         {
-            //NoteController.combo++;
-            //Destroy(gameObject);
+            NoteController.combo++;
+            Destroy(gameObject);
         }
     }
     private IEnumerator ReduceCount()
@@ -53,7 +53,10 @@ public class QuickTap : Note
     private IEnumerator DestroyNote()
     {
         yield return new WaitForSeconds(tapTime + moveTime);
-        NoteController.notes[Data.Index + 1].CanJudge = true;
+        if (Data.Index < NoteController.noteCount - 1)
+        {
+            NoteController.notes[Data.Index + 1].CanJudge = true;
+        }
         if (tapCount > 0)
         {
             if (cnt - tapCount < cnt * 0.2)
