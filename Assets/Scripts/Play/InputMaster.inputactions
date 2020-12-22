@@ -14,14 +14,6 @@
                     "interactions": "Tap"
                 },
                 {
-                    "name": "Hold_Red",
-                    "type": "Button",
-                    "id": "651dbdad-a4ea-4c29-bd69-766934e3ef26",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold"
-                },
-                {
                     "name": "Tap_Blue",
                     "type": "Button",
                     "id": "9d8e7d53-969d-405a-baf1-a9867036bc40",
@@ -800,61 +792,6 @@
                     "processors": "",
                     "groups": "Xbox",
                     "action": "Tap_Blue_Right",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "52247f87-5cb1-46de-9e87-2b9464e502e2",
-                    "path": "<Keyboard>/f",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Hold_Red",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4e217f1e-ae6f-4915-8ae6-e55a6e941339",
-                    "path": "<Gamepad>/dpad/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Xbox",
-                    "action": "Hold_Red",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5534a161-bd05-4a22-8c70-710b4e2a6da9",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Xbox",
-                    "action": "Hold_Red",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c999dfd2-a3fe-48ad-90d9-c7c129d7f95f",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Xbox",
-                    "action": "Hold_Red",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d21da72d-9e79-4b47-8e59-f13ba5f6c301",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Xbox",
-                    "action": "Hold_Red",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

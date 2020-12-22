@@ -45,7 +45,7 @@ public class QuickTap : Note
             yield return new WaitForSeconds(0.05f);
             tapCount--;
             text.text = tapCount.ToString();
-            NoteController.score += (int)(NoteController.Multiplier * 15);
+            NoteController.score += (int)(NoteController.Multiplier * 25.0f);
             Instantiate(fx);
         } while (tapCount > 0);
     }

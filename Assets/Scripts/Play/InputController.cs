@@ -32,7 +32,6 @@ public class InputController : MonoBehaviour
             controls.PlayController.Tap_Red.started += DestroyRedHold;
             controls.PlayController.Tap_Blue.started += DestroyBlueHold;
         }
-        
     }
     private void DestroyRedTap(InputAction.CallbackContext obj)
     {
@@ -190,6 +189,7 @@ public class InputController : MonoBehaviour
                 currentQuickTap = noteObj;
                 Debug.Log(currentQuickTap.Data);
                 currentQuickTap.tapCount--;
+                NoteController.score += (int)(NoteController.Multiplier * 25.0f);
                 Instantiate(R_FX);
                 note.CanJudge = false;
             }

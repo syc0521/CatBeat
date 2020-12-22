@@ -27,14 +27,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": ""Tap""
                 },
                 {
-                    ""name"": ""Hold_Red"",
-                    ""type"": ""Button"",
-                    ""id"": ""651dbdad-a4ea-4c29-bd69-766934e3ef26"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold""
-                },
-                {
                     ""name"": ""Tap_Blue"",
                     ""type"": ""Button"",
                     ""id"": ""9d8e7d53-969d-405a-baf1-a9867036bc40"",
@@ -815,61 +807,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Tap_Blue_Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""52247f87-5cb1-46de-9e87-2b9464e502e2"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""Hold_Red"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4e217f1e-ae6f-4915-8ae6-e55a6e941339"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""Hold_Red"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5534a161-bd05-4a22-8c70-710b4e2a6da9"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""Hold_Red"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c999dfd2-a3fe-48ad-90d9-c7c129d7f95f"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""Hold_Red"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d21da72d-9e79-4b47-8e59-f13ba5f6c301"",
-                    ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""Hold_Red"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -902,7 +839,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // PlayController
         m_PlayController = asset.FindActionMap("PlayController", throwIfNotFound: true);
         m_PlayController_Tap_Red = m_PlayController.FindAction("Tap_Red", throwIfNotFound: true);
-        m_PlayController_Hold_Red = m_PlayController.FindAction("Hold_Red", throwIfNotFound: true);
         m_PlayController_Tap_Blue = m_PlayController.FindAction("Tap_Blue", throwIfNotFound: true);
         m_PlayController_Tap_Purple = m_PlayController.FindAction("Tap_Purple", throwIfNotFound: true);
         m_PlayController_Tap_Red_Right = m_PlayController.FindAction("Tap_Red_Right", throwIfNotFound: true);
@@ -957,7 +893,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputActionMap m_PlayController;
     private IPlayControllerActions m_PlayControllerActionsCallbackInterface;
     private readonly InputAction m_PlayController_Tap_Red;
-    private readonly InputAction m_PlayController_Hold_Red;
     private readonly InputAction m_PlayController_Tap_Blue;
     private readonly InputAction m_PlayController_Tap_Purple;
     private readonly InputAction m_PlayController_Tap_Red_Right;
@@ -967,7 +902,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         private @InputMaster m_Wrapper;
         public PlayControllerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Tap_Red => m_Wrapper.m_PlayController_Tap_Red;
-        public InputAction @Hold_Red => m_Wrapper.m_PlayController_Hold_Red;
         public InputAction @Tap_Blue => m_Wrapper.m_PlayController_Tap_Blue;
         public InputAction @Tap_Purple => m_Wrapper.m_PlayController_Tap_Purple;
         public InputAction @Tap_Red_Right => m_Wrapper.m_PlayController_Tap_Red_Right;
@@ -984,9 +918,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Tap_Red.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Red;
                 @Tap_Red.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Red;
                 @Tap_Red.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Red;
-                @Hold_Red.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnHold_Red;
-                @Hold_Red.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnHold_Red;
-                @Hold_Red.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnHold_Red;
                 @Tap_Blue.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue;
                 @Tap_Blue.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue;
                 @Tap_Blue.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue;
@@ -1006,9 +937,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Tap_Red.started += instance.OnTap_Red;
                 @Tap_Red.performed += instance.OnTap_Red;
                 @Tap_Red.canceled += instance.OnTap_Red;
-                @Hold_Red.started += instance.OnHold_Red;
-                @Hold_Red.performed += instance.OnHold_Red;
-                @Hold_Red.canceled += instance.OnHold_Red;
                 @Tap_Blue.started += instance.OnTap_Blue;
                 @Tap_Blue.performed += instance.OnTap_Blue;
                 @Tap_Blue.canceled += instance.OnTap_Blue;
@@ -1046,7 +974,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IPlayControllerActions
     {
         void OnTap_Red(InputAction.CallbackContext context);
-        void OnHold_Red(InputAction.CallbackContext context);
         void OnTap_Blue(InputAction.CallbackContext context);
         void OnTap_Purple(InputAction.CallbackContext context);
         void OnTap_Red_Right(InputAction.CallbackContext context);

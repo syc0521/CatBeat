@@ -34,9 +34,79 @@ public class MicInput : Note
     }
     private void Start()
     {
-        
+        moveTime = NoteController.noteSpeed;
     }
     private void Update()
+    {
+        if (NoteController.isAutoPlay)
+        {
+            AutoPlayMode();
+        }
+        else
+        {
+            UserPlayMode();
+        }
+    }
+
+    private void UserPlayMode()
+    {
+        GetVolume();
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime - NoteController.goodTime * 1.5f)
+        {
+            canInput = true;
+            if (realVolume >= 0.65f && canInput)
+            {
+                holdTime += Time.deltaTime;
+                NoteController.score += (int)(NoteController.Multiplier * 15.0f);
+            }
+            if (holdTime > Data.Dur * 0.5f && !isPerfect)
+            {
+                isPerfect = true;
+            }
+            if (holdTime > Data.Dur * 0.8f)
+            {
+                canInput = false;
+                if (isPerfect)
+                {
+                    NoteController.perfect++;
+                    NoteController.combo++;
+                    Instantiate(fx);
+                }
+                else
+                {
+                    NoteController.miss++;
+                    NoteController.combo = 0;
+                }
+                if (Data.Index < NoteController.noteCount - 1)
+                {
+                    NoteController.notes[Data.Index + 1].CanJudge = true;
+                }
+                Destroy(gameObject);
+            }
+
+        }
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur * 0.8f)
+        {
+            if (isPerfect)
+            {
+                NoteController.perfect++;
+                NoteController.combo++;
+                Instantiate(fx);
+            }
+            else
+            {
+                NoteController.miss++;
+                NoteController.combo = 0;
+            }
+            if (Data.Index < NoteController.noteCount - 1)
+            {
+                NoteController.notes[Data.Index + 1].CanJudge = true;
+            }
+            Destroy(gameObject);
+        }
+    }
+
+    private void GetVolume()
     {
         if (Devices.Length > 0)
         {
@@ -49,34 +119,12 @@ public class MicInput : Note
                 }
             }
         }
-        if (realVolume >= 0.7f && canInput)
-        {
-            holdTime += Time.deltaTime;
-            NoteController.score += (int)(NoteController.Multiplier * 5.0f);
-        }
-        if (holdTime > Data.Dur * 0.5f && !isPerfect)
-        {
-            isPerfect = true;
-        }
-        if (holdTime > Data.Dur * 0.8f)
-        {
-            canInput = false;
-            if (isPerfect)
-            {
-                NoteController.perfect++;
-                NoteController.combo++;
-                Instantiate(fx);
-            }
-            else
-            {
-                NoteController.miss++;
-                NoteController.combo = 0;
-            }
-            Destroy(gameObject);
-        }
+    }
+    private void AutoPlayMode()
+    {
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime)
         {
-            NoteController.score += (int)(NoteController.Multiplier * 5.0f);
+            NoteController.score += (int)(NoteController.Multiplier * 15.0f);
         }
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur * 0.8f)
         {
