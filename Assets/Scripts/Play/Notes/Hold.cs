@@ -12,6 +12,7 @@ public class Hold : Note
     public GameObject R_FX, B_FX;
     private bool key = false;
     public InputMaster inputs;
+    public float holdTime;
 
 
     private void Start()
@@ -20,7 +21,10 @@ public class Hold : Note
         GenerateHold();
         inputs = new InputMaster();
     }
-
+    private void Update()
+    {
+        
+    }
     private void GenerateHold()
     {
         holdEndPos = new Vector3(Data.Dur * (Mathf.Abs(startPos.x - endPos.x) / moveTime) + startPos.x, endPos.y);

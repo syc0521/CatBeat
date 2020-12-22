@@ -27,6 +27,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": ""Tap""
                 },
                 {
+                    ""name"": ""Hold_Red"",
+                    ""type"": ""Button"",
+                    ""id"": ""651dbdad-a4ea-4c29-bd69-766934e3ef26"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
+                },
+                {
                     ""name"": ""Tap_Blue"",
                     ""type"": ""Button"",
                     ""id"": ""9d8e7d53-969d-405a-baf1-a9867036bc40"",
@@ -41,6 +49,22 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Tap""
+                },
+                {
+                    ""name"": ""Tap_Red_Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""289ec202-4e6c-4bce-beaf-d52d8e681c4f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap""
+                },
+                {
+                    ""name"": ""Tap_Blue_Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d4bdcda-852f-4252-93b1-5d186db445d3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap""
                 }
             ],
             ""bindings"": [
@@ -48,17 +72,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""4c16562b-6180-4c69-a339-e45058ec0ca7"",
                     ""path"": ""<Keyboard>/f"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""Tap_Red"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b601510a-0dde-44dd-9d51-3c8085aa3a87"",
-                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": ""PC"",
@@ -92,7 +105,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""b6964719-a487-434f-a6c3-ea238d3a8c43"",
                     ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
                     ""action"": ""Tap_Red"",
@@ -103,53 +116,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""d75d4084-3fe0-43ca-ba95-0b8562cc4e1e"",
                     ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""Tap_Red"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d2b97955-1633-437a-ba42-7ef39ff593fb"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
-                    ""action"": ""Tap_Red"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4802323e-4191-4db9-9502-bd1d6f8ba264"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""Tap_Red"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""afd49d65-62dd-42ab-8ae7-76517d35c0a5"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""Tap_Red"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""50872e4a-2e76-4209-a8ae-c9564f3fc803"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
                     ""action"": ""Tap_Red"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -158,18 +127,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""5c3c4794-f211-4798-8080-bac9b13f1a7e"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""Tap_Blue"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b0c27b18-3263-480e-9d14-3cc426c9d0bf"",
-                    ""path"": ""<Keyboard>/k"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
                     ""action"": ""Tap_Blue"",
@@ -180,18 +138,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""766d5e6a-f35f-4c65-9e31-cfb67e06daaa"",
                     ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""Tap_Blue"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fc48c363-2353-4f90-b790-e9ffa523faee"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
                     ""action"": ""Tap_Blue"",
@@ -202,7 +149,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": ""Xbox_1"",
                     ""id"": ""e1e6eb80-0b24-4b89-8d5c-47fdba766a42"",
                     ""path"": ""ButtonWithOneModifier"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
                     ""action"": ""Tap_Purple"",
@@ -210,9 +157,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
+                    ""name"": ""Modifier"",
                     ""id"": ""b7a762de-310b-449a-a1f6-f65e633ce1c2"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<XInputController>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
@@ -221,9 +168,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""button"",
+                    ""name"": ""Button"",
                     ""id"": ""83ca00ad-b15a-4cbb-ab51-a55670a6d5e0"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<XInputController>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
@@ -311,7 +258,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""modifier"",
                     ""id"": ""fae9feac-d844-420e-ac30-eecf1c41806f"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<XInputController>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
@@ -322,7 +269,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""button"",
                     ""id"": ""1a4cf18e-7951-407f-b3b2-49fdb636439f"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<XInputController>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
@@ -791,6 +738,138 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Tap_Purple"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee66c6bc-c5bb-49ca-bfd5-4a20da29e60c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Red_Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d84fd2d5-a73f-4273-baa2-8c9c79540de7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Red_Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e242eaaf-fe40-4e30-8517-d91312cf2475"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Red_Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d409b704-fb0e-4cf1-b31e-8458640eba32"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Red_Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec28c9a5-cc6e-4217-a26e-2ce03f94e528"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Tap_Red_Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fb3f6a1-05e8-489f-af7c-74406b77286d"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Tap_Blue_Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a34f0073-ee49-430e-bafd-2faab1573488"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Tap_Blue_Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52247f87-5cb1-46de-9e87-2b9464e502e2"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Hold_Red"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e217f1e-ae6f-4915-8ae6-e55a6e941339"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Hold_Red"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5534a161-bd05-4a22-8c70-710b4e2a6da9"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Hold_Red"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c999dfd2-a3fe-48ad-90d9-c7c129d7f95f"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Hold_Red"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d21da72d-9e79-4b47-8e59-f13ba5f6c301"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Hold_Red"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -823,8 +902,11 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // PlayController
         m_PlayController = asset.FindActionMap("PlayController", throwIfNotFound: true);
         m_PlayController_Tap_Red = m_PlayController.FindAction("Tap_Red", throwIfNotFound: true);
+        m_PlayController_Hold_Red = m_PlayController.FindAction("Hold_Red", throwIfNotFound: true);
         m_PlayController_Tap_Blue = m_PlayController.FindAction("Tap_Blue", throwIfNotFound: true);
         m_PlayController_Tap_Purple = m_PlayController.FindAction("Tap_Purple", throwIfNotFound: true);
+        m_PlayController_Tap_Red_Right = m_PlayController.FindAction("Tap_Red_Right", throwIfNotFound: true);
+        m_PlayController_Tap_Blue_Right = m_PlayController.FindAction("Tap_Blue_Right", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -875,15 +957,21 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputActionMap m_PlayController;
     private IPlayControllerActions m_PlayControllerActionsCallbackInterface;
     private readonly InputAction m_PlayController_Tap_Red;
+    private readonly InputAction m_PlayController_Hold_Red;
     private readonly InputAction m_PlayController_Tap_Blue;
     private readonly InputAction m_PlayController_Tap_Purple;
+    private readonly InputAction m_PlayController_Tap_Red_Right;
+    private readonly InputAction m_PlayController_Tap_Blue_Right;
     public struct PlayControllerActions
     {
         private @InputMaster m_Wrapper;
         public PlayControllerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Tap_Red => m_Wrapper.m_PlayController_Tap_Red;
+        public InputAction @Hold_Red => m_Wrapper.m_PlayController_Hold_Red;
         public InputAction @Tap_Blue => m_Wrapper.m_PlayController_Tap_Blue;
         public InputAction @Tap_Purple => m_Wrapper.m_PlayController_Tap_Purple;
+        public InputAction @Tap_Red_Right => m_Wrapper.m_PlayController_Tap_Red_Right;
+        public InputAction @Tap_Blue_Right => m_Wrapper.m_PlayController_Tap_Blue_Right;
         public InputActionMap Get() { return m_Wrapper.m_PlayController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -896,12 +984,21 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Tap_Red.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Red;
                 @Tap_Red.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Red;
                 @Tap_Red.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Red;
+                @Hold_Red.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnHold_Red;
+                @Hold_Red.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnHold_Red;
+                @Hold_Red.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnHold_Red;
                 @Tap_Blue.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue;
                 @Tap_Blue.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue;
                 @Tap_Blue.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue;
                 @Tap_Purple.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Purple;
                 @Tap_Purple.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Purple;
                 @Tap_Purple.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Purple;
+                @Tap_Red_Right.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Red_Right;
+                @Tap_Red_Right.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Red_Right;
+                @Tap_Red_Right.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Red_Right;
+                @Tap_Blue_Right.started -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue_Right;
+                @Tap_Blue_Right.performed -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue_Right;
+                @Tap_Blue_Right.canceled -= m_Wrapper.m_PlayControllerActionsCallbackInterface.OnTap_Blue_Right;
             }
             m_Wrapper.m_PlayControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -909,12 +1006,21 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Tap_Red.started += instance.OnTap_Red;
                 @Tap_Red.performed += instance.OnTap_Red;
                 @Tap_Red.canceled += instance.OnTap_Red;
+                @Hold_Red.started += instance.OnHold_Red;
+                @Hold_Red.performed += instance.OnHold_Red;
+                @Hold_Red.canceled += instance.OnHold_Red;
                 @Tap_Blue.started += instance.OnTap_Blue;
                 @Tap_Blue.performed += instance.OnTap_Blue;
                 @Tap_Blue.canceled += instance.OnTap_Blue;
                 @Tap_Purple.started += instance.OnTap_Purple;
                 @Tap_Purple.performed += instance.OnTap_Purple;
                 @Tap_Purple.canceled += instance.OnTap_Purple;
+                @Tap_Red_Right.started += instance.OnTap_Red_Right;
+                @Tap_Red_Right.performed += instance.OnTap_Red_Right;
+                @Tap_Red_Right.canceled += instance.OnTap_Red_Right;
+                @Tap_Blue_Right.started += instance.OnTap_Blue_Right;
+                @Tap_Blue_Right.performed += instance.OnTap_Blue_Right;
+                @Tap_Blue_Right.canceled += instance.OnTap_Blue_Right;
             }
         }
     }
@@ -940,7 +1046,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IPlayControllerActions
     {
         void OnTap_Red(InputAction.CallbackContext context);
+        void OnHold_Red(InputAction.CallbackContext context);
         void OnTap_Blue(InputAction.CallbackContext context);
         void OnTap_Purple(InputAction.CallbackContext context);
+        void OnTap_Red_Right(InputAction.CallbackContext context);
+        void OnTap_Blue_Right(InputAction.CallbackContext context);
     }
 }

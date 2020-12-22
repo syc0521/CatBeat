@@ -21,7 +21,7 @@ public class NoteController : MonoBehaviour
     public static readonly float goodTime = 0.15f;
     public static int perfect, great, good, miss;
     public static int noteCount;
-    public static bool isAutoPlay = true;
+    public static bool isAutoPlay = false;
 
     public static float Multiplier => 1.00f + combo / 50 * 0.05f;
     void Start()
@@ -52,9 +52,6 @@ public class NoteController : MonoBehaviour
                 break;
             case NoteType.QuickTap:
                 noteObj = CreateQuickTap(note);
-                break;
-            case NoteType.Slider:
-                noteObj = CreateSlider(note);
                 break;
             case NoteType.MicInput:
                 noteObj = CreateMicInput(note);
