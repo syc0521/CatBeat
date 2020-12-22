@@ -4,5 +4,24 @@ using UnityEngine;
 
 public class MicInput : Hold //暂时用hold的功能
 {
-    
+    public GameObject fx;
+
+
+    private void Start()
+    {
+        
+    }
+    private void Update()
+    {
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime)
+        {
+            NoteController.score += (int)(NoteController.Multiplier * 5.0f);
+        }
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur * 0.8f)
+        {
+            NoteController.combo++;
+            Instantiate(fx);
+            Destroy(gameObject);
+        }
+    }
 }

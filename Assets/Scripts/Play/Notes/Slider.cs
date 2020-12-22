@@ -6,11 +6,6 @@ public class Slider : Note
 {
     private LineRenderer trail;
     private Vector3 holdEndPos;
-    public override void Judge()
-    {
-        throw new System.NotImplementedException();
-    }
-
     void Start()
     {
         trail = transform.GetChild(0).gameObject.GetComponent<LineRenderer>();
@@ -37,6 +32,8 @@ public class Slider : Note
         }
         else
         {
+            NoteController.combo++;
+            NoteController.score += (int)(NoteController.Multiplier * 200.0f);
             Destroy(gameObject);
         }
     }

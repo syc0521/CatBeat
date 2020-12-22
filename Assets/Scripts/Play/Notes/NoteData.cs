@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 public enum NoteType { Tap = 1, Hold = 2, QuickTap = 3, Slider = 4, MicInput = 5 }
 public class NoteData
 {
@@ -10,7 +8,7 @@ public class NoteData
         Time = time / 1000.0f;
         Dur = dur / 1000.0f;
         Information = information;
-        CanJudge = false;
+        CanDestroy = false;
     }
     /// <summary>
     /// 1tap 2hold 3连打 4摇杆 5语音
@@ -33,4 +31,11 @@ public class NoteData
     /// 是否可判定
     /// </summary>
     public bool CanJudge { set; get; }
+    public bool CanDestroy { set; get; }
+    public int Index { get; set; }
+    public override string ToString()
+    {
+        float dt = Time - UnityEngine.Time.timeSinceLevelLoad + NoteController.noteSpeed;
+        return "time=" + (Time * 1000f) + ", deltaTime=" + dt + ", judge=";
+    }
 }

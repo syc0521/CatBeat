@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Hold : Note
 {
@@ -10,9 +11,18 @@ public class Hold : Note
     public int type;
     public GameObject R_FX, B_FX;
     private bool key = false;
+    public InputMaster inputs;
+
+
     private void Start()
     {
         type = Data.Information;
+        GenerateHold();
+        inputs = new InputMaster();
+    }
+
+    private void GenerateHold()
+    {
         holdEndPos = new Vector3(Data.Dur * (Mathf.Abs(startPos.x - endPos.x) / moveTime) + startPos.x, endPos.y);
         start = transform.GetChild(0).gameObject;
         start.transform.position = startPos;
@@ -22,10 +32,7 @@ public class Hold : Note
         trail.SetPosition(0, startPos);
         trail.SetPosition(1, holdEndPos);
     }
-    public override void Judge()
-    {
 
-    }
     public override void Move()
     {
         var time = Time.timeSinceLevelLoad;
@@ -43,6 +50,7 @@ public class Hold : Note
         }
         else if (time < Data.Time + moveTime + Data.Dur)
         {
+            start.transform.position = endPos;
             end.transform.position = new Vector3(Utils.Lerp(time, Data.Time + moveTime, Data.Time + moveTime + Data.Dur, endPos.x + durPos, endPos.x),
                 start.transform.position.y);
             trail.SetPosition(0, endPos);
@@ -51,16 +59,28 @@ public class Hold : Note
             if (!key)
             {
                 key = true;
-                GenerateHitSound();
+                if (NoteController.isAutoPlay)
+                {
+                    GenerateHitSound();
+                }
             }
         }
         else
         {
             start.GetComponent<SpriteRenderer>().enabled = false;
             end.GetComponent<SpriteRenderer>().enabled = false;
-            GenerateHitSound();
+            if (NoteController.isAutoPlay)
+            {
+                AutoPlayMode();
+            }
             Destroy(gameObject);
         }
+    }
+    private void AutoPlayMode()
+    {
+        GenerateHitSound();
+        NoteController.combo++;
+        NoteController.score += (int)(NoteController.Multiplier * 200.0f);
     }
     private void GenerateHitSound()
     {

@@ -1,0 +1,798 @@
+{
+    "name": "InputMaster",
+    "maps": [
+        {
+            "name": "PlayController",
+            "id": "97b76e75-998f-4334-87d3-1c40cd527947",
+            "actions": [
+                {
+                    "name": "Tap_Red",
+                    "type": "Button",
+                    "id": "1a60e731-7ed2-401b-b040-49cd2058f694",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Tap_Blue",
+                    "type": "Button",
+                    "id": "9d8e7d53-969d-405a-baf1-a9867036bc40",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Tap_Purple",
+                    "type": "Button",
+                    "id": "f876fdc6-1584-48fe-a46d-7219f68f6949",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4c16562b-6180-4c69-a339-e45058ec0ca7",
+                    "path": "<Keyboard>/f",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Red",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b601510a-0dde-44dd-9d51-3c8085aa3a87",
+                    "path": "<Keyboard>/j",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Red",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "87c789a7-ab03-4a3c-b50e-698a8ec6ceae",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Red",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5615c370-6828-42fc-b9c4-cb668cb87b0e",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Red",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6964719-a487-434f-a6c3-ea238d3a8c43",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Red",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d75d4084-3fe0-43ca-ba95-0b8562cc4e1e",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Red",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d2b97955-1633-437a-ba42-7ef39ff593fb",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Red",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4802323e-4191-4db9-9502-bd1d6f8ba264",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Red",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afd49d65-62dd-42ab-8ae7-76517d35c0a5",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Red",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c3c4794-f211-4798-8080-bac9b13f1a7e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Blue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b0c27b18-3263-480e-9d14-3cc426c9d0bf",
+                    "path": "<Keyboard>/k",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Blue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "766d5e6a-f35f-4c65-9e31-cfb67e06daaa",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Blue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc48c363-2353-4f90-b790-e9ffa523faee",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Blue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Xbox_1",
+                    "id": "e1e6eb80-0b24-4b89-8d5c-47fdba766a42",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "b7a762de-310b-449a-a1f6-f65e633ce1c2",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "83ca00ad-b15a-4cbb-ab51-a55670a6d5e0",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard_1",
+                    "id": "b9998d23-9c40-4855-9ebe-d584e6bb0fc7",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "93231aaa-e2f2-4fe2-b46e-fcaff22b7491",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "fb9dd5c5-762c-47ff-8061-481236e3f36a",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard_2",
+                    "id": "417434cc-556b-49f8-8195-b9e82f8c04de",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "83a5e225-32a6-494d-9f8b-ae56712fa4fd",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "28e927b4-816e-427a-8c4f-91e53bbec572",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_2",
+                    "id": "381c1429-d128-4bd8-b3cd-f23a3a38868f",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "fae9feac-d844-420e-ac30-eecf1c41806f",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "1a4cf18e-7951-407f-b3b2-49fdb636439f",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_3",
+                    "id": "9b9878be-5a75-46e4-b7e5-097ce1856bae",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "4688d36d-4181-45d2-9a00-c659599a1ee0",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "c024bf4e-5c1d-4104-8c0a-3d3f43d986af",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_4",
+                    "id": "d350cbda-d7a5-4f77-881d-9f8d520bb18b",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "9bfa498a-e7b2-4910-b975-e63e6f17ab2c",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "983ee5ed-6ec4-49bf-ad2c-0372b579359d",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_5",
+                    "id": "7b8eacbc-7179-4b85-88ea-0a11ccaebbda",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "b6bbf7fe-6a61-4e96-92c8-e70f904b3ef6",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "c8b768ec-a2b1-4c72-ac8e-44c23f8753a3",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_6",
+                    "id": "03f7dc16-b620-46cf-bf3d-93193a19af50",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "f975594f-348c-4b9a-9c34-75e069892923",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "0b9368f0-4bfd-44da-9464-5c6718ed499e",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_7",
+                    "id": "a004024b-5447-4b7d-bb12-7e40e3653b1f",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "6569bd44-20a4-4fee-b606-b411fd1be49c",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "ad5c5df1-85d3-4e84-8dc3-6807e0b3a0e9",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_8",
+                    "id": "3477e2a1-6f14-48c7-ad82-84d79a45fa04",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "2a2ca8d0-0827-4553-91a9-34c87e5f246d",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "4caeccba-ff66-497d-99ef-4969281e846f",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_9",
+                    "id": "b877a276-5439-4750-9e95-c146a2b3592f",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "823ad68d-37d1-4d69-95b4-d11e6923f5bb",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "fc338232-c518-4007-8cb2-c08f905e5bd4",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_10",
+                    "id": "300237d3-e4ae-4230-9022-d8b78813d462",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "c19dd399-9b29-446d-8701-21fe8ae807d4",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "f9c83101-88f3-42b0-8179-b7750abc199b",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_11",
+                    "id": "423b648c-590a-4c0e-9565-90521a315b68",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "808bb2df-ca1c-494f-9e2e-ceb074f03af9",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "d77b3f1a-c05c-45fc-a446-e7b772b9bb47",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_12",
+                    "id": "d7f4f7e9-6ccc-40fa-889a-10dc2cbacba6",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "9c5b3869-698e-4177-8df4-4b48f2a4d1b9",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "b9863002-1112-40ad-bf72-b9cb37a28155",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_13",
+                    "id": "b95eb68e-c61e-4de9-af08-9101cbcd33f8",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "2819ee45-5ff9-4efb-80fb-c0404a6f8ec1",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "47a036aa-af9f-4238-bba1-838575f6d854",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Xbox_14",
+                    "id": "7b2f6f68-bcf7-4248-9a4f-140ffbef720f",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "e0fdbacc-c5eb-4a58-a994-4e735814e534",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "7992ee7b-2adf-4b01-86ba-dcf6b9a2d520",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard_3",
+                    "id": "6ad02bf4-4d44-48b1-8273-3307016dab4b",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "a81d4f78-4836-4505-8452-ecde57084b84",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "253eb3da-fda2-4446-a85f-cd6109e4c97f",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard_4",
+                    "id": "9096562a-56c0-48be-a699-4419f74f1e4e",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "d8fd6427-251c-4acf-aadf-31030a75ef7c",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "812b4b48-03f4-4beb-ab7a-0123fc27f867",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Tap_Purple",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Xbox",
+            "bindingGroup": "Xbox",
+            "devices": [
+                {
+                    "devicePath": "<XInputController>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "PC",
+            "bindingGroup": "PC",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

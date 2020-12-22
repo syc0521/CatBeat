@@ -125,6 +125,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6271549598564963015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302448771065904204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d22862e7201b94aa13e6d875db6540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
+  endPos: {x: 0, y: 0, z: 0}
+  moveTime: 0
+  isStickJudged: 0
+  tapCount: 0
+  fx: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
+  tapTime: 0
 --- !u!1 &4302448771280853485
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +216,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -7717204412666767384, guid: 69e76c954b8a88745a6b5248ecc63dbb,
     type: 3}
-  m_Color: {r: 0.030215396, g: 0.9150943, b: 0.07593842, a: 1}
+  m_Color: {r: 0.032397628, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
