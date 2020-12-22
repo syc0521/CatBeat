@@ -563,7 +563,6 @@ MonoBehaviour:
   endPos: {fileID: 1867715124}
   comboText: {fileID: 397237235}
   scoreText: {fileID: 1695471978}
-  isAutoPlay: 0
 --- !u!114 &2001768308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,7 +578,7 @@ MonoBehaviour:
   bpm: 0
   path: test
   controller: {fileID: 2001768307}
-  diff: 2
+  diff: 0
 --- !u!82 &2001768309
 AudioSource:
   m_ObjectHideFlags: 0
@@ -688,6 +687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2d3e1547daf484981a44b83626279c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  R_FX: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
+  B_FX: {fileID: 8484072823467148885, guid: d1b338d7c4fe1894ca598f11e21d03b6, type: 3}
 --- !u!114 &2001768311
 MonoBehaviour:
   m_ObjectHideFlags: 0
