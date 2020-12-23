@@ -136,14 +136,6 @@ public class InputController : MonoBehaviour
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
             Instantiate(R_FX);
-            try
-            {
-                //Destroy(noteObj.gameObject);
-            }
-            catch (Exception)
-            {
-                Debug.LogError(note + "destroyWrong");
-            }
         }
     }
     private void DestroyBlueHold(InputAction.CallbackContext obj)
@@ -164,14 +156,6 @@ public class InputController : MonoBehaviour
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
             Instantiate(B_FX);
-            try
-            {
-                Destroy(noteObj.gameObject);
-            }
-            catch (Exception)
-            {
-                Debug.LogError(note + "destroyWrong");
-            }
         }
     }
 

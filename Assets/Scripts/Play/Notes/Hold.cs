@@ -12,8 +12,9 @@ public class Hold : Note
     public GameObject R_FX, B_FX;
     private bool key = false;
     public InputMaster inputs;
+    public bool isHold = false;
     public float holdTime;
-
+    public JudgeType firstType, secondType;
 
     private void Start()
     {
@@ -101,5 +102,22 @@ public class Hold : Note
             Instantiate(R_FX);
             Instantiate(B_FX);
         }
+    }
+    private JudgeType GetHoldJudge(JudgeType first, JudgeType second)
+    {
+        if (first.Equals(JudgeType.Perfect) && second.Equals(JudgeType.Perfect))
+        {
+            return JudgeType.Perfect;
+        }
+        else if (IsGood(first) && IsGood(second))
+        {
+            return JudgeType.EarlyGood;
+        }
+        else
+        {
+            return JudgeType.LateGreat;
+        }
+
+        static bool IsGood(JudgeType type) => type.Equals(JudgeType.EarlyGood) || type.Equals(JudgeType.LateGood);
     }
 }
