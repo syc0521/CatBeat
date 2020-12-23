@@ -8,9 +8,15 @@ public class ReadSong : MonoBehaviour
 {
     [HideInInspector]
     public int bpm;
+    private bool testMode = false;
+#if testMode
     public string path;
-    public NoteController controller;
     public Diff diff;
+#else
+    public static string path;
+    public static Diff diff;
+#endif
+    public NoteController controller;
     private AudioSource source;
     private void Awake()
     {

@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ReadList : MonoBehaviour
+public class SongManager : MonoBehaviour
 {
     public static List<Song> songList = new List<Song>();
     public Text[] diffBtn = new Text[3];
@@ -17,12 +19,31 @@ public class ReadList : MonoBehaviour
     }
     private void Update()
     {
+        UpdateText();
+        QuitProgram();
+    }
+
+    private static void QuitProgram()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else   
+            Application.Quit();
+#endif
+        }
+    }
+
+    private void UpdateText()
+    {
         diffBtn[0].text = currentSong.EasyLevel.ToString();
         diffBtn[1].text = currentSong.NormalLevel.ToString();
         diffBtn[2].text = currentSong.HardLevel.ToString();
         songName.text = currentSong.Name;
         songArtist.text = currentSong.Artist;
     }
+
     private void GetList()
     {
         TextAsset text = Resources.Load<TextAsset>("SongList");
@@ -43,5 +64,11 @@ public class ReadList : MonoBehaviour
             obj.song = song;
         }
         currentSong = songList[0];
+    }
+    public void JumpScene(Diff diff)
+    {
+        ReadSong.diff = diff;
+        ReadSong.path = currentSong.Path;
+        SceneManager.LoadScene("Play");
     }
 }

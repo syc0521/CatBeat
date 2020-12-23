@@ -13,7 +13,7 @@ public class SongButton : MonoBehaviour
     }
     public void OnPressed()
     {
-        var controller = GameObject.FindWithTag("GameController").GetComponent<ReadList>();
+        var controller = GameObject.FindWithTag("GameController").GetComponent<SongManager>();
         controller.currentSong = song;
     }
 
