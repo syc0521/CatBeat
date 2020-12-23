@@ -1,6 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum JudgeType 
+{ 
+    Perfect = 0, EarlyGreat = 1, LateGreat = 2, EarlyGood = 3, LateGood = 4, Miss = -1, Default = -2
+};
+
 
 public class NoteController : MonoBehaviour
 {
@@ -8,40 +13,60 @@ public class NoteController : MonoBehaviour
     public GameObject hold_R, hold_B, hold_P;
     public GameObject quickTap, slider, micInput;
     public Transform startPos, endPos;
-    public List<NoteData> notes = new List<NoteData>();
-    public static float noteSpeed = 0.65f;
+    public static List<NoteData> notes = new List<NoteData>();
+    public static List<Note> noteObjs = new List<Note>();
+    public static float noteSpeed = 1.15f;
+    public static int combo;
+    public TextMesh comboText;
+    public TextMesh scoreText;
+    public static int score;
+    public static readonly float perfectTime = 0.055f;
+    public static readonly float greatTime = 0.09f;
+    public static readonly float goodTime = 0.15f;
+    public static int perfect, great, good, miss;
+    public static int noteCount;
+    public static bool isAutoPlay = false;
+
+    public static float Multiplier => 1.00f + combo / 50 * 0.05f;
     void Start()
     {
+        score = 0; combo = 0;
+        perfect = 0; great = 0; good = 0; miss = 0;
         foreach (NoteData note in notes)
         {
             StartCoroutine(CreateNote(note));
         }
     }
-
-    void Update()
+    private void Update()
     {
-        
+        comboText.text = combo.ToString();
+        scoreText.text = score.ToString();
     }
     private IEnumerator CreateNote(NoteData note)
     {
         yield return new WaitForSeconds(note.Time);
+        Note noteObj = null;
         switch (note.Type)
         {
             case NoteType.Tap:
-                CreateTap(note);
+                noteObj = CreateTap(note);
                 break;
             case NoteType.Hold:
-                CreateHold(note);
+                noteObj = CreateHold(note);
                 break;
             case NoteType.QuickTap:
-                break;
-            case NoteType.Slider:
+                noteObj = CreateQuickTap(note);
                 break;
             case NoteType.MicInput:
+                noteObj = CreateMicInput(note);
                 break;
         };
+        noteObj.Data = note;
+        noteObj.startPos = startPos.position;
+        noteObj.endPos = endPos.position;
+        noteObjs.Add(noteObj);
     }
-    private void CreateTap(NoteData note)
+    private Note CreateTap(NoteData note)
     {
         Tap tap;
         if (note.Information == 1)
@@ -56,12 +81,9 @@ public class NoteController : MonoBehaviour
         {
             tap = Instantiate(tap_P, startPos.position, Quaternion.identity).GetComponent<Tap>();
         }
-        tap.Data = note;
-        tap.startPos = startPos.position;
-        tap.endPos = endPos.position;
-        tap.type = note.Information;
+        return tap;
     }
-    private void CreateHold(NoteData note)
+    private Note CreateHold(NoteData note)
     {
         Hold hold;
         if (note.Information == 1)
@@ -76,20 +98,21 @@ public class NoteController : MonoBehaviour
         {
             hold = Instantiate(hold_P, startPos.position, Quaternion.identity).GetComponent<Hold>();
         }
-        hold.Data = note;
-        hold.startPos = startPos.position;
-        hold.endPos = endPos.position;
+        return hold;
     }
-    private void CreateQuickTap(NoteData note)
+    private Note CreateQuickTap(NoteData note)
     {
-
+        QuickTap qtap = Instantiate(quickTap, startPos.position, Quaternion.identity).GetComponent<QuickTap>();
+        return qtap;
     }
-    private void CreateSlider(NoteData note)
+    private Note CreateSlider(NoteData note)
     {
-
+        Slider sli = Instantiate(slider, startPos.position, Quaternion.identity).GetComponent<Slider>();
+        return sli;
     }
-    private void CreateMicInput(NoteData note)
+    private Note CreateMicInput(NoteData note)
     {
-
+        MicInput mic = Instantiate(micInput, startPos.position, Quaternion.identity).GetComponent<MicInput>();
+        return mic;
     }
 }

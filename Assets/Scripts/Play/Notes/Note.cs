@@ -11,15 +11,24 @@ public abstract class Note : MonoBehaviour
     {
         moveTime = NoteController.noteSpeed;
     }
+    public virtual void LateUpdate()
+    {
+        Move();
+    }
     public virtual void Move()
     {
-        if (gameObject.transform.position.x > endPos.x)
+        if (Time.timeSinceLevelLoad < Data.Time + moveTime)
         {
             var time = Time.timeSinceLevelLoad;
             var endTime = Data.Time + moveTime;
-            transform.position = new Vector3(Utils.Lerp(time, Data.Time, endTime, startPos.x, endPos.x),
+			var fixedEndPos = endPos.x + 0.1f;
+			transform.position = new Vector3(Utils.Lerp(time, Data.Time, endTime, startPos.x, fixedEndPos),
                 transform.position.y);
         }
+        else
+        {
+			transform.position = endPos;
+        }
     }
-    public abstract void Judge();
+
 }
