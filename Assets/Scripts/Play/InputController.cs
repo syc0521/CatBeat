@@ -13,7 +13,6 @@ public class InputController : MonoBehaviour
     public GameObject R_FX;
     public GameObject B_FX;
     private QuickTap currentQuickTap;
-    private Hold currentHold;
 
     private void Awake()
     {
@@ -31,6 +30,8 @@ public class InputController : MonoBehaviour
             controls.PlayController.Tap_Blue_Right.started += DestroyQuickTap;
             controls.PlayController.Tap_Red.started += DestroyRedHold;
             controls.PlayController.Tap_Blue.started += DestroyBlueHold;
+            controls.PlayController.Tap_Red_Right.started += DestroyRedHold;
+            controls.PlayController.Tap_Blue_Right.started += DestroyBlueHold;
         }
     }
     private void DestroyRedTap(InputAction.CallbackContext obj)
@@ -106,10 +107,9 @@ public class InputController : MonoBehaviour
         if (note != null)
         {
             Hold noteObj = NoteController.noteObjs[note.Index].GetComponent<Hold>();
-            currentHold = noteObj;
             JudgeType judgeType = JudgeTap(note);
             noteObj.isHold = true;
-            currentHold.firstType = judgeType;
+            noteObj.firstType = judgeType;
             note.CanJudge = false;
             Instantiate(R_FX);
         }
@@ -120,18 +120,14 @@ public class InputController : MonoBehaviour
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Hold)
                                                   && item.Information == 2 && item.CanJudge && !item.CanDestroy);
-        if (note != null && !note.CanDestroy)
+        if (note != null)
         {
-            var noteObj = NoteController.noteObjs[note.Index];
-            note.CanDestroy = true;
-            if (note.Index < NoteController.noteCount - 1)
-            {
-                NoteController.notes[note.Index + 1].CanJudge = true;
-            }
+            Hold noteObj = NoteController.noteObjs[note.Index].GetComponent<Hold>();
             JudgeType judgeType = JudgeTap(note);
-            TapJudgeFinished(judgeType);
+            noteObj.isHold = true;
+            noteObj.firstType = judgeType;
             note.CanJudge = false;
-            Instantiate(B_FX);
+            Instantiate(R_FX);
         }
     }
 

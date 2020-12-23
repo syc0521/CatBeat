@@ -57,5 +57,7 @@ public class ReadSong : MonoBehaviour
         source.playOnAwake = false;
         yield return new WaitForSeconds(NoteController.noteSpeed);
         source.Play();
+        yield return new WaitForSeconds(clip.length);
+
     }
 }

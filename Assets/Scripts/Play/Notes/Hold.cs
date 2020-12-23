@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Hold : Note
 {
@@ -12,7 +11,7 @@ public class Hold : Note
     public GameObject R_FX, B_FX;
     private bool key = false;
     public bool isHold = false;
-    public float holdTime;
+    private float holdTime = 0f;
     public JudgeType firstType, secondType, finalType;
 
     private void Start()
@@ -41,6 +40,8 @@ public class Hold : Note
                 }
                 secondType = JudgeType.Perfect;
                 finalType = GetHoldJudge(firstType, secondType);
+                Debug.Log(firstType);
+                Debug.Log(secondType);
                 Debug.Log(Data + finalType.ToString());
                 isHold = false;
                 Destroy(gameObject);
@@ -56,6 +57,8 @@ public class Hold : Note
         }
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.K))
         {
+            Debug.Log("up");
+            Instantiate(B_FX);
             HoldUpJudge();
         }
     }
@@ -68,6 +71,8 @@ public class Hold : Note
         }
         if (Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.J))
         {
+            Debug.Log("up");
+            Instantiate(R_FX);
             HoldUpJudge();
         }
     }
@@ -146,17 +151,11 @@ public class Hold : Note
         }
         else
         {
-            start.GetComponent<SpriteRenderer>().enabled = false;
-            end.GetComponent<SpriteRenderer>().enabled = false;
             if (NoteController.isAutoPlay)
             {
                 AutoPlayMode();
+                Destroy(gameObject);
             }
-            if (Data.Index < NoteController.noteCount - 1)
-            {
-                NoteController.notes[Data.Index + 1].CanJudge = true;
-            }
-            Destroy(gameObject);
         }
         if (time > Data.Time + moveTime + NoteController.goodTime)
         {
@@ -169,6 +168,9 @@ public class Hold : Note
                     {
                         NoteController.notes[Data.Index + 1].CanJudge = true;
                     }
+                    NoteController.miss++;
+                    NoteController.combo = 0;
+                    Debug.Log("miss");
                     Destroy(gameObject);
                 }
             }
@@ -200,14 +202,23 @@ public class Hold : Note
     {
         if (first.Equals(JudgeType.Perfect) && second.Equals(JudgeType.Perfect))
         {
+            NoteController.perfect++;
+            NoteController.combo++;
+            NoteController.score += (int)(NoteController.Multiplier * 200.0f);
             return JudgeType.Perfect;
         }
         else if (IsGood(first) && IsGood(second) || second.Equals(JudgeType.Miss))
         {
+            NoteController.good++;
+            NoteController.combo++;
+            NoteController.score += (int)(NoteController.Multiplier * 100.0f);
             return JudgeType.EarlyGood;
         }
         else
         {
+            NoteController.great++;
+            NoteController.combo++;
+            NoteController.score += (int)(NoteController.Multiplier * 160.0f);
             return JudgeType.LateGreat;
         }
 
