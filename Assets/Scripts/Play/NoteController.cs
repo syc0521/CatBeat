@@ -37,7 +37,11 @@ public class NoteController : MonoBehaviour
             StartCoroutine(CreateNote(note));
         }
     }
-
+    private void Update()
+    {
+        comboText.text = combo.ToString();
+        scoreText.text = score.ToString();
+    }
     private IEnumerator CreateNote(NoteData note)
     {
         yield return new WaitForSeconds(note.Time);

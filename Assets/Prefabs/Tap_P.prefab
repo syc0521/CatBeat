@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4911050222284285306}
   - component: {fileID: 2875822882591396340}
   - component: {fileID: 3594523598897431320}
-  - component: {fileID: 1215178063829347873}
   m_Layer: 0
   m_Name: Tap_P
   m_TagString: Untagged
@@ -99,46 +98,6 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   moveTime: 0
-  isStickJudged: 0
   R_FX: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
   B_FX: {fileID: 8484072823467148885, guid: d1b338d7c4fe1894ca598f11e21d03b6, type: 3}
   type: 0
---- !u!114 &1215178063829347873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3781551958620171987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 673dd629583618342b05af7c0f2db089,
-    type: 3}
-  m_NotificationBehavior: 3
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1a60e731-7ed2-401b-b040-49cd2058f694
-    m_ActionName: PlayController/Tap_Red[/Keyboard/f,/Keyboard/j,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/right,/XInputControllerWindows/dpad/down,/XInputControllerWindows/buttonNorth,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9d8e7d53-969d-405a-baf1-a9867036bc40
-    m_ActionName: PlayController/Tap_Blue[/Keyboard/d,/Keyboard/k,/XInputControllerWindows/leftShoulder,/XInputControllerWindows/rightShoulder]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: PlayController
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}

@@ -118,6 +118,6 @@ public class Hold : Note
             return JudgeType.LateGreat;
         }
 
-        static bool IsGood(JudgeType type) => type.Equals(JudgeType.EarlyGood) || type.Equals(JudgeType.LateGood);
+        bool IsGood(JudgeType type) => type.Equals(JudgeType.EarlyGood) || type.Equals(JudgeType.LateGood);
     }
 }
