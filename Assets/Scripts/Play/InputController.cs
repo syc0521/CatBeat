@@ -13,6 +13,7 @@ public class InputController : MonoBehaviour
     public GameObject R_FX;
     public GameObject B_FX;
     private QuickTap currentQuickTap;
+    Keyboard gp;
 
     private void Awake()
     {
@@ -20,16 +21,18 @@ public class InputController : MonoBehaviour
         if (!NoteController.isAutoPlay)
         {
             controls.PlayController.Tap_Red.started += DestroyRedTap;
+            controls.PlayController.Tap_Red_Right.started += DestroyRedTap;
             controls.PlayController.Tap_Blue.started += DestroyBlueTap;
+            controls.PlayController.Tap_Blue_Right.started += DestroyBlueTap;
             controls.PlayController.Tap_Purple.started += DestroyPurpleTap;
             controls.PlayController.Tap_Red.started += DestroyQuickTap;
             controls.PlayController.Tap_Blue.started += DestroyQuickTap;
+            controls.PlayController.Tap_Red_Right.started += DestroyQuickTap;
+            controls.PlayController.Tap_Blue_Right.started += DestroyQuickTap;
             controls.PlayController.Tap_Red.started += DestroyRedHold;
             controls.PlayController.Tap_Blue.started += DestroyBlueHold;
-
         }
     }
-
     private void DestroyRedTap(InputAction.CallbackContext obj)
     {
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
@@ -91,7 +94,7 @@ public class InputController : MonoBehaviour
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
-                                                  && item.Information == 2 && item.CanJudge && !item.CanDestroy);
+                                                  && item.Information == 3 && item.CanJudge && !item.CanDestroy);
         if (note != null && !note.CanDestroy)
         {
             var noteObj = NoteController.noteObjs[note.Index];
@@ -135,7 +138,7 @@ public class InputController : MonoBehaviour
             Instantiate(R_FX);
             try
             {
-                Destroy(noteObj.gameObject);
+                //Destroy(noteObj.gameObject);
             }
             catch (Exception)
             {
@@ -186,6 +189,7 @@ public class InputController : MonoBehaviour
                 currentQuickTap = noteObj;
                 Debug.Log(currentQuickTap.Data);
                 currentQuickTap.tapCount--;
+                NoteController.score += (int)(NoteController.Multiplier * 25.0f);
                 Instantiate(R_FX);
                 note.CanJudge = false;
             }
@@ -268,25 +272,31 @@ public class InputController : MonoBehaviour
         {
             case JudgeType.Perfect:
                 NoteController.combo++;
+                NoteController.perfect++;
                 NoteController.score += (int)(NoteController.Multiplier * 100.0f);
                 break;
             case JudgeType.EarlyGreat:
                 NoteController.combo++;
+                NoteController.great++;
                 NoteController.score += (int)(NoteController.Multiplier * 80.0f);
                 break;
             case JudgeType.LateGreat:
                 NoteController.combo++;
+                NoteController.great++;
                 NoteController.score += (int)(NoteController.Multiplier * 80.0f);
                 break;
             case JudgeType.EarlyGood:
                 NoteController.combo++;
+                NoteController.good++;
                 NoteController.score += (int)(NoteController.Multiplier * 50.0f);
                 break;
             case JudgeType.LateGood:
                 NoteController.combo++;
+                NoteController.good++;
                 NoteController.score += (int)(NoteController.Multiplier * 50.0f);
                 break;
             case JudgeType.Miss:
+                NoteController.miss++;
                 NoteController.combo = 0;
                 break;
         }

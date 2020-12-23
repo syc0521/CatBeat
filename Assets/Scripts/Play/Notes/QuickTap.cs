@@ -18,7 +18,6 @@ public class QuickTap : Note
         tapTime = tapCount * 0.1f;
         text = transform.GetChild(1).GetComponent<TextMesh>();
         text.text = "";
-        StartCoroutine(ChangeColor());
         if (NoteController.isAutoPlay)
         {
             StartCoroutine(ReduceCount());
@@ -43,8 +42,10 @@ public class QuickTap : Note
         while (tapCount > 0)
         {
             tapCount--;
-            yield return new WaitForSeconds(0.02f);
-        }
+            text.text = tapCount.ToString();
+            NoteController.score += (int)(NoteController.Multiplier * 25.0f);
+            Instantiate(fx);
+        } while (tapCount > 0);
     }
     private IEnumerator DestroyNote()
     {
@@ -75,10 +76,5 @@ public class QuickTap : Note
             }
         }
         Destroy(gameObject);
-    }
-    private IEnumerator ChangeColor()
-    {
-        yield return new WaitForSeconds(moveTime - NoteController.goodTime * 1.5f);
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.cyan;
     }
 }
