@@ -48,6 +48,7 @@ public class QuickTap : Note
             NoteController.score += (int)(NoteController.Multiplier * 25.0f);
             Instantiate(fx);
         } while (tapCount > 0);
+        yield break;
     }
     private IEnumerator DestroyNote()
     {
