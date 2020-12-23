@@ -250,10 +250,6 @@ public class InputController : MonoBehaviour
     {
         controls.PlayController.Enable();
     }
-    private void OnDisable()
-    {
-        controls.PlayController.Disable();
-    }
     private void TapJudgeFinished(JudgeType judgeType)
     {
         switch (judgeType)

@@ -39,10 +39,8 @@ public class QuickTap : Note
     }
     private IEnumerator ReduceCount()
     {
-        yield return new WaitForSeconds(NoteController.noteSpeed);
-        do
+        while (tapCount > 0)
         {
-            yield return new WaitForSeconds(0.05f);
             tapCount--;
             text.text = tapCount.ToString();
             NoteController.score += (int)(NoteController.Multiplier * 25.0f);
