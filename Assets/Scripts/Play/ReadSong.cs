@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum Diff { Easy = 0, Normal = 1, Hard = 2 }
 public class ReadSong : MonoBehaviour
@@ -58,6 +59,6 @@ public class ReadSong : MonoBehaviour
         yield return new WaitForSeconds(NoteController.noteSpeed);
         source.Play();
         yield return new WaitForSeconds(clip.length);
-
+        SceneManager.LoadScene("Result");
     }
 }

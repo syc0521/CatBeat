@@ -24,21 +24,21 @@ public class Result : MonoBehaviour
 
         for (int i = 0; i <= Info.score; i++)
         {
-            if(Info.score-i<10)
+            if (Info.score - i < 10)
             {
             }
-            else if(i+10000<Info.score)
+            else if (i + 10000 < Info.score)
             {
                 i += 10000;
             }
-            else if(i+5000<Info.score)
+            else if (i + 5000 < Info.score)
             {
                 i += 5000;
             }
-            else if(i + 1000 < Info.score)
+            else if (i + 1000 < Info.score)
             {
                 i += 1000;
-            } 
+            }
             else if (i + 100 < Info.score)
             {
                 i += 100;
@@ -47,10 +47,10 @@ public class Result : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             for (int j = 0; j < 5; j++)
             {
-                    text[j].text = getNum(i, j);
+                text[j].text = getNum(i, j);
             }
             Debug.Log(i);
-           
+
 
         }
         yield break;
