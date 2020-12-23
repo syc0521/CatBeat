@@ -1,5 +1,5 @@
-"With your smile","Shoichiro Hirata plus Junko Hirata",withyour,1,4,7
+"With your smile","Shoichiro Hirata plus Junko Hirata",withyour,-1,-4,-7
 "Wish upon a shooting star","SUi",wish,3,6,9
-"High-Priestess","Luxion","highp",6,10,11
-"You and Me","NieN","youandme",2,5,8
-"rainbow","ああああ","rainbow",4,7,10
+"High-Priestess","Luxion","highp",-6,-10,-11
+"You and Me","NieN","youandme",-2,-5,-8
+"rainbow","ああああ","rainbow",-4,-7,-10
