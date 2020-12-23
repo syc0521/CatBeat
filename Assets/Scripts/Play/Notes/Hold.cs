@@ -11,20 +11,94 @@ public class Hold : Note
     public int type;
     public GameObject R_FX, B_FX;
     private bool key = false;
-    public InputMaster inputs;
     public bool isHold = false;
     public float holdTime;
-    public JudgeType firstType, secondType;
+    public JudgeType firstType, secondType, finalType;
 
     private void Start()
     {
         type = Data.Information;
         GenerateHold();
-        inputs = new InputMaster();
     }
     private void Update()
     {
-        
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime - NoteController.goodTime &&
+            Time.timeSinceLevelLoad <= Data.Time + moveTime + Data.Dur && isHold)
+        {
+            if (type == 1)
+            {
+                JudgeRedHoldEnd();
+            }
+            else if (type == 2)
+            {
+                JudgeBlueHoldEnd();
+            }
+            if (holdTime > Data.Dur - NoteController.greatTime)
+            {
+                if (Data.Index < NoteController.noteCount - 1)
+                {
+                    NoteController.notes[Data.Index + 1].CanJudge = true;
+                }
+                secondType = JudgeType.Perfect;
+                finalType = GetHoldJudge(firstType, secondType);
+                Debug.Log(Data + finalType.ToString());
+                isHold = false;
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void JudgeBlueHoldEnd()
+    {
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.K))
+        {
+            holdTime += Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.K))
+        {
+            HoldUpJudge();
+        }
+    }
+
+    private void JudgeRedHoldEnd()
+    {
+        if (Input.GetKey(KeyCode.F) || Input.GetKey(KeyCode.J))
+        {
+            holdTime += Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.J))
+        {
+            HoldUpJudge();
+        }
+    }
+
+    private void HoldUpJudge()
+    {
+        secondType = GetSecondType();
+        finalType = GetHoldJudge(firstType, secondType);
+        Debug.Log(Data + finalType.ToString());
+        if (Data.Index < NoteController.noteCount - 1)
+        {
+            NoteController.notes[Data.Index + 1].CanJudge = true;
+        }
+        isHold = false;
+        Destroy(gameObject);
+    }
+
+    private JudgeType GetSecondType()
+    {
+        if (holdTime < Data.Dur - NoteController.goodTime * 1.2f)
+        {
+            return JudgeType.Miss;
+        }
+        else if (holdTime < Data.Dur - NoteController.goodTime * 0.8f)
+        {
+            return JudgeType.EarlyGreat;
+        }
+        else
+        {
+            return JudgeType.Perfect;
+        }
     }
     private void GenerateHold()
     {
@@ -78,7 +152,26 @@ public class Hold : Note
             {
                 AutoPlayMode();
             }
+            if (Data.Index < NoteController.noteCount - 1)
+            {
+                NoteController.notes[Data.Index + 1].CanJudge = true;
+            }
             Destroy(gameObject);
+        }
+        if (time > Data.Time + moveTime + NoteController.goodTime)
+        {
+            if (!NoteController.isAutoPlay)
+            {
+                if (!isHold)
+                {
+                    finalType = JudgeType.Miss;
+                    if (Data.Index < NoteController.noteCount - 1)
+                    {
+                        NoteController.notes[Data.Index + 1].CanJudge = true;
+                    }
+                    Destroy(gameObject);
+                }
+            }
         }
     }
     private void AutoPlayMode()
@@ -109,7 +202,7 @@ public class Hold : Note
         {
             return JudgeType.Perfect;
         }
-        else if (IsGood(first) && IsGood(second))
+        else if (IsGood(first) && IsGood(second) || second.Equals(JudgeType.Miss))
         {
             return JudgeType.EarlyGood;
         }

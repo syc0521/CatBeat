@@ -7,11 +7,9 @@ public class Tap : Note
 {
     public GameObject R_FX, B_FX;
     public int type;
-	public InputMaster inputs;
     private void Start()
     {
 		type = Data.Information;
-		inputs = new InputMaster();
 	}
 	
 

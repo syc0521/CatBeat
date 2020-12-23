@@ -133,7 +133,7 @@ public class MicInput : Note
             Destroy(gameObject);
         }
     }
-    float GetMaxVolume(int x)
+    private float GetMaxVolume(int x)
     {
         float maxVolume = 0f;
         //剪切音频

@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bpm: 0
-  path: wish
+  path: test
   controller: {fileID: 2001768307}
   diff: 1
 --- !u!82 &2001768309
