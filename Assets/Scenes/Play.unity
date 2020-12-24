@@ -563,6 +563,7 @@ MonoBehaviour:
   endPos: {fileID: 1867715124}
   comboText: {fileID: 1555266521}
   scoreText: {fileID: 1695471978}
+  IsAutoPlay: 0
 --- !u!114 &2001768308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,8 +578,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bpm: 0
   path: test
+  diff: 0
   controller: {fileID: 2001768307}
-  diff: 1
 --- !u!82 &2001768309
 AudioSource:
   m_ObjectHideFlags: 0

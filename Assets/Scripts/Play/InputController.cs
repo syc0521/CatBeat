@@ -36,6 +36,7 @@ public class InputController : MonoBehaviour
     }
     private void DestroyRedTap(InputAction.CallbackContext obj)
     {
+        Debug.Log("red");
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime 
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
@@ -44,10 +45,7 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             note.CanDestroy = true;
-            if (note.Index < NoteController.noteCount - 1)
-            {
-                NoteController.notes[note.Index + 1].CanJudge = true;
-            }
+            StartCoroutine(ModifyNote(note));
             JudgeType judgeType = JudgeTap(note);
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
@@ -57,6 +55,7 @@ public class InputController : MonoBehaviour
     }
     private void DestroyBlueTap(InputAction.CallbackContext obj)
     {
+        Debug.Log("blue");
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
@@ -65,10 +64,7 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             note.CanDestroy = true;
-            if (note.Index < NoteController.noteCount - 1)
-            {
-                NoteController.notes[note.Index + 1].CanJudge = true;
-            }
+            StartCoroutine(ModifyNote(note));
             JudgeType judgeType = JudgeTap(note);
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
@@ -78,6 +74,7 @@ public class InputController : MonoBehaviour
     }
     private void DestroyPurpleTap(InputAction.CallbackContext obj)
     {
+        Debug.Log("purple");
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
@@ -86,16 +83,21 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             note.CanDestroy = true;
-            if (note.Index < NoteController.noteCount - 1)
-            {
-                NoteController.notes[note.Index + 1].CanJudge = true;
-            }
             JudgeType judgeType = JudgeTap(note);
+            StartCoroutine(ModifyNote(note));
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
             Instantiate(R_FX);
             Instantiate(B_FX);
             Destroy(noteObj.gameObject);
+        }
+    }
+    private IEnumerator ModifyNote(NoteData note)
+    {
+        yield return new WaitForSeconds(0.02f);
+        if (note.Index < NoteController.noteCount - 1)
+        {
+            NoteController.notes[note.Index + 1].CanJudge = true;
         }
     }
     private void DestroyRedHold(InputAction.CallbackContext obj)
@@ -156,10 +158,7 @@ public class InputController : MonoBehaviour
             if (currentQuickTap.tapCount <= 0)
             {
                 currentQuickTap.Data.CanDestroy = true;
-                if (currentQuickTap.Data.Index < NoteController.noteCount - 1)
-                {
-                    NoteController.notes[currentQuickTap.Data.Index + 1].CanJudge = true;
-                }
+                StartCoroutine(ModifyNote(currentQuickTap.Data));
                 Destroy(currentQuickTap.gameObject);
                 currentQuickTap = null;
             }
@@ -255,5 +254,12 @@ public class InputController : MonoBehaviour
                 break;
         }
     }
-    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J) && Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("test");
+        }
+
+    }
 }

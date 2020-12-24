@@ -1,14 +1,13 @@
-﻿using System.Collections;
+﻿//#define testMode
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public enum Diff { Easy = 0, Normal = 1, Hard = 2 }
 public class ReadSong : MonoBehaviour
 {
     [HideInInspector]
     public int bpm;
-    private bool testMode = false;
 #if testMode
     public string path;
     public Diff diff;
@@ -64,7 +63,10 @@ public class ReadSong : MonoBehaviour
         source.playOnAwake = false;
         yield return new WaitForSeconds(NoteController.noteSpeed);
         source.Play();
+#if testMode
+#else
         yield return new WaitForSeconds(clip.length);
         SceneManager.LoadScene("Result");
+#endif
     }
 }
