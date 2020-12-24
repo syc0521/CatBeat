@@ -67,8 +67,8 @@ public class SongManager : MonoBehaviour
     }
     public void JumpScene(Diff diff)
     {
-        ReadSong.diff = diff;
-        ReadSong.path = currentSong.Path;
+        //ReadSong.diff = diff;
+        //ReadSong.path = currentSong.Path;
         SceneManager.LoadScene("Play");
     }
 }

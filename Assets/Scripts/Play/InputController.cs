@@ -36,7 +36,6 @@ public class InputController : MonoBehaviour
     }
     private void DestroyRedTap(InputAction.CallbackContext obj)
     {
-        Debug.Log("red");
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime 
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
@@ -55,7 +54,6 @@ public class InputController : MonoBehaviour
     }
     private void DestroyBlueTap(InputAction.CallbackContext obj)
     {
-        Debug.Log("blue");
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
@@ -74,7 +72,6 @@ public class InputController : MonoBehaviour
     }
     private void DestroyPurpleTap(InputAction.CallbackContext obj)
     {
-        Debug.Log("purple");
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
