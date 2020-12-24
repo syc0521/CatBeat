@@ -98,7 +98,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   moveTime: 0
-  fx: {fileID: 0}
+  fx: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
   volume: []
   realVolume: 0
   Devices: []

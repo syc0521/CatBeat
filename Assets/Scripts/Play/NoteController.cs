@@ -25,11 +25,13 @@ public class NoteController : MonoBehaviour
     public static readonly float goodTime = 0.15f;
     public static int perfect, great, good, miss;
     public static int noteCount;
-    public static bool isAutoPlay = false;
+    public static bool isAutoPlay;
+    public bool IsAutoPlay;
 
     public static float Multiplier => 1.00f + combo / 50 * 0.05f;
     void Start()
     {
+        isAutoPlay = IsAutoPlay;
         score = 0; combo = 0;
         perfect = 0; great = 0; good = 0; miss = 0;
         foreach (NoteData note in notes)

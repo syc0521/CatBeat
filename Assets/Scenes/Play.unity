@@ -531,7 +531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001768305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.38580686, y: -0.039719976, z: -0.3935547}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -563,6 +563,7 @@ MonoBehaviour:
   endPos: {fileID: 1867715124}
   comboText: {fileID: 1555266521}
   scoreText: {fileID: 1695471978}
+  IsAutoPlay: 0
 --- !u!114 &2001768308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,9 +577,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bpm: 0
-  path: wish
+  path: withyour
+  diff: 2
   controller: {fileID: 2001768307}
-  diff: 1
 --- !u!82 &2001768309
 AudioSource:
   m_ObjectHideFlags: 0

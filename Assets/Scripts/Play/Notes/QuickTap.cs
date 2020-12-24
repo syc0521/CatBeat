@@ -52,7 +52,7 @@ public class QuickTap : Note
     }
     private IEnumerator DestroyNote()
     {
-        yield return new WaitForSeconds(tapTime + moveTime);
+        yield return new WaitForSeconds(tapTime + moveTime + tapTime);
         if (Data.Index < NoteController.noteCount - 1)
         {
             NoteController.notes[Data.Index + 1].CanJudge = true;
