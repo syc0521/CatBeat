@@ -54,7 +54,7 @@ public class MicInput : Note
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime - NoteController.goodTime * 1.5f)
         {
             canInput = true;
-            if (realVolume >= 0.65f && canInput)
+            if (realVolume >= 0.55f && canInput)
             {
                 holdTime += Time.deltaTime;
                 NoteController.score += (int)(NoteController.Multiplier * 15.0f);

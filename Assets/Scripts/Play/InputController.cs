@@ -156,6 +156,8 @@ public class InputController : MonoBehaviour
             {
                 currentQuickTap.Data.CanDestroy = true;
                 StartCoroutine(ModifyNote(currentQuickTap.Data));
+                NoteController.score += (int)(NoteController.Multiplier * 25.0f);
+                NoteController.combo++;
                 Destroy(currentQuickTap.gameObject);
                 currentQuickTap = null;
             }
