@@ -28,8 +28,9 @@ public class QuickTap : Note
         }
     }
 
-    void Update()
+    public override void Update()
     {
+        base.Update();
         text.text = tapCount.ToString();
         if (tapCount == 0 && NoteController.isAutoPlay)
         {

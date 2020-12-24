@@ -19,8 +19,9 @@ public class Hold : Note
         type = Data.Information;
         GenerateHold();
     }
-    private void Update()
+    public override void Update()
     {
+        base.Update();
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime - NoteController.goodTime &&
             Time.timeSinceLevelLoad <= Data.Time + moveTime + Data.Dur && isHold)
         {

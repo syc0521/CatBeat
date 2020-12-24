@@ -13,8 +13,9 @@ public class Tap : Note
 	}
 	
 
-	void Update()
+	public override void Update()
     {
+		base.Update();
         if (!NoteController.isAutoPlay)
         {
 			if (Time.timeSinceLevelLoad >= Data.Time + moveTime + NoteController.goodTime)
