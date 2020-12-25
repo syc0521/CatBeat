@@ -8,6 +8,7 @@ public class QuickTap : Note
     public int tapCount = 0;
     private TextMesh text;
     public GameObject fx;
+    [HideInInspector]
     public float tapTime;
     private int cnt;
 
