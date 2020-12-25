@@ -12,10 +12,17 @@ public class SongManager : MonoBehaviour
     public Text songName, songArtist;
     public GameObject songBtn;
     public Transform songPanel;
-    public Song currentSong = null;
+    public Song CurrentSong { get => currentSong; set => PlayAudio(value); }
+    public Song currentSong;
+    private AudioSource source;
     private void Awake()
     {
         GetList();
+        source = GetComponent<AudioSource>();
+    }
+    private void Start()
+    {
+        CurrentSong = songList[0];
     }
     private void Update()
     {
@@ -34,7 +41,13 @@ public class SongManager : MonoBehaviour
 #endif
         }
     }
-
+    public void PlayAudio(Song song)
+    {
+        currentSong = song;
+        AudioClip clip = Resources.Load<AudioClip>("Songs/" + song.Path + "/preview");
+        source.clip = clip;
+        source.Play();
+    }
     private void UpdateText()
     {
         diffBtn[0].text = currentSong.EasyLevel.ToString();
