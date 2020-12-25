@@ -16,7 +16,7 @@ public class BackGround : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.left * 0.01f);
+        transform.Translate(Vector3.left * Time.deltaTime);
         if (transform.position.x <= -startX * 2)
         {
             transform.position = startPos;

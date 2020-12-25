@@ -126,7 +126,7 @@ public class InputController : MonoBehaviour
             noteObj.isHold = true;
             noteObj.firstType = judgeType;
             note.CanJudge = false;
-            Instantiate(R_FX);
+            Instantiate(B_FX);
         }
     }
 

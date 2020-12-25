@@ -27,6 +27,10 @@ public class NoteController : MonoBehaviour
     public static int noteCount;
     public static bool isAutoPlay;
     public bool IsAutoPlay;
+    public static bool isPaused = false;
+    public GameObject pauseCanvas;
+    [HideInInspector]
+    public AudioSource source;
 
     public static float Multiplier => 1.00f + combo / 50 * 0.05f;
     void Start()
@@ -38,11 +42,27 @@ public class NoteController : MonoBehaviour
         {
             StartCoroutine(CreateNote(note));
         }
+        source = GetComponent<AudioSource>();
     }
     private void Update()
     {
         comboText.text = combo.ToString();
         scoreText.text = score.ToString();
+        PauseGame();
+    }
+
+    private void PauseGame()
+    {
+        if (!isPaused)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                isPaused = true;
+                source.Pause();
+                pauseCanvas.SetActive(true);
+                Time.timeScale = 0;
+            }
+        }
     }
     private IEnumerator CreateNote(NoteData note)
     {

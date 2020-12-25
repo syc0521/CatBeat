@@ -24,14 +24,6 @@ public class ReadSong : MonoBehaviour
         StartCoroutine(GetSong());
     }
 
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-        
-    }
     /// <summary>
     /// 谱面读入
     /// </summary>
