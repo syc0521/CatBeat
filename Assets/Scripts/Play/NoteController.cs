@@ -47,6 +47,8 @@ public class NoteController : MonoBehaviour
     public static float Multiplier => 1.00f + combo / 50 * 0.05f;
     void Start()
     {
+        notes.Clear();
+        noteObjs.Clear();
         isAutoPlay = IsAutoPlay;
         score = 0; combo = 0;
         perfect = 0; great = 0; good = 0; miss = 0;
