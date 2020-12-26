@@ -1,0 +1,83 @@
+
+1226.png
+size: 436,271
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+LegL
+  rotate: true
+  xy: 2, 35
+  size: 52, 108
+  orig: 54, 112
+  offset: 1, 2
+  index: -1
+LegR
+  rotate: false
+  xy: 329, 45
+  size: 102, 104
+  orig: 105, 106
+  offset: 2, 1
+  index: -1
+body
+  rotate: false
+  xy: 218, 35
+  size: 109, 234
+  orig: 111, 236
+  offset: 1, 1
+  index: -1
+guitar
+  rotate: false
+  xy: 2, 89
+  size: 214, 180
+  orig: 222, 183
+  offset: 7, 1
+  index: -1
+handrighy
+  rotate: false
+  xy: 329, 2
+  size: 44, 41
+  orig: 47, 43
+  offset: 2, 1
+  index: -1
+hands
+  rotate: false
+  xy: 375, 4
+  size: 49, 39
+  orig: 141, 48
+  offset: 1, 1
+  index: -1
+head1
+  rotate: true
+  xy: 329, 151
+  size: 118, 105
+  orig: 120, 110
+  offset: 1, 2
+  index: -1
+l
+  rotate: false
+  xy: 288, 4
+  size: 29, 29
+  orig: 33, 31
+  offset: 2, 1
+  index: -1
+r
+  rotate: false
+  xy: 174, 5
+  size: 112, 28
+  orig: 115, 30
+  offset: 1, 1
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 2
+  size: 170, 31
+  orig: 172, 34
+  offset: 1, 2
+  index: -1
+small hair
+  rotate: false
+  xy: 174, 47
+  size: 38, 40
+  orig: 42, 43
+  offset: 2, 1
+  index: -1
