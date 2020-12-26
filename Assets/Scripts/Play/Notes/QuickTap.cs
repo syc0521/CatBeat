@@ -8,6 +8,7 @@ public class QuickTap : Note
     public int tapCount = 0;
     private TextMesh text;
     public GameObject fx;
+    [HideInInspector]
     public float tapTime;
     private int cnt;
 
@@ -28,8 +29,9 @@ public class QuickTap : Note
         }
     }
 
-    void Update()
+    public override void Update()
     {
+        base.Update();
         text.text = tapCount.ToString();
         if (tapCount == 0 && NoteController.isAutoPlay)
         {

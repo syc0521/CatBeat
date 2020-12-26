@@ -14,7 +14,7 @@ public class SongButton : MonoBehaviour
     public void OnPressed()
     {
         var controller = GameObject.FindWithTag("GameController").GetComponent<SongManager>();
-        controller.currentSong = song;
+        controller.CurrentSong = song;
     }
 
 }

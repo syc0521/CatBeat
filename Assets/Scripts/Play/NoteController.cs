@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿//#define testMode
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public enum JudgeType 
 { 
     Perfect = 0, EarlyGreat = 1, LateGreat = 2, EarlyGood = 3, LateGood = 4, Miss = -1, Default = -2
 };
-
+public enum Diff { Easy = 0, Normal = 1, Hard = 2 }
 
 public class NoteController : MonoBehaviour
 {
@@ -27,6 +30,19 @@ public class NoteController : MonoBehaviour
     public static int noteCount;
     public static bool isAutoPlay;
     public bool IsAutoPlay;
+    public static bool isPaused = false;
+    public GameObject pauseCanvas;
+    [HideInInspector]
+    public AudioSource source;
+    [HideInInspector]
+    public int bpm;
+#if testMode
+    public string path;
+    public Diff diff;
+#else
+    public static string path;
+    public static Diff diff;
+#endif
 
     public static float Multiplier => 1.00f + combo / 50 * 0.05f;
     void Start()
@@ -34,6 +50,9 @@ public class NoteController : MonoBehaviour
         isAutoPlay = IsAutoPlay;
         score = 0; combo = 0;
         perfect = 0; great = 0; good = 0; miss = 0;
+        source = GetComponent<AudioSource>();
+        GetMap();
+        StartCoroutine(GetSong());
         foreach (NoteData note in notes)
         {
             StartCoroutine(CreateNote(note));
@@ -43,6 +62,49 @@ public class NoteController : MonoBehaviour
     {
         comboText.text = combo.ToString();
         scoreText.text = score.ToString();
+        PauseGame();
+    }
+    private void GetMap()
+    {
+        TextAsset text = Resources.Load<TextAsset>("Songs/" + path + "/" + (int)diff);
+        var lines = text.text.Split('\n');
+        bpm = int.Parse(lines[0].Substring(5));
+        for (int i = 1; i < lines.Length; i++)
+        {
+            var line = lines[i].Split(',');
+            NoteData note = new NoteData(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]), int.Parse(line[3]))
+            {
+                Index = i - 1,
+                CanJudge = false
+            };
+            notes.Add(note);
+        }
+        noteCount = notes.Count;
+        notes[0].CanJudge = true;
+    }
+    private IEnumerator GetSong()
+    {
+        var clip = Resources.Load<AudioClip>("Songs/" + path + "/song");
+        source.clip = clip;
+        source.playOnAwake = false;
+        yield return new WaitForSeconds(noteSpeed);
+        source.Play();
+        yield return new WaitForSeconds(clip.length);
+        SceneManager.LoadScene("Result");
+    }
+
+    private void PauseGame()
+    {
+        if (!isPaused)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                isPaused = true;
+                source.Pause();
+                pauseCanvas.SetActive(true);
+                Time.timeScale = 0;
+            }
+        }
     }
     private IEnumerator CreateNote(NoteData note)
     {

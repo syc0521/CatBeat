@@ -11,7 +11,7 @@ public abstract class Note : MonoBehaviour
     {
         moveTime = NoteController.noteSpeed;
     }
-    public virtual void LateUpdate()
+    public virtual void Update()
     {
         Move();
     }

@@ -126,7 +126,7 @@ public class InputController : MonoBehaviour
             noteObj.isHold = true;
             noteObj.firstType = judgeType;
             note.CanJudge = false;
-            Instantiate(R_FX);
+            Instantiate(B_FX);
         }
     }
 
@@ -156,6 +156,8 @@ public class InputController : MonoBehaviour
             {
                 currentQuickTap.Data.CanDestroy = true;
                 StartCoroutine(ModifyNote(currentQuickTap.Data));
+                NoteController.score += (int)(NoteController.Multiplier * 25.0f);
+                NoteController.combo++;
                 Destroy(currentQuickTap.gameObject);
                 currentQuickTap = null;
             }
