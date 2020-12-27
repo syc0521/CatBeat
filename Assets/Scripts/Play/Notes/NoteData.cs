@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-public enum NoteType { Tap = 1, Hold = 2, QuickTap = 3, Slider = 4, MicInput = 5 }
+﻿public enum NoteType { Tap = 1, Hold = 2, QuickTap = 3, Slider = 4, MicInput = 5 }
 public class NoteData
 {
     public NoteData(int type, int time, int dur, int information)
