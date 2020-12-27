@@ -7,6 +7,12 @@ public class ReturnButton : MonoBehaviour
 {
     public void OnPressed()
     {
-        SceneManager.LoadScene("Select");
+        LoadingManager.nextScene = "Select";
+        SceneManager.LoadScene("Loading");
+    }
+    public void OnRetryPressed()
+    {
+        LoadingManager.nextScene = "Play";
+        SceneManager.LoadScene("Loading");
     }
 }
