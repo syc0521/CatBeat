@@ -36,6 +36,7 @@ public class NoteController : MonoBehaviour
     public AudioSource source;
     [HideInInspector]
     public int bpm;
+    public static int maxCombo;
 #if testMode
     public string path;
     public Diff diff;
@@ -66,6 +67,10 @@ public class NoteController : MonoBehaviour
     }
     private void Update()
     {
+        if (combo > maxCombo)
+        {
+            maxCombo = combo;
+        }
         comboText.text = combo.ToString();
         scoreText.text = score.ToString();
         PauseGame();
