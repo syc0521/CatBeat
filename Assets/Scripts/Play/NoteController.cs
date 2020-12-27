@@ -185,5 +185,4 @@ public class NoteController : MonoBehaviour
         MicInput mic = Instantiate(micInput, startPos.position, Quaternion.identity).GetComponent<MicInput>();
         return mic;
     }
-
 }

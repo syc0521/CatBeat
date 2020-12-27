@@ -167,7 +167,6 @@ public class InputController : MonoBehaviour
                 NoteController.score += (int)(NoteController.Multiplier * 25.0f);
                 NoteController.combo++;
                 StartCoroutine(ModifyNote(currentQuickTap.Data));
-                currentQuickTap.OnNoteDestroy();
                 Destroy(currentQuickTap.gameObject);
                 currentQuickTap = null;
             }

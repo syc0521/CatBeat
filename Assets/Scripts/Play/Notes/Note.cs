@@ -32,24 +32,4 @@ public abstract class Note : MonoBehaviour
 			transform.position = endPos;
         }
     }
-    public void OnNoteDestroy()
-    {
-        StartCoroutine(DestroyNote());
-        //Invoke(nameof(DestroyNote), 0.02f);
-    }
-    //private void DestroyNote()
-    //{
-    //    if (Data.Index < NoteController.noteCount - 1)
-    //    {
-    //        NoteController.notes[Data.Index + 1].CanJudge = true;
-    //    }
-    //}
-    private IEnumerator DestroyNote()
-    {
-        yield return new WaitForSeconds(0.02f);
-        if (Data.Index < NoteController.noteCount - 1)
-        {
-            NoteController.notes[Data.Index + 1].CanJudge = true;
-        }
-    }
 }
