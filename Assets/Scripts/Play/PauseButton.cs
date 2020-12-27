@@ -17,6 +17,13 @@ public class PauseButton : MonoBehaviour
     public void OnEndPressed()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("Select");
+        LoadingManager.nextScene = "Select";
+        SceneManager.LoadScene("Loading");
+    }
+    public void OnRetryPressed()
+    {
+        Time.timeScale = 1.0f;
+        LoadingManager.nextScene = "Play";
+        SceneManager.LoadScene("Loading");
     }
 }

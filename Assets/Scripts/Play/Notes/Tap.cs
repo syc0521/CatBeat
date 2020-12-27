@@ -38,7 +38,6 @@ public class Tap : Note
 		Debug.Log(Data + "Miss");
 		NoteController.miss++;
 		NoteController.combo = 0;
-		Data.CanDestroy = true;
 		Destroy(gameObject);
 	}
     private void AutoPlayMode()

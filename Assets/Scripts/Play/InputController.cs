@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class InputController : MonoBehaviour
 {
-    //Input思路：在这里面更改Data的canJudge，和canDestroy，如果canDestroy为true，销毁这个物体
-    InputMaster controls;
+    public static InputMaster controls;
     public static readonly float perfectTime = 0.055f;
     public static readonly float greatTime = 0.09f;
     public static readonly float goodTime = 0.15f;
@@ -14,9 +11,9 @@ public class InputController : MonoBehaviour
     public GameObject B_FX;
     private QuickTap currentQuickTap;
 
-    private void Awake()
+    private void Start()
     {
-        controls = new InputMaster();
+        controls.PlayController.Enable();
         if (!NoteController.isAutoPlay)
         {
             controls.PlayController.Tap_Red.started += DestroyRedTap;
@@ -39,14 +36,13 @@ public class InputController : MonoBehaviour
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime 
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
-                                                  && item.Information == 1 && item.CanJudge && !item.CanDestroy);
-        if (note != null && !note.CanDestroy)
+                                                  && item.Information == 1 && item.CanJudge);
+        if (note != null)
         {
             var noteObj = NoteController.noteObjs[note.Index];
-            note.CanDestroy = true;
-            StartCoroutine(ModifyNote(note));
             JudgeType judgeType = JudgeTap(note);
             TapJudgeFinished(judgeType);
+            StartCoroutine(NoteController.ModifyNote(note));
             note.CanJudge = false;
             Instantiate(R_FX);
             Destroy(noteObj.gameObject);
@@ -57,13 +53,12 @@ public class InputController : MonoBehaviour
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
-                                                  && item.Information == 2 && item.CanJudge && !item.CanDestroy);
-        if (note != null && !note.CanDestroy)
+                                                  && item.Information == 2 && item.CanJudge);
+        if (note != null)
         {
             var noteObj = NoteController.noteObjs[note.Index];
-            note.CanDestroy = true;
-            StartCoroutine(ModifyNote(note));
             JudgeType judgeType = JudgeTap(note);
+            StartCoroutine(NoteController.ModifyNote(note));
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
             Instantiate(B_FX);
@@ -75,26 +70,17 @@ public class InputController : MonoBehaviour
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
-                                                  && item.Information == 3 && item.CanJudge && !item.CanDestroy);
-        if (note != null && !note.CanDestroy)
+                                                  && item.Information == 3 && item.CanJudge);
+        if (note != null)
         {
             var noteObj = NoteController.noteObjs[note.Index];
-            note.CanDestroy = true;
             JudgeType judgeType = JudgeTap(note);
-            StartCoroutine(ModifyNote(note));
             TapJudgeFinished(judgeType);
+            StartCoroutine(NoteController.ModifyNote(note));
             note.CanJudge = false;
             Instantiate(R_FX);
             Instantiate(B_FX);
             Destroy(noteObj.gameObject);
-        }
-    }
-    private IEnumerator ModifyNote(NoteData note)
-    {
-        yield return new WaitForSeconds(0.02f);
-        if (note.Index < NoteController.noteCount - 1)
-        {
-            NoteController.notes[note.Index + 1].CanJudge = true;
         }
     }
     private void DestroyRedHold(InputAction.CallbackContext obj)
@@ -102,7 +88,7 @@ public class InputController : MonoBehaviour
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                     && item.Time < time + goodTime && item.Type.Equals(NoteType.Hold)
-                                                    && item.Information == 1 && item.CanJudge && !item.CanDestroy);
+                                                    && item.Information == 1 && item.CanJudge);
         if (note != null)
         {
             Hold noteObj = NoteController.noteObjs[note.Index].GetComponent<Hold>();
@@ -118,7 +104,7 @@ public class InputController : MonoBehaviour
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Hold)
-                                                  && item.Information == 2 && item.CanJudge && !item.CanDestroy);
+                                                  && item.Information == 2 && item.CanJudge);
         if (note != null)
         {
             Hold noteObj = NoteController.noteObjs[note.Index].GetComponent<Hold>();
@@ -137,7 +123,7 @@ public class InputController : MonoBehaviour
             var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
             var note = NoteController.notes.Find(item => item.Time > time - goodTime * 1.5
                                                       && item.Time < time + goodTime * 1.5 && item.Type.Equals(NoteType.QuickTap)
-                                                      && item.CanJudge && !item.CanDestroy);
+                                                      && item.CanJudge);
             if (note != null)
             {
                 QuickTap noteObj = NoteController.noteObjs[note.Index].GetComponent<QuickTap>();
@@ -154,10 +140,10 @@ public class InputController : MonoBehaviour
             Instantiate(R_FX);
             if (currentQuickTap.tapCount <= 0)
             {
-                currentQuickTap.Data.CanDestroy = true;
-                StartCoroutine(ModifyNote(currentQuickTap.Data));
                 NoteController.score += (int)(NoteController.Multiplier * 25.0f);
                 NoteController.combo++;
+                StartCoroutine(NoteController.ModifyNote(currentQuickTap.Data));
+                currentQuickTap.OnNoteDestroy();
                 Destroy(currentQuickTap.gameObject);
                 currentQuickTap = null;
             }
@@ -174,31 +160,31 @@ public class InputController : MonoBehaviour
         {
             if (sceneTime <= exactTime + perfectTime && sceneTime > exactTime - perfectTime)
             {
-                //Debug.Log(note + "perfect");
+                Debug.Log(note + "perfect");
                 NoteController.perfect++;
                 return JudgeType.Perfect;
             }
             else if (sceneTime < exactTime + greatTime && sceneTime > exactTime + perfectTime)
             {
-                //Debug.Log(note + "Lgreat");
+                Debug.Log(note + "Lgreat");
                 NoteController.great++;
                 return JudgeType.LateGreat;
             }
             else if (sceneTime > exactTime - greatTime && sceneTime < exactTime - perfectTime)
             {
-                //Debug.Log(note + "Egreat");
+                Debug.Log(note + "Egreat");
                 NoteController.great++;
                 return JudgeType.EarlyGreat;
             }
             else if (sceneTime < exactTime + goodTime - 0.02f && sceneTime > exactTime + greatTime)
             {
-                //Debug.Log(note + "Lgood");
+                Debug.Log(note + "Lgood");
                 NoteController.good++;
                 return JudgeType.LateGood;
             }
             else if (sceneTime > exactTime - goodTime && sceneTime < exactTime - greatTime)
             {
-                //Debug.Log(note + "Egood");
+                Debug.Log(note + "Egood");
                 NoteController.good++;
                 return JudgeType.EarlyGood;
             }
@@ -214,10 +200,6 @@ public class InputController : MonoBehaviour
         return JudgeType.Default;
     }
 
-    void OnEnable()
-    {
-        controls.PlayController.Enable();
-    }
     private void TapJudgeFinished(JudgeType judgeType)
     {
         switch (judgeType)
@@ -252,13 +234,5 @@ public class InputController : MonoBehaviour
                 NoteController.combo = 0;
                 break;
         }
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J) && Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("test");
-        }
-
     }
 }
