@@ -45,15 +45,19 @@ public class NoteController : MonoBehaviour
 #endif
 
     public static float Multiplier => 1.00f + combo / 50 * 0.05f;
-    void Start()
+    private void Awake()
     {
+        isPaused = false;
         notes.Clear();
         noteObjs.Clear();
         isAutoPlay = IsAutoPlay;
         score = 0; combo = 0;
         perfect = 0; great = 0; good = 0; miss = 0;
-        source = GetComponent<AudioSource>();
         GetMap();
+    }
+    void Start()
+    {
+        source = GetComponent<AudioSource>();
         StartCoroutine(GetSong());
         foreach (NoteData note in notes)
         {
@@ -180,5 +184,13 @@ public class NoteController : MonoBehaviour
     {
         MicInput mic = Instantiate(micInput, startPos.position, Quaternion.identity).GetComponent<MicInput>();
         return mic;
+    }
+    public static IEnumerator ModifyNote(NoteData note)
+    {
+        yield return new WaitForSeconds(0.02f);
+        if (note.Index < noteCount - 1)
+        {
+            notes[note.Index + 1].CanJudge = true;
+        }
     }
 }

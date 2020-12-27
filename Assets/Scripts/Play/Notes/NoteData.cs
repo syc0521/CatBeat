@@ -8,7 +8,6 @@ public class NoteData
         Time = time / 1000.0f;
         Dur = dur / 1000.0f;
         Information = information;
-        CanDestroy = false;
     }
     /// <summary>
     /// 1tap 2hold 3连打 4摇杆 5语音
@@ -31,7 +30,6 @@ public class NoteData
     /// 是否可判定
     /// </summary>
     public bool CanJudge { set; get; }
-    public bool CanDestroy { set; get; }
     public int Index { get; set; }
     public override string ToString()
     {

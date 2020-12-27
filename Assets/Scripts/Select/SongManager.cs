@@ -82,6 +82,7 @@ public class SongManager : MonoBehaviour
     {
         NoteController.diff = diff;
         NoteController.path = currentSong.Path;
-        SceneManager.LoadScene("Play");
+        LoadingManager.nextScene = "Play";
+        SceneManager.LoadScene("Loading");
     }
 }
