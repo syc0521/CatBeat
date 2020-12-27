@@ -26,7 +26,7 @@ public class Result : MonoBehaviour
         judgeDetail[1].text = NoteController.great.ToString();
         judgeDetail[2].text = NoteController.good.ToString();
         judgeDetail[3].text = NoteController.miss.ToString();
-        comboText.text = NoteController.combo.ToString();
+        comboText.text = NoteController.maxCombo.ToString();
         diffText.text = ShowLevel();
     }
 
