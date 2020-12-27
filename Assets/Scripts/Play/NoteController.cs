@@ -185,12 +185,5 @@ public class NoteController : MonoBehaviour
         MicInput mic = Instantiate(micInput, startPos.position, Quaternion.identity).GetComponent<MicInput>();
         return mic;
     }
-    public static IEnumerator ModifyNote(NoteData note)
-    {
-        yield return new WaitForSeconds(0.02f);
-        if (note.Index < noteCount - 1)
-        {
-            notes[note.Index + 1].CanJudge = true;
-        }
-    }
+
 }

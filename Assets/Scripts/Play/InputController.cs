@@ -13,6 +13,10 @@ public class InputController : MonoBehaviour
 
     private void Start()
     {
+        
+    }
+    private void OnEnable()
+    {
         controls.PlayController.Enable();
         if (!NoteController.isAutoPlay)
         {
@@ -31,6 +35,26 @@ public class InputController : MonoBehaviour
             controls.PlayController.Tap_Blue_Right.started += DestroyBlueHold;
         }
     }
+    private void OnDisable()
+    {
+        controls.PlayController.Disable();
+        if (!NoteController.isAutoPlay)
+        {
+            controls.PlayController.Tap_Red.started -= DestroyRedTap;
+            controls.PlayController.Tap_Red_Right.started -= DestroyRedTap;
+            controls.PlayController.Tap_Blue.started -= DestroyBlueTap;
+            controls.PlayController.Tap_Blue_Right.started -= DestroyBlueTap;
+            controls.PlayController.Tap_Purple.started -= DestroyPurpleTap;
+            controls.PlayController.Tap_Red.started -= DestroyQuickTap;
+            controls.PlayController.Tap_Blue.started -= DestroyQuickTap;
+            controls.PlayController.Tap_Red_Right.started -= DestroyQuickTap;
+            controls.PlayController.Tap_Blue_Right.started -= DestroyQuickTap;
+            controls.PlayController.Tap_Red.started -= DestroyRedHold;
+            controls.PlayController.Tap_Blue.started -= DestroyBlueHold;
+            controls.PlayController.Tap_Red_Right.started -= DestroyRedHold;
+            controls.PlayController.Tap_Blue_Right.started -= DestroyBlueHold;
+        }
+    }
     private void DestroyRedTap(InputAction.CallbackContext obj)
     {
         var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
@@ -42,7 +66,7 @@ public class InputController : MonoBehaviour
             var noteObj = NoteController.noteObjs[note.Index];
             JudgeType judgeType = JudgeTap(note);
             TapJudgeFinished(judgeType);
-            StartCoroutine(NoteController.ModifyNote(note));
+            StartCoroutine(ModifyNote(note));
             note.CanJudge = false;
             Instantiate(R_FX);
             Destroy(noteObj.gameObject);
@@ -58,7 +82,7 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             JudgeType judgeType = JudgeTap(note);
-            StartCoroutine(NoteController.ModifyNote(note));
+            StartCoroutine(ModifyNote(note));
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
             Instantiate(B_FX);
@@ -76,7 +100,7 @@ public class InputController : MonoBehaviour
             var noteObj = NoteController.noteObjs[note.Index];
             JudgeType judgeType = JudgeTap(note);
             TapJudgeFinished(judgeType);
-            StartCoroutine(NoteController.ModifyNote(note));
+            StartCoroutine(ModifyNote(note));
             note.CanJudge = false;
             Instantiate(R_FX);
             Instantiate(B_FX);
@@ -142,7 +166,7 @@ public class InputController : MonoBehaviour
             {
                 NoteController.score += (int)(NoteController.Multiplier * 25.0f);
                 NoteController.combo++;
-                StartCoroutine(NoteController.ModifyNote(currentQuickTap.Data));
+                StartCoroutine(ModifyNote(currentQuickTap.Data));
                 currentQuickTap.OnNoteDestroy();
                 Destroy(currentQuickTap.gameObject);
                 currentQuickTap = null;
@@ -199,7 +223,14 @@ public class InputController : MonoBehaviour
         }
         return JudgeType.Default;
     }
-
+    private IEnumerator ModifyNote(NoteData note)
+    {
+        yield return new WaitForSeconds(0.02f);
+        if (note.Index < NoteController.noteCount - 1)
+        {
+            NoteController.notes[note.Index + 1].CanJudge = true;
+        }
+    }
     private void TapJudgeFinished(JudgeType judgeType)
     {
         switch (judgeType)
