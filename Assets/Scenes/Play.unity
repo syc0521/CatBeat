@@ -1839,7 +1839,7 @@ MonoBehaviour:
   endPos: {fileID: 1867715124}
   comboText: {fileID: 1555266521}
   scoreText: {fileID: 1695471978}
-  IsAutoPlay: 1
+  IsAutoPlay: 0
   pauseCanvas: {fileID: 929471675}
   source: {fileID: 0}
   bpm: 0

@@ -12,9 +12,11 @@ public class Result : MonoBehaviour
     public Text comboText;
     public Text nameText;
     public Text diffText;
+    private Song song;
 
     private void Start()
     {
+        song = SongManager.songList.Find(item => item.Path == NoteController.path);
         Info.score = 55555;//测试用代码
         StartCoroutine(ShowScore());
         ShowJudge();
@@ -27,12 +29,12 @@ public class Result : MonoBehaviour
         judgeDetail[2].text = NoteController.good.ToString();
         judgeDetail[3].text = NoteController.miss.ToString();
         comboText.text = NoteController.maxCombo.ToString();
+        nameText.text = song.Name;
         diffText.text = ShowLevel();
     }
 
     private string ShowLevel()
     {
-        var song = SongManager.songList.Find(item => item.Path == NoteController.path);
         switch (NoteController.diff)
         {
             case Diff.Easy:
