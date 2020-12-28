@@ -296,7 +296,7 @@ MonoBehaviour:
   moveTime: 0
   type: 0
   R_FX: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
-  B_FX: {fileID: 0}
+  B_FX: {fileID: 8484072823467148885, guid: d1b338d7c4fe1894ca598f11e21d03b6, type: 3}
   isHold: 0
   firstType: 0
   secondType: 0

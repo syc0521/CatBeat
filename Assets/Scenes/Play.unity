@@ -1834,13 +1834,12 @@ MonoBehaviour:
   hold_P: {fileID: 414875825664216034, guid: 055147ac59b4d90458369c25000b33e1, type: 3}
   quickTap: {fileID: 4302448771065904204, guid: 38453327afc960542ac6f5caff16fef3,
     type: 3}
-  slider: {fileID: 414875825664216034, guid: f4d2076a5983aba4ead5b5cb8b678103, type: 3}
   micInput: {fileID: 414875825664216034, guid: af967bd598f40094a8cdf1a885263e24, type: 3}
   startPos: {fileID: 113855946}
   endPos: {fileID: 1867715124}
   comboText: {fileID: 1555266521}
   scoreText: {fileID: 1695471978}
-  IsAutoPlay: 0
+  IsAutoPlay: 1
   pauseCanvas: {fileID: 929471675}
   source: {fileID: 0}
   bpm: 0

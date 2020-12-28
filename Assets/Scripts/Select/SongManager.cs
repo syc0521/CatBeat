@@ -46,6 +46,7 @@ public class SongManager : MonoBehaviour
         currentSong = song;
         AudioClip clip = Resources.Load<AudioClip>("Songs/" + song.Path + "/preview");
         source.clip = clip;
+        Debug.Log(clip);
         source.Play();
     }
     private void UpdateText()

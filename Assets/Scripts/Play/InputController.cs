@@ -10,11 +10,8 @@ public class InputController : MonoBehaviour
     public GameObject R_FX;
     public GameObject B_FX;
     private QuickTap currentQuickTap;
+    public static Hold currentHold;
 
-    private void Start()
-    {
-        
-    }
     private void OnEnable()
     {
         controls.PlayController.Enable();
@@ -116,7 +113,9 @@ public class InputController : MonoBehaviour
         if (note != null)
         {
             Hold noteObj = NoteController.noteObjs[note.Index].GetComponent<Hold>();
+            currentHold = noteObj;
             JudgeType judgeType = JudgeTap(note);
+            StartCoroutine(ModifyNote(note));
             noteObj.isHold = true;
             noteObj.firstType = judgeType;
             note.CanJudge = false;
@@ -132,7 +131,9 @@ public class InputController : MonoBehaviour
         if (note != null)
         {
             Hold noteObj = NoteController.noteObjs[note.Index].GetComponent<Hold>();
+            currentHold = noteObj;
             JudgeType judgeType = JudgeTap(note);
+            StartCoroutine(ModifyNote(note));
             noteObj.isHold = true;
             noteObj.firstType = judgeType;
             note.CanJudge = false;
@@ -175,7 +176,7 @@ public class InputController : MonoBehaviour
     private JudgeType JudgeTap(NoteData note)
     {
         float sceneTime = Time.timeSinceLevelLoad;
-        float exactTime = note.Time + NoteController.noteSpeed + 0.045f;
+        float exactTime = note.Time + NoteController.noteSpeed + 0.025f;
         var perfectTime = NoteController.perfectTime;
         var greatTime = NoteController.greatTime;
         var goodTime = NoteController.goodTime;
