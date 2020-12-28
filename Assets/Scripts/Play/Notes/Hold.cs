@@ -15,6 +15,7 @@ public class Hold : Note
     public JudgeType firstType, secondType, finalType;
     private KeyCode keyCode = KeyCode.None;
     private bool isChanged = false;
+    private bool isJudged = false;
 
     private void Start()
     {
@@ -270,28 +271,32 @@ public class Hold : Note
     }
     private JudgeType GetHoldJudge(JudgeType first, JudgeType second)
     {
-        if (first.Equals(JudgeType.Perfect) && second.Equals(JudgeType.Perfect))
+        if (!isJudged)
         {
-            NoteController.perfect++;
-            NoteController.combo++;
-            NoteController.score += (int)(NoteController.Multiplier * 200.0f);
-            return JudgeType.Perfect;
+            isJudged = true;
+            if (first.Equals(JudgeType.Perfect) && second.Equals(JudgeType.Perfect))
+            {
+                NoteController.perfect++;
+                NoteController.combo++;
+                NoteController.score += (int)(NoteController.Multiplier * 200.0f);
+                return JudgeType.Perfect;
+            }
+            else if (IsGood(first) && IsGood(second) || second.Equals(JudgeType.Miss))
+            {
+                NoteController.good++;
+                NoteController.combo++;
+                NoteController.score += (int)(NoteController.Multiplier * 100.0f);
+                return JudgeType.EarlyGood;
+            }
+            else
+            {
+                NoteController.great++;
+                NoteController.combo++;
+                NoteController.score += (int)(NoteController.Multiplier * 160.0f);
+                return JudgeType.LateGreat;
+            }
         }
-        else if (IsGood(first) && IsGood(second) || second.Equals(JudgeType.Miss))
-        {
-            NoteController.good++;
-            NoteController.combo++;
-            NoteController.score += (int)(NoteController.Multiplier * 100.0f);
-            return JudgeType.EarlyGood;
-        }
-        else
-        {
-            NoteController.great++;
-            NoteController.combo++;
-            NoteController.score += (int)(NoteController.Multiplier * 160.0f);
-            return JudgeType.LateGreat;
-        }
-
+        return JudgeType.Default;
         bool IsGood(JudgeType type) => type.Equals(JudgeType.EarlyGood) || type.Equals(JudgeType.LateGood);
     }
 }
