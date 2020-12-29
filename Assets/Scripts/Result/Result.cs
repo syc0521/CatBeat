@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Result : MonoBehaviour
 {
     public ResultInfo Info;
-
-    public TextMesh[] text;
+    public TextMeshPro scoreText;
     public Text[] judgeDetail;
     public Text comboText;
     public Text nameText;
@@ -16,8 +16,8 @@ public class Result : MonoBehaviour
 
     private void Start()
     {
+        NoteController.score = 65432;
         song = SongManager.songList.Find(item => item.Path == NoteController.path);
-        Info.score = 55555;//测试用代码
         StartCoroutine(ShowScore());
         ShowJudge();
     }
@@ -50,40 +50,42 @@ public class Result : MonoBehaviour
     /// 展示分数
     /// </summary>
     /// <returns></returns>
-    IEnumerator ShowScore()
+    private IEnumerator ShowScore()
     {
-        yield return new WaitForSeconds(2f);
-
-        for (int i = 0; i <= Info.score; i++)
+        yield return new WaitForSeconds(0.5f);
+        int score = NoteController.score;
+        for (int i = 0; i <= score; i++)
         {
-            if (Info.score - i < 10)
+            if (score - i < 10)
             {
+                i++;
             }
-            else if (i + 10000 < Info.score)
+            else if (i + 10000 < score)
             {
                 i += 10000;
             }
-            else if (i + 5000 < Info.score)
+            else if (i + 5000 < score)
             {
                 i += 5000;
             }
-            else if (i + 1000 < Info.score)
+            else if (i + 1000 < score)
             {
                 i += 1000;
             }
-            else if (i + 100 < Info.score)
+            else if (i + 100 < score)
             {
                 i += 100;
             }
-
-            yield return new WaitForSeconds(0.01f);
-            for (int j = 0; j < 5; j++)
+            float waitSec = 0.025f;
+            waitSec += 0.01f;
+            yield return new WaitForSeconds(waitSec);
+            string tmp = i.ToString();
+            string scoreStr = "";
+            foreach (var c in tmp)
             {
-                text[j].text = GetNum(i, j);
+                scoreStr += "<sprite=" + c + ">";
             }
-            Debug.Log(i);
-
-
+            scoreText.text = scoreStr;
         }
         yield break;
     }
@@ -98,10 +100,10 @@ public class Result : MonoBehaviour
     /// <param name="k"></param>
     /// <param name="val"></param>
     /// <returns></returns>
-    private string GetNum(int val, int k)
+    private int GetNum(int val, int k)
     {
         val /= (int)Mathf.Pow(10, k);
-        return (val % 10).ToString();
+        return (val % 10);
     }
 
 }
