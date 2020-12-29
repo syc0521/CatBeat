@@ -55,11 +55,11 @@ public class NoteController : MonoBehaviour
         score = 0; combo = 0;
         perfect = 0; great = 0; good = 0; miss = 0;
         GetMap();
+        source = GetComponent<AudioSource>();
+        StartCoroutine(GetSong());
     }
     void Start()
     {
-        source = GetComponent<AudioSource>();
-        StartCoroutine(GetSong());
         foreach (NoteData note in notes)
         {
             StartCoroutine(CreateNote(note));
@@ -90,6 +90,7 @@ public class NoteController : MonoBehaviour
             };
             notes.Add(note);
         }
+        notes.Sort();
         noteCount = notes.Count;
         notes[0].CanJudge = true;
     }
