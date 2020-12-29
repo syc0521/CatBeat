@@ -1,5 +1,7 @@
-﻿public enum NoteType { Tap = 1, Hold = 2, QuickTap = 3, Slider = 4, MicInput = 5 }
-public class NoteData
+﻿using System;
+
+public enum NoteType { Tap = 1, Hold = 2, QuickTap = 3, Slider = 4, MicInput = 5 }
+public class NoteData : IComparable<NoteData>
 {
     public NoteData(int type, int time, int dur, int information)
     {
@@ -30,6 +32,12 @@ public class NoteData
     /// </summary>
     public bool CanJudge { set; get; }
     public int Index { get; set; }
+
+    public int CompareTo(NoteData other)
+    {
+        return (int)(Time * 1000.0f - other.Time * 1000.0f);
+    }
+
     public override string ToString()
     {
         float dt = Time - UnityEngine.Time.timeSinceLevelLoad + NoteController.noteSpeed;
