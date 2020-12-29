@@ -7,7 +7,9 @@ public class Result : MonoBehaviour
 {
     public ResultInfo Info;
 
-    public TextMesh[] text;
+   // public TextMesh[] text;
+    public Sprite[] ScoreSprites;
+    public Image[] ScoreImages; 
     public Text[] judgeDetail;
     public Text comboText;
     public Text nameText;
@@ -77,9 +79,10 @@ public class Result : MonoBehaviour
             }
 
             yield return new WaitForSeconds(0.01f);
-            for (int j = 0; j < 5; j++)
+            for (int j = 0; j < 6; j++)
             {
-                text[j].text = GetNum(i, j);
+                ScoreImages[j].sprite = ScoreSprites[GetNum(i, j)];
+                
             }
             Debug.Log(i);
 
@@ -98,10 +101,10 @@ public class Result : MonoBehaviour
     /// <param name="k"></param>
     /// <param name="val"></param>
     /// <returns></returns>
-    private string GetNum(int val, int k)
+    private int GetNum(int val, int k)
     {
         val /= (int)Mathf.Pow(10, k);
-        return (val % 10).ToString();
+        return (val % 10);
     }
 
 }
