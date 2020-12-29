@@ -1,6 +1,7 @@
 ﻿//#define testMode
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,15 +14,15 @@ public enum Diff { Easy = 0, Normal = 1, Hard = 2 }
 public class NoteController : MonoBehaviour
 {
     public GameObject tap_R, tap_B, tap_P;
-    public GameObject hold_R, hold_B, hold_P;
+    public GameObject hold_R, hold_B;
     public GameObject quickTap, micInput;
     public Transform startPos, endPos;
     public static List<NoteData> notes = new List<NoteData>();
     public static List<Note> noteObjs = new List<Note>();
     public static float noteSpeed = 1.15f;
     public static int combo;
-    public TextMesh comboText;
-    public TextMesh scoreText;
+    public TextMeshPro comboText;
+    public TextMeshPro scoreText;
     public static int score;
     public static readonly float perfectTime = 0.055f;
     public static readonly float greatTime = 0.09f;
@@ -29,7 +30,7 @@ public class NoteController : MonoBehaviour
     public static int perfect, great, good, miss;
     public static int noteCount;
     public static bool isAutoPlay;
-    public bool IsAutoPlay;
+    //public bool IsAutoPlay;
     public static bool isPaused = false;
     public GameObject pauseCanvas;
     [HideInInspector]
@@ -51,7 +52,7 @@ public class NoteController : MonoBehaviour
         isPaused = false;
         notes.Clear();
         noteObjs.Clear();
-        isAutoPlay = IsAutoPlay;
+        //isAutoPlay = IsAutoPlay;
         score = 0; combo = 0;
         perfect = 0; great = 0; good = 0; miss = 0;
         GetMap();
@@ -71,10 +72,11 @@ public class NoteController : MonoBehaviour
         {
             maxCombo = combo;
         }
-        comboText.text = combo.ToString();
+        comboText.text = Utils.ConvertDigit(combo);
         scoreText.text = score.ToString();
         PauseGame();
     }
+
     private void GetMap()
     {
         TextAsset text = Resources.Load<TextAsset>("Songs/" + path + "/" + (int)diff);
@@ -102,7 +104,15 @@ public class NoteController : MonoBehaviour
         yield return new WaitForSeconds(noteSpeed);
         source.Play();
         yield return new WaitForSeconds(clip.length);
-        SceneManager.LoadScene("Result");
+        if (isAutoPlay)
+        {
+            LoadingManager.nextScene = "Select";
+            SceneManager.LoadScene("Loading");
+        }
+        else
+        {
+            SceneManager.LoadScene("Result");
+        }
     }
 
     private void PauseGame()
@@ -161,7 +171,7 @@ public class NoteController : MonoBehaviour
     }
     private Note CreateHold(NoteData note)
     {
-        Hold hold;
+        Hold hold = null;
         if (note.Information == 1)
         {
             hold = Instantiate(hold_R, startPos.position, Quaternion.identity).GetComponent<Hold>();
@@ -169,10 +179,6 @@ public class NoteController : MonoBehaviour
         else if (note.Information == 2)
         {
             hold = Instantiate(hold_B, startPos.position, Quaternion.identity).GetComponent<Hold>();
-        }
-        else
-        {
-            hold = Instantiate(hold_P, startPos.position, Quaternion.identity).GetComponent<Hold>();
         }
         return hold;
     }

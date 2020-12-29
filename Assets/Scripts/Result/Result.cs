@@ -16,7 +16,6 @@ public class Result : MonoBehaviour
 
     private void Start()
     {
-        NoteController.score = 65432;
         song = SongManager.songList.Find(item => item.Path == NoteController.path);
         StartCoroutine(ShowScore());
         ShowJudge();
@@ -79,13 +78,7 @@ public class Result : MonoBehaviour
             float waitSec = 0.025f;
             waitSec += 0.01f;
             yield return new WaitForSeconds(waitSec);
-            string tmp = i.ToString();
-            string scoreStr = "";
-            foreach (var c in tmp)
-            {
-                scoreStr += "<sprite=" + c + ">";
-            }
-            scoreText.text = scoreStr;
+            scoreText.text = Utils.ConvertDigit(i);
         }
         yield break;
     }
