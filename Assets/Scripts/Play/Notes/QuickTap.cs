@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class QuickTap : Note
 {
     [HideInInspector]
     public int tapCount = 0;
-    private TextMesh text;
+    private TextMeshPro text;
     public GameObject fx;
     [HideInInspector]
     public float tapTime;
@@ -17,7 +18,7 @@ public class QuickTap : Note
         cnt = tapCount;
         tapCount = Data.Information;
         tapTime = tapCount * 0.1f;
-        text = transform.GetChild(1).GetComponent<TextMesh>();
+        text = transform.GetChild(1).GetComponent<TextMeshPro>();
         text.text = "";
         if (NoteController.isAutoPlay)
         {
