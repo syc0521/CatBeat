@@ -10,11 +10,8 @@ public class InputController : MonoBehaviour
     public GameObject R_FX;
     public GameObject B_FX;
     private QuickTap currentQuickTap;
+    public static Hold currentHold;
 
-    private void Start()
-    {
-        
-    }
     private void OnEnable()
     {
         controls.PlayController.Enable();
@@ -116,7 +113,9 @@ public class InputController : MonoBehaviour
         if (note != null)
         {
             Hold noteObj = NoteController.noteObjs[note.Index].GetComponent<Hold>();
-            JudgeType judgeType = JudgeTap(note);
+            currentHold = noteObj;
+            JudgeType judgeType = JudgeHold(note);
+            StartCoroutine(ModifyNote(note));
             noteObj.isHold = true;
             noteObj.firstType = judgeType;
             note.CanJudge = false;
@@ -132,7 +131,9 @@ public class InputController : MonoBehaviour
         if (note != null)
         {
             Hold noteObj = NoteController.noteObjs[note.Index].GetComponent<Hold>();
-            JudgeType judgeType = JudgeTap(note);
+            currentHold = noteObj;
+            JudgeType judgeType = JudgeHold(note);
+            StartCoroutine(ModifyNote(note));
             noteObj.isHold = true;
             noteObj.firstType = judgeType;
             note.CanJudge = false;
@@ -175,7 +176,7 @@ public class InputController : MonoBehaviour
     private JudgeType JudgeTap(NoteData note)
     {
         float sceneTime = Time.timeSinceLevelLoad;
-        float exactTime = note.Time + NoteController.noteSpeed + 0.045f;
+        float exactTime = note.Time + NoteController.noteSpeed + 0.025f;
         var perfectTime = NoteController.perfectTime;
         var greatTime = NoteController.greatTime;
         var goodTime = NoteController.goodTime;
@@ -222,6 +223,52 @@ public class InputController : MonoBehaviour
         }
         return JudgeType.Default;
     }
+    private JudgeType JudgeHold(NoteData note)
+    {
+        float sceneTime = Time.timeSinceLevelLoad;
+        float exactTime = note.Time + NoteController.noteSpeed + 0.025f;
+        var perfectTime = NoteController.perfectTime;
+        var greatTime = NoteController.greatTime;
+        var goodTime = NoteController.goodTime;
+        if (note.CanJudge)
+        {
+            if (sceneTime <= exactTime + perfectTime && sceneTime > exactTime - perfectTime)
+            {
+                Debug.Log(note + "perfect");
+                return JudgeType.Perfect;
+            }
+            else if (sceneTime < exactTime + greatTime && sceneTime > exactTime + perfectTime)
+            {
+                Debug.Log(note + "Lgreat");
+                return JudgeType.LateGreat;
+            }
+            else if (sceneTime > exactTime - greatTime && sceneTime < exactTime - perfectTime)
+            {
+                Debug.Log(note + "Egreat");
+                return JudgeType.EarlyGreat;
+            }
+            else if (sceneTime < exactTime + goodTime - 0.02f && sceneTime > exactTime + greatTime)
+            {
+                Debug.Log(note + "Lgood");
+                return JudgeType.LateGood;
+            }
+            else if (sceneTime > exactTime - goodTime && sceneTime < exactTime - greatTime)
+            {
+                Debug.Log(note + "Egood");
+                return JudgeType.EarlyGood;
+            }
+            else if (sceneTime < exactTime - goodTime)
+            {
+                return JudgeType.Default;
+            }
+            else if (sceneTime > exactTime + goodTime)
+            {
+                return JudgeType.Miss;
+            }
+        }
+        return JudgeType.Default;
+    }
+
     private IEnumerator ModifyNote(NoteData note)
     {
         yield return new WaitForSeconds(0.02f);

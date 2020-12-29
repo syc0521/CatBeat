@@ -14,7 +14,7 @@ public class NoteController : MonoBehaviour
 {
     public GameObject tap_R, tap_B, tap_P;
     public GameObject hold_R, hold_B, hold_P;
-    public GameObject quickTap, slider, micInput;
+    public GameObject quickTap, micInput;
     public Transform startPos, endPos;
     public static List<NoteData> notes = new List<NoteData>();
     public static List<Note> noteObjs = new List<Note>();
@@ -179,11 +179,6 @@ public class NoteController : MonoBehaviour
     {
         QuickTap qtap = Instantiate(quickTap, startPos.position, Quaternion.identity).GetComponent<QuickTap>();
         return qtap;
-    }
-    private Note CreateSlider(NoteData note)
-    {
-        Slider sli = Instantiate(slider, startPos.position, Quaternion.identity).GetComponent<Slider>();
-        return sli;
     }
     private Note CreateMicInput(NoteData note)
     {
