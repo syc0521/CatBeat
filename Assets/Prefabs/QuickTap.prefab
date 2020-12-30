@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d22862e7201b94aa13e6d875db6540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  judgeDetail: 0
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   judgePos: {x: 0, y: 0, z: 0}
@@ -140,6 +139,8 @@ MonoBehaviour:
   tapCount: 0
   fx: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
   tapTime: 0
+  animScale: {x: 0, y: 0, z: 0}
+  animExplore: {fileID: 0}
 --- !u!212 &3647492674427279724
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -159,7 +159,7 @@ public class InputController : MonoBehaviour
             {
                 QuickTap noteObj = NoteController.noteObjs[note.Index].GetComponent<QuickTap>();
                 currentQuickTap = noteObj;
-                currentQuickTap.growBalloon();
+              //  currentQuickTap.growBalloon();
                 currentQuickTap.tapCount--;
                 NoteController.score += (int)(NoteController.Multiplier * 25.0f);
                 Instantiate(R_FX);
@@ -168,18 +168,20 @@ public class InputController : MonoBehaviour
         }
         else
         {
-            currentQuickTap.growBalloon();
+            
+            // currentQuickTap.growBalloon();
             currentQuickTap.tapCount--;
             Instantiate(R_FX);
             if (currentQuickTap.tapCount <= 0)
             {
                 currentQuickTap.exploreAnim();
-                //StartCoroutine(wait());
+               
                 NoteController.score += (int)(NoteController.Multiplier * 25.0f);
                 NoteController.combo++;
                 StartCoroutine(ModifyNote(currentQuickTap.Data));
                 currentQuickTap.ShowJudge(JudgeType.Perfect);
-                Destroy(currentQuickTap.gameObject);
+                StartCoroutine(wait());
+               // Destroy(currentQuickTap.gameObject);
                 currentQuickTap = null;
             }
         }
@@ -243,6 +245,8 @@ public class InputController : MonoBehaviour
     private IEnumerator wait()
     {
         yield return new WaitForSeconds(0.5f);
+        Destroy(currentQuickTap.gameObject);
+        yield break;
     }
     private void TapJudgeFinished(JudgeType judgeType)
     {

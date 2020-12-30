@@ -45,6 +45,7 @@ public class QuickTap : Note
         {
             NoteController.combo++;
             ShowJudge(JudgeType.Perfect);
+
             Destroy(gameObject);
         }
     }
@@ -100,11 +101,12 @@ public class QuickTap : Note
         
         Debug.Log("growBalloon");
         animScale *= 2f;
-        Debug.Log("animScale" + animScale);
+        transform.GetChild(0).transform.localScale = new Vector3(animScale.x, animScale.y,animScale.z);
+        Debug.Log(transform.GetChild(0).transform.localScale);
     }    
     public void exploreAnim()
     {
-        animExplore.SetBool("canExplore", true);
-        Debug.Log(animExplore.GetBool("canExplore"));
+        Debug.Log("exploreAnim");
+        transform.GetChild(0).GetComponent<Animator>().Play("balloon");
     }
 }
