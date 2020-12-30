@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
-
+using System.Collections;
 public class MicInput : Note
 {
     public GameObject fx;
     private float holdTime;
     private bool canInput = false;
     private bool isPerfect = false;
+    public Animator micAnim;
     private void Start()
     {
         moveTime = NoteController.noteSpeed;
+        micAnim = transform.GetComponent<Animator>();
     }
     public override void Update()
     {
@@ -78,7 +80,8 @@ public class MicInput : Note
             {
                 NoteController.notes[Data.Index + 1].CanJudge = true;
             }
-            Destroy(gameObject);
+            StartCoroutine(MicAnimPlay());
+            //Destroy(gameObject);
         }
     }
 
@@ -96,5 +99,14 @@ public class MicInput : Note
             ShowJudge(JudgeType.Perfect);
             Destroy(gameObject);
         }
+    }
+    
+
+    public IEnumerator MicAnimPlay()
+    {
+        Debug.Log("MicAnimPlay");
+        micAnim.Play("mic");
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 }

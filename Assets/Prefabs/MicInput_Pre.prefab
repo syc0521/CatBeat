@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 414875825664216045}
   - component: {fileID: 8553473904237247670}
   - component: {fileID: 6185129267533129205}
+  - component: {fileID: 1619520079151918335}
   m_Layer: 0
   m_Name: MicInput_Pre
   m_TagString: Untagged
@@ -95,7 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a62bfcfc997ecc4a9dd7385e1c9cc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  judgeDetail: 0
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   judgePos: {x: 0, y: 0, z: 0}
@@ -106,6 +106,25 @@ MonoBehaviour:
   - {fileID: 5552616462124779837, guid: 112e77cdf1cb3534691c954c9cd98650, type: 3}
   moveTime: 0
   fx: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
+--- !u!95 &1619520079151918335
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414875825664216034}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 912fbcbba480dbc45855cff609d6dae5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4055564024964674081
 GameObject:
   m_ObjectHideFlags: 0
