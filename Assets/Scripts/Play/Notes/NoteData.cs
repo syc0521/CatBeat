@@ -40,7 +40,7 @@ public class NoteData : IComparable<NoteData>
 
     public override string ToString()
     {
-        float dt = Time - UnityEngine.Time.timeSinceLevelLoad + NoteController.noteSpeed;
+        float dt = Time - UnityEngine.Time.timeSinceLevelLoad + NoteController.NoteSpeed;
         return "time=" + (Time * 1000f) + ", deltaTime=" + dt + ", judge=";
     }
 }

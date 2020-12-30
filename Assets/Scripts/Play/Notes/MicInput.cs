@@ -8,7 +8,7 @@ public class MicInput : Note
     private bool isPerfect = false;
     private void Start()
     {
-        moveTime = NoteController.noteSpeed;
+        moveTime = NoteController.NoteSpeed;
     }
     public override void Update()
     {

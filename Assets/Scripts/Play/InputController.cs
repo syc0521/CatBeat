@@ -55,7 +55,7 @@ public class InputController : MonoBehaviour
     }
     private void DestroyRedTap(InputAction.CallbackContext obj)
     {
-        var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        var time = Time.timeSinceLevelLoad - NoteController.NoteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime 
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
                                                   && item.Information == 1 && item.CanJudge);
@@ -73,7 +73,7 @@ public class InputController : MonoBehaviour
     }
     private void DestroyBlueTap(InputAction.CallbackContext obj)
     {
-        var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        var time = Time.timeSinceLevelLoad - NoteController.NoteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
                                                   && item.Information == 2 && item.CanJudge);
@@ -91,7 +91,7 @@ public class InputController : MonoBehaviour
     }
     private void DestroyPurpleTap(InputAction.CallbackContext obj)
     {
-        var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        var time = Time.timeSinceLevelLoad - NoteController.NoteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Tap)
                                                   && item.Information == 3 && item.CanJudge);
@@ -110,7 +110,7 @@ public class InputController : MonoBehaviour
     }
     private void DestroyRedHold(InputAction.CallbackContext obj)
     {
-        var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        var time = Time.timeSinceLevelLoad - NoteController.NoteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                     && item.Time < time + goodTime && item.Type.Equals(NoteType.Hold)
                                                     && item.Information == 1 && item.CanJudge);
@@ -129,7 +129,7 @@ public class InputController : MonoBehaviour
     }
     private void DestroyBlueHold(InputAction.CallbackContext obj)
     {
-        var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+        var time = Time.timeSinceLevelLoad - NoteController.NoteSpeed;
         var note = NoteController.notes.Find(item => item.Time > time - goodTime
                                                   && item.Time < time + goodTime && item.Type.Equals(NoteType.Hold)
                                                   && item.Information == 2 && item.CanJudge);
@@ -151,7 +151,7 @@ public class InputController : MonoBehaviour
     {
         if (currentQuickTap == null)
         {
-            var time = Time.timeSinceLevelLoad - NoteController.noteSpeed;
+            var time = Time.timeSinceLevelLoad - NoteController.NoteSpeed;
             var note = NoteController.notes.Find(item => item.Time > time - goodTime * 1.5
                                                       && item.Time < time + goodTime * 1.5 && item.Type.Equals(NoteType.QuickTap)
                                                       && item.CanJudge);
@@ -189,7 +189,7 @@ public class InputController : MonoBehaviour
     private JudgeType JudgeTap(NoteData note)
     {
         float sceneTime = Time.timeSinceLevelLoad;
-        float exactTime = note.Time + NoteController.noteSpeed + 0.025f;
+        float exactTime = note.Time + NoteController.NoteSpeed + 0.025f;
         var perfectTime = NoteController.perfectTime;
         var greatTime = NoteController.greatTime;
         var goodTime = NoteController.goodTime;

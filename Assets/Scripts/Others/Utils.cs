@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class Utils : MonoBehaviour
 {
-	public static float Lerp(float time, float timeRangeL, float timeRangeR, float posRangeL, float posRangeR)
+#if UNITY_EDITOR
+    public static readonly string filePath = "D:\\save.json";
+#else
+    public static readonly string filePath = Application.streamingAssetsPath + "/save.json";
+#endif
+    public static float Lerp(float time, float timeRangeL, float timeRangeR, float posRangeL, float posRangeR)
 	{
 		return Mathf.LerpUnclamped(posRangeL, posRangeR, (time - timeRangeL) / (timeRangeR - timeRangeL));
     }

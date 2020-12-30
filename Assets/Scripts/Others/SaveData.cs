@@ -19,7 +19,7 @@ public class SaveData
         {
             this.path = path;
             score = new int[3];
-            grade = new Grade[3];
+            grade = new Grade[3] { Grade.D, Grade.D, Grade.D };
         }
     }
     [Serializable]
@@ -27,6 +27,7 @@ public class SaveData
     {
         public bool isAutoPlay;
         public int speed;
+        public float hitVol;
     }
     private List<SongSave> songs;
     private Settings systemSettings;
@@ -39,7 +40,8 @@ public class SaveData
         systemSettings = new Settings
         {
             isAutoPlay = false,
-            speed = 4
+            speed = 4,
+            hitVol = 0.8f
         };
     }
 }

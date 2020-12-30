@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PlayAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 21300000, guid: 5cb9e1127de5364438a9d052dd765bec, type: 3}
+    - {fileID: 21300000, guid: e860c37bb0244e64690a03b9f0a5cb46, type: 3}
+    - {fileID: 21300000, guid: 339a8ce74aa3feb429c86916ccfe857a, type: 3}
+    - {fileID: 21300000, guid: 55fc41dfad308af448e425d968691fb5, type: 3}
+    - {fileID: 21300000, guid: a7b56bbe7d9411748b46b2fba298c97e, type: 3}
+    - {fileID: 21300000, guid: f006cfd24bd86334d931d7b4b34d79f6, type: 3}
+    - {fileID: 21300000, guid: 82c4cfeee61d345439c6de4e62c99e12, type: 3}
+    - {fileID: 21300000, guid: b4e2eef4928bbac45bf54e489e9ac085, type: 3}
+    - {fileID: 21300000, guid: bad71dc15a009054989c9fee871a122f, type: 3}
+    - {fileID: 21300000, guid: 4def47d01010e954ab73ab359043f84d, type: 3}
+    - {fileID: 21300000, guid: 25730bd530864eb488c6baf49d6e2105, type: 3}
+    - {fileID: 21300000, guid: 16cfaf247617b1c49a71b1c5517af765, type: 3}
+    totalSpriteSurfaceArea: 261534
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 4def47d01010e954ab73ab359043f84d, type: 3}
+  - {fileID: 21300000, guid: bad71dc15a009054989c9fee871a122f, type: 3}
+  - {fileID: 21300000, guid: 5cb9e1127de5364438a9d052dd765bec, type: 3}
+  - {fileID: 21300000, guid: f006cfd24bd86334d931d7b4b34d79f6, type: 3}
+  - {fileID: 21300000, guid: b4e2eef4928bbac45bf54e489e9ac085, type: 3}
+  - {fileID: 21300000, guid: 25730bd530864eb488c6baf49d6e2105, type: 3}
+  - {fileID: 21300000, guid: 339a8ce74aa3feb429c86916ccfe857a, type: 3}
+  - {fileID: 21300000, guid: e860c37bb0244e64690a03b9f0a5cb46, type: 3}
+  - {fileID: 21300000, guid: a7b56bbe7d9411748b46b2fba298c97e, type: 3}
+  - {fileID: 21300000, guid: 82c4cfeee61d345439c6de4e62c99e12, type: 3}
+  - {fileID: 21300000, guid: 55fc41dfad308af448e425d968691fb5, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - squarered
+  - squareblueend
+  - btnRetry
+  - CatblueRed
+  - squareblue
+  - squareredend
+  - btnContinue
+  - btnBack
+  - CatNotePurple
+  - Balloon
+  - CatNoteBlue
+  m_Tag: PlayAtlas
+  m_IsVariant: 0
