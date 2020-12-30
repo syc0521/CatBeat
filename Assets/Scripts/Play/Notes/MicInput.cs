@@ -65,12 +65,14 @@ public class MicInput : Note
             {
                 NoteController.perfect++;
                 NoteController.combo++;
+                ShowJudge(JudgeType.Perfect);
                 Instantiate(fx);
             }
             else
             {
                 NoteController.miss++;
                 NoteController.combo = 0;
+                ShowJudge(JudgeType.Miss);
             }
             if (Data.Index < NoteController.noteCount - 1)
             {
@@ -91,6 +93,7 @@ public class MicInput : Note
         {
             NoteController.combo++;
             Instantiate(fx);
+            ShowJudge(JudgeType.Perfect);
             Destroy(gameObject);
         }
     }

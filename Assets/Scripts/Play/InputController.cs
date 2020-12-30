@@ -9,6 +9,7 @@ public class InputController : MonoBehaviour
     public static readonly float goodTime = 0.15f;
     public GameObject R_FX;
     public GameObject B_FX;
+    public GameObject judge;
     private QuickTap currentQuickTap;
     public static Hold currentHold;
 
@@ -66,6 +67,7 @@ public class InputController : MonoBehaviour
             StartCoroutine(ModifyNote(note));
             note.CanJudge = false;
             Instantiate(R_FX);
+            noteObj.ShowJudge(judgeType);
             Destroy(noteObj.gameObject);
         }
     }
@@ -83,6 +85,7 @@ public class InputController : MonoBehaviour
             TapJudgeFinished(judgeType);
             note.CanJudge = false;
             Instantiate(B_FX);
+            noteObj.ShowJudge(judgeType);
             Destroy(noteObj.gameObject);
         }
     }
@@ -101,6 +104,7 @@ public class InputController : MonoBehaviour
             note.CanJudge = false;
             Instantiate(R_FX);
             Instantiate(B_FX);
+            noteObj.ShowJudge(judgeType);
             Destroy(noteObj.gameObject);
         }
     }
@@ -115,6 +119,7 @@ public class InputController : MonoBehaviour
             Hold noteObj = NoteController.noteObjs[note.Index].GetComponent<Hold>();
             currentHold = noteObj;
             JudgeType judgeType = JudgeTap(note);
+            noteObj.ShowJudge(judgeType);
             StartCoroutine(ModifyNote(note));
             noteObj.isHold = true;
             noteObj.firstType = judgeType;
@@ -133,6 +138,7 @@ public class InputController : MonoBehaviour
             Hold noteObj = NoteController.noteObjs[note.Index].GetComponent<Hold>();
             currentHold = noteObj;
             JudgeType judgeType = JudgeTap(note);
+            noteObj.ShowJudge(judgeType);
             StartCoroutine(ModifyNote(note));
             noteObj.isHold = true;
             noteObj.firstType = judgeType;
@@ -172,7 +178,8 @@ public class InputController : MonoBehaviour
                 NoteController.score += (int)(NoteController.Multiplier * 25.0f);
                 NoteController.combo++;
                 StartCoroutine(ModifyNote(currentQuickTap.Data));
-                //Destroy(currentQuickTap.gameObject);
+                currentQuickTap.ShowJudge(JudgeType.Perfect);
+                Destroy(currentQuickTap.gameObject);
                 currentQuickTap = null;
             }
         }

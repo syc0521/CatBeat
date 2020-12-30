@@ -44,6 +44,7 @@ public class QuickTap : Note
         if (tapCount == 0 && NoteController.isAutoPlay)
         {
             NoteController.combo++;
+            ShowJudge(JudgeType.Perfect);
             Destroy(gameObject);
         }
     }
@@ -74,18 +75,21 @@ public class QuickTap : Note
             {
                 NoteController.combo++;
                 NoteController.great++;
+                ShowJudge(JudgeType.LateGreat);
                 Debug.Log(Data + "great");
             }
             else if (cnt - tapCount < cnt * 0.5)
             {
                 NoteController.combo++;
                 NoteController.good++;
+                ShowJudge(JudgeType.LateGood);
                 Debug.Log(Data + "good");
             }
             else
             {
                 NoteController.combo = 0;
                 NoteController.miss++;
+                ShowJudge(JudgeType.Miss);
                 Debug.Log(Data + "miss");
             }
         }

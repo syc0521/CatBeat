@@ -48,6 +48,7 @@ public class Hold : Note
                 if (finalType != JudgeType.Default && finalType != JudgeType.Miss)
                 {
                     Instantiate(B_FX);
+                    ShowJudge(finalType);
                 }
                 Destroy(gameObject);
             }
@@ -69,6 +70,7 @@ public class Hold : Note
                     Debug.Log(Data + finalType.ToString());
                     isHold = false;
                     Instantiate(B_FX);
+                    ShowJudge(finalType);
                     Destroy(gameObject);
                 }
             }
@@ -225,6 +227,7 @@ public class Hold : Note
                 key = true;
                 if (NoteController.isAutoPlay)
                 {
+                    ShowJudge(JudgeType.Perfect);
                     GenerateHitSound();
                 }
             }
@@ -255,6 +258,7 @@ public class Hold : Note
     private void AutoPlayMode()
     {
         GenerateHitSound();
+        ShowJudge(JudgeType.Perfect);
         NoteController.combo++;
         NoteController.score += (int)(NoteController.Multiplier * 200.0f);
     }

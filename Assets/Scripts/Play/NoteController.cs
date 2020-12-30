@@ -17,6 +17,7 @@ public class NoteController : MonoBehaviour
     public GameObject hold_R, hold_B;
     public GameObject quickTap, micInput;
     public Transform startPos, endPos;
+    public Transform judgePos;
     public static List<NoteData> notes = new List<NoteData>();
     public static List<Note> noteObjs = new List<Note>();
     public static float noteSpeed = 1.15f;
@@ -150,6 +151,7 @@ public class NoteController : MonoBehaviour
         noteObj.Data = note;
         noteObj.startPos = startPos.position;
         noteObj.endPos = endPos.position;
+        noteObj.judgePos = judgePos.position;
         noteObjs.Add(noteObj);
     }
     private Note CreateTap(NoteData note)
