@@ -64,9 +64,9 @@ public class InputController : MonoBehaviour
             var noteObj = NoteController.noteObjs[note.Index];
             JudgeType judgeType = JudgeTap(note);
             TapJudgeFinished(judgeType);
+            Instantiate(R_FX);
             StartCoroutine(ModifyNote(note));
             note.CanJudge = false;
-            Instantiate(R_FX);
             noteObj.ShowJudge(judgeType);
             Destroy(noteObj.gameObject);
         }
@@ -81,10 +81,10 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             JudgeType judgeType = JudgeTap(note);
-            StartCoroutine(ModifyNote(note));
             TapJudgeFinished(judgeType);
-            note.CanJudge = false;
             Instantiate(B_FX);
+            StartCoroutine(ModifyNote(note));
+            note.CanJudge = false;
             noteObj.ShowJudge(judgeType);
             Destroy(noteObj.gameObject);
         }
