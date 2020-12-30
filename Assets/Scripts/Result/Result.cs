@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Result : MonoBehaviour
 {
     public ResultInfo Info;
-
-   // public TextMesh[] text;
-    public Sprite[] ScoreSprites;
-    public Image[] ScoreImages; 
+    public TextMeshPro scoreText;
     public Text[] judgeDetail;
     public Text comboText;
     public Text nameText;
@@ -19,7 +17,6 @@ public class Result : MonoBehaviour
     private void Start()
     {
         song = SongManager.songList.Find(item => item.Path == NoteController.path);
-        Info.score = 55555;//测试用代码
         StartCoroutine(ShowScore());
         ShowJudge();
     }
@@ -52,41 +49,36 @@ public class Result : MonoBehaviour
     /// 展示分数
     /// </summary>
     /// <returns></returns>
-    IEnumerator ShowScore()
+    private IEnumerator ShowScore()
     {
-        yield return new WaitForSeconds(2f);
-
-        for (int i = 0; i <= Info.score; i++)
+        yield return new WaitForSeconds(0.5f);
+        int score = NoteController.score;
+        for (int i = 0; i <= score; i++)
         {
-            if (Info.score - i < 10)
+            if (score - i < 10)
             {
+                i++;
             }
-            else if (i + 10000 < Info.score)
+            else if (i + 10000 < score)
             {
                 i += 10000;
             }
-            else if (i + 5000 < Info.score)
+            else if (i + 5000 < score)
             {
                 i += 5000;
             }
-            else if (i + 1000 < Info.score)
+            else if (i + 1000 < score)
             {
                 i += 1000;
             }
-            else if (i + 100 < Info.score)
+            else if (i + 100 < score)
             {
                 i += 100;
             }
-
-            yield return new WaitForSeconds(0.01f);
-            for (int j = 0; j < 6; j++)
-            {
-                ScoreImages[j].sprite = ScoreSprites[GetNum(i, j)];
-                
-            }
-            Debug.Log(i);
-
-
+            float waitSec = 0.025f;
+            waitSec += 0.01f;
+            yield return new WaitForSeconds(waitSec);
+            scoreText.text = Utils.ConvertDigit(i);
         }
         yield break;
     }

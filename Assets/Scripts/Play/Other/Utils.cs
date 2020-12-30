@@ -8,5 +8,15 @@ public class Utils : MonoBehaviour
 	{
 		return Mathf.LerpUnclamped(posRangeL, posRangeR, (time - timeRangeL) / (timeRangeR - timeRangeL));
 	}
+    public static string ConvertDigit(int num)
+    {
+        string tmp = num.ToString();
+        string result = "";
+        foreach (var c in tmp)
+        {
+            result += "<sprite=" + c + ">";
+        }
+        return result;
+    }
 }
 
