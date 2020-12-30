@@ -3,17 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 
 [Serializable]
+public enum Grade { S, A, B, C, D }
+
+[Serializable]
 public class SaveData
 {
     [Serializable]
     public struct SongSave
     {
         public string path;
-        public int score;
+        public int[] score;
+        public Grade[] grade;
+
         public SongSave(string path)
         {
             this.path = path;
-            score = 0;
+            score = new int[3];
+            grade = new Grade[3];
         }
     }
     [Serializable]
