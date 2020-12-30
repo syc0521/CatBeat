@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class QuickTap : Note
 {
     [HideInInspector]
@@ -13,12 +14,16 @@ public class QuickTap : Note
     public float tapTime;
     private int cnt;
 
+    public Vector3 animScale;
+    public Animation animExplore;
+
     void Start()
     {
         cnt = tapCount;
         tapCount = Data.Information;
         tapTime = tapCount * 0.1f;
         text = transform.GetChild(1).GetComponent<TextMeshPro>();
+        animScale = transform.GetChild(0).transform.localScale;
         text.text = "";
         if (NoteController.isAutoPlay)
         {
@@ -46,6 +51,7 @@ public class QuickTap : Note
         do
         {
             yield return new WaitForSeconds(0.05f);
+            animScale *= 1.1f;
             tapCount--;
             text.text = tapCount.ToString();
             NoteController.score += (int)(NoteController.Multiplier * 25.0f);
