@@ -50,7 +50,6 @@ public class Result : MonoBehaviour
     /// <returns></returns>
     private IEnumerator ShowScore()
     {
-        yield return new WaitForSeconds(0.5f);
         int score = NoteController.score;
         for (int i = 0; i <= score; i++)
         {

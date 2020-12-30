@@ -9,7 +9,7 @@ public class SaveData
     public struct SongSave
     {
         public string path;
-        public int score;
+        public int[] score = new int[3];
         public SongSave(string path)
         {
             this.path = path;

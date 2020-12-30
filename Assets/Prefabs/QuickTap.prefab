@@ -126,7 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d22862e7201b94aa13e6d875db6540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  judgeDetail: 0
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   judgePos: {x: 0, y: 0, z: 0}
@@ -137,7 +136,7 @@ MonoBehaviour:
   - {fileID: 5552616462124779837, guid: 112e77cdf1cb3534691c954c9cd98650, type: 3}
   moveTime: 0
   tapCount: 0
-  fx: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
+  fx: {fileID: 8484072823467148885, guid: d1b338d7c4fe1894ca598f11e21d03b6, type: 3}
   tapTime: 0
 --- !u!1 &4302448771280853485
 GameObject:
