@@ -1,13 +1,40 @@
-﻿using UnityEditor;
+﻿using LitJson;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public class Utils : MonoBehaviour
 {
+    public static SaveData save;
 #if UNITY_EDITOR
     public static readonly string filePath = "D:\\save.json";
 #else
     public static readonly string filePath = Application.streamingAssetsPath + "/save.json";
 #endif
+    public static void SavePrefs()
+    {
+        var jsonStr = JsonMapper.ToJson(save);
+        StreamWriter sw = new StreamWriter(filePath);
+        sw.Write(jsonStr);
+        sw.Close();
+    }
+    public static void GetSave()
+    {
+        StreamReader sr = new StreamReader(filePath);
+        save = JsonMapper.ToObject<SaveData>(sr.ReadToEnd());
+        foreach (var song in SongManager.songList)
+        {
+            var current = save.Songs.Find(item => item.path.Equals(song.Path));
+            if (current.ToString() != null)
+            {
+                song.GradeLevel = (Grade[])current.grade.Clone();
+                song.Score = (int[])current.score.Clone();
+            }
+        }
+        NoteController.isAutoPlay = save.SystemSettings.isAutoPlay;
+        NoteController.speed = save.SystemSettings.speed;
+        NoteController.hitVolume = (float)save.SystemSettings.hitVol;
+    }
     public static float Lerp(float time, float timeRangeL, float timeRangeR, float posRangeL, float posRangeR)
 	{
 		return Mathf.LerpUnclamped(posRangeL, posRangeR, (time - timeRangeL) / (timeRangeR - timeRangeL));

@@ -1,5 +1,2 @@
-"test","test",test,1,1,1
-"With your smile","Shoichiro Hirata plus Junko Hirata",withyour,1,4,7
+"With your smile","Shoichiro Hirata",withyour,1,4,7
 "Wish upon a shooting star","SUi",wish,3,6,9
-"Grave Consequence","Tsukasa","gc",-5,-8,-10
-"Where We Belong","Volces",wwb,2,5,8

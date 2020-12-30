@@ -27,7 +27,7 @@ public class SaveData
     {
         public bool isAutoPlay;
         public int speed;
-        public float hitVol;
+        public double hitVol;
     }
     private List<SongSave> songs;
     private Settings systemSettings;
@@ -41,7 +41,7 @@ public class SaveData
         {
             isAutoPlay = false,
             speed = 4,
-            hitVol = 0.8f
+            hitVol = 0.8
         };
     }
 }
