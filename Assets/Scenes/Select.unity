@@ -121,6 +121,84 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &30555447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30555448}
+  - component: {fileID: 30555450}
+  - component: {fileID: 30555449}
+  m_Layer: 5
+  m_Name: VolValue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &30555448
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30555447}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.83339995, y: 0.83339995, z: 0.83339995}
+  m_Children: []
+  m_Father: {fileID: 672817645}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 541.9, y: -159}
+  m_SizeDelta: {x: -1474.6627, y: -812.7038}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &30555449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30555447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 50
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 0.8
+--- !u!222 &30555450
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30555447}
+  m_CullTransparentMesh: 0
 --- !u!1 &55772045
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +544,8 @@ MonoBehaviour:
   autoPlay: {fileID: 0}
   speed: {fileID: 0}
   vol: {fileID: 0}
+  speedText: {fileID: 1368389960}
+  volText: {fileID: 0}
 --- !u!1 &314903106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,6 +1240,8 @@ MonoBehaviour:
   autoPlay: {fileID: 0}
   speed: {fileID: 0}
   vol: {fileID: 0}
+  speedText: {fileID: 0}
+  volText: {fileID: 0}
 --- !u!1 &556540428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1659,8 @@ RectTransform:
   - {fileID: 1658385614}
   - {fileID: 1822470825}
   - {fileID: 1213602847}
+  - {fileID: 30555448}
+  - {fileID: 1368389959}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2398,6 +2482,8 @@ MonoBehaviour:
   autoPlay: {fileID: 553972893}
   speed: {fileID: 227154753}
   vol: {fileID: 1658385615}
+  speedText: {fileID: 0}
+  volText: {fileID: 0}
 --- !u!114 &1213602849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2870,6 +2956,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286985367}
   m_CullTransparentMesh: 0
+--- !u!1 &1368389958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1368389959}
+  - component: {fileID: 1368389961}
+  - component: {fileID: 1368389960}
+  m_Layer: 5
+  m_Name: SpeedValue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1368389959
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368389958}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.83339995, y: 0.83339995, z: 0.83339995}
+  m_Children: []
+  m_Father: {fileID: 672817645}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 541.9, y: -60.947998}
+  m_SizeDelta: {x: -1474.6627, y: -812.7038}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1368389960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368389958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 50
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 0.8
+--- !u!222 &1368389961
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368389958}
+  m_CullTransparentMesh: 0
 --- !u!1 &1414704692
 GameObject:
   m_ObjectHideFlags: 0
@@ -3341,6 +3505,8 @@ MonoBehaviour:
   autoPlay: {fileID: 0}
   speed: {fileID: 0}
   vol: {fileID: 0}
+  speedText: {fileID: 0}
+  volText: {fileID: 30555449}
 --- !u!1 &1685251482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4037,6 +4203,8 @@ MonoBehaviour:
   autoPlay: {fileID: 553972893}
   speed: {fileID: 227154753}
   vol: {fileID: 1658385615}
+  speedText: {fileID: 0}
+  volText: {fileID: 0}
 --- !u!114 &2071705501
 MonoBehaviour:
   m_ObjectHideFlags: 0

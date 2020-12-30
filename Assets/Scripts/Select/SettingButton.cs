@@ -9,6 +9,7 @@ public class SettingButton : MonoBehaviour
     public GameObject selectCanvas;
     public Toggle autoPlay;
     public Slider speed, vol;
+    public Text speedText, volText;
     public void OnAutoPressed()
     {
         if (GetComponent<Toggle>().isOn)
@@ -23,10 +24,12 @@ public class SettingButton : MonoBehaviour
     public void OnSpeedChanged()
     {
         NoteController.speed = (int)GetComponent<Slider>().value;
+        speedText.text = (NoteController.speed).ToString();
     }
     public void OnVolumeChanged()
     {
         NoteController.hitVolume = GetComponent<Slider>().value;
+        volText.text = NoteController.hitVolume.ToString("F1");
     }
     public void OnClosePressed()
     {
@@ -49,5 +52,4 @@ public class SettingButton : MonoBehaviour
         speed.value = Utils.save.SystemSettings.speed;
         vol.value = (float)Utils.save.SystemSettings.hitVol;
     }
-
 }

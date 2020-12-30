@@ -9,8 +9,8 @@ public class Result : MonoBehaviour
     public TextMeshPro scoreText;
     public Text[] judgeDetail;
     public Text comboText;
-    public Text nameText;
-    public Text diffText;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI diffText;
     private Song song;
     public Sprite[] gradeSprite;
     public GameObject gradeObj;

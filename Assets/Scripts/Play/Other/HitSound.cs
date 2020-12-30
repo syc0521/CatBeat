@@ -8,6 +8,7 @@ public class HitSound : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
+        source.volume = NoteController.hitVolume;
         StartCoroutine(DestroyAudio());
     }
     private IEnumerator DestroyAudio()
