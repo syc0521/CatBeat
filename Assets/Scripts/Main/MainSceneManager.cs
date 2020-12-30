@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class MainSceneManager : MonoBehaviour
@@ -12,5 +13,9 @@ public class MainSceneManager : MonoBehaviour
             InputController.controls = new InputMaster();
             input = true;
         }
+    }
+    private void Update()
+    {
+        Utils.QuitProgram();
     }
 }

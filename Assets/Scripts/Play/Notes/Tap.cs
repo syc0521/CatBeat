@@ -38,6 +38,7 @@ public class Tap : Note
 		Debug.Log(Data + "Miss");
 		NoteController.miss++;
 		NoteController.combo = 0;
+		ShowJudge(JudgeType.Miss);
 		Destroy(gameObject);
 	}
     private void AutoPlayMode()
@@ -45,6 +46,7 @@ public class Tap : Note
 		if (transform.position.x <= endPos.x)
 		{
 			GenerateHitSound();
+			ShowJudge(JudgeType.Perfect);
 			NoteController.combo++;
 			NoteController.score += (int)(NoteController.Multiplier * 100.0f);
 			Destroy(gameObject);

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Result : MonoBehaviour
 {
-    public ResultInfo Info;
     public TextMeshPro scoreText;
     public Text[] judgeDetail;
     public Text comboText;
@@ -82,21 +81,9 @@ public class Result : MonoBehaviour
         }
         yield break;
     }
-    /// <summary>
-    /// 引入二次函数曲线来更改数据的增长速度，先快后慢
-    /// </summary>
-    /// <param name="i"></param>
-
-    /// <summary>
-    /// 获得第K位的数字
-    /// </summary>
-    /// <param name="k"></param>
-    /// <param name="val"></param>
-    /// <returns></returns>
-    private int GetNum(int val, int k)
+    private void SetScore()
     {
-        val /= (int)Mathf.Pow(10, k);
-        return (val % 10);
+        
     }
 
 }

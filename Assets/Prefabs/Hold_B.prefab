@@ -500,8 +500,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfa5b5090c1299489399af325b8b085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  judgeDetail: 0
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
+  judgePos: {x: 0, y: 0, z: 0}
+  judge:
+  - {fileID: 5552616462124779837, guid: 519573e70dd5e0c4b870ddca5f5629e2, type: 3}
+  - {fileID: 5552616462124779837, guid: 3c8969c153c7a1c43af5b6353fc4dabd, type: 3}
+  - {fileID: 5552616462124779837, guid: d938e6e183fa08a45b211d2ff0cfca5c, type: 3}
+  - {fileID: 5552616462124779837, guid: 112e77cdf1cb3534691c954c9cd98650, type: 3}
   moveTime: 0
   type: 0
   R_FX: {fileID: 0}

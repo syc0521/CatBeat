@@ -1462,6 +1462,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1336365744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1336365745}
+  m_Layer: 0
+  m_Name: JudgePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1336365745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336365744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.82, y: 1.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1346902398
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,9 +2275,9 @@ MonoBehaviour:
   micInput: {fileID: 414875825664216034, guid: af967bd598f40094a8cdf1a885263e24, type: 3}
   startPos: {fileID: 113855946}
   endPos: {fileID: 1867715124}
+  judgePos: {fileID: 1336365745}
   comboText: {fileID: 263486859}
   scoreText: {fileID: 125042364}
-  IsAutoPlay: 1
   pauseCanvas: {fileID: 929471675}
   source: {fileID: 0}
   bpm: 0
@@ -2359,8 +2389,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2d3e1547daf484981a44b83626279c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  R_FX: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
+  R_FX: {fileID: 8484072823467148885, guid: d1b338d7c4fe1894ca598f11e21d03b6, type: 3}
   B_FX: {fileID: 8484072823467148885, guid: d1b338d7c4fe1894ca598f11e21d03b6, type: 3}
+  judge: {fileID: 5552616462124779837, guid: 519573e70dd5e0c4b870ddca5f5629e2, type: 3}
 --- !u!114 &2001768311
 MonoBehaviour:
   m_ObjectHideFlags: 0
