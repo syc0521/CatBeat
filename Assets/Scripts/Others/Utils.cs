@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
 
 public class Utils : MonoBehaviour
@@ -17,6 +16,17 @@ public class Utils : MonoBehaviour
             result += "<sprite=" + c + ">";
         }
         return result;
+    }
+    public static void QuitProgram()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else   
+            Application.Quit();
+#endif
+        }
     }
 }
 

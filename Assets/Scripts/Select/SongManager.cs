@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using LitJson;
 
 public class SongManager : MonoBehaviour
 {
@@ -13,11 +15,12 @@ public class SongManager : MonoBehaviour
     public GameObject songBtn;
     public Transform songPanel;
     public Song CurrentSong { get => currentSong; set => PlayAudio(value); }
-    public Song currentSong;
+    private Song currentSong;
     private AudioSource source;
     private void Awake()
     {
         GetList();
+        GetPrefs();
         source = GetComponent<AudioSource>();
     }
     private void Start()
@@ -27,19 +30,24 @@ public class SongManager : MonoBehaviour
     private void Update()
     {
         UpdateText();
-        QuitProgram();
+        Utils.QuitProgram();
     }
-
-    private static void QuitProgram()
+    private void GetPrefs()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        SaveData save = new SaveData();
+        foreach (var song in songList)
         {
-#if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-#else   
-            Application.Quit();
-#endif
+            save.Songs.Add(new SaveData.SongSave(song.Path));
         }
+#if UNITY_EDITOR
+        string filePath = "D:\\save.json";
+#else
+        string filePath = Application.streamingAssetsPath + "/save.json";
+#endif
+        var jsonStr = JsonMapper.ToJson(save);
+        StreamWriter sw = new StreamWriter(filePath);
+        sw.Write(jsonStr);
+        sw.Close();
     }
     public void PlayAudio(Song song)
     {
@@ -50,11 +58,11 @@ public class SongManager : MonoBehaviour
     }
     private void UpdateText()
     {
-        diffBtn[0].text = currentSong.EasyLevel.ToString();
-        diffBtn[1].text = currentSong.NormalLevel.ToString();
-        diffBtn[2].text = currentSong.HardLevel.ToString();
-        songName.text = currentSong.Name;
-        songArtist.text = currentSong.Artist;
+        diffBtn[0].text = CurrentSong.EasyLevel.ToString();
+        diffBtn[1].text = CurrentSong.NormalLevel.ToString();
+        diffBtn[2].text = CurrentSong.HardLevel.ToString();
+        songName.text = CurrentSong.Name;
+        songArtist.text = CurrentSong.Artist;
     }
 
     private void GetList()
@@ -81,7 +89,7 @@ public class SongManager : MonoBehaviour
     public void JumpScene(Diff diff)
     {
         NoteController.diff = diff;
-        NoteController.path = currentSong.Path;
+        NoteController.path = CurrentSong.Path;
         LoadingManager.nextScene = "Play";
         SceneManager.LoadScene("Loading");
     }
