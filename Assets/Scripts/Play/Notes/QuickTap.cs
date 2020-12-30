@@ -15,7 +15,7 @@ public class QuickTap : Note
     private int cnt;
 
     public Vector3 animScale;
-    public Animation animExplore;
+    public Animator animExplore;
 
     void Start()
     {
@@ -24,6 +24,8 @@ public class QuickTap : Note
         tapTime = tapCount * 0.1f;
         text = transform.GetChild(1).GetComponent<TextMeshPro>();
         animScale = transform.GetChild(0).transform.localScale;
+       
+        animExplore = transform.GetChild(0).GetComponent<Animator>();
         text.text = "";
         if (NoteController.isAutoPlay)
         {
@@ -51,7 +53,7 @@ public class QuickTap : Note
         do
         {
             yield return new WaitForSeconds(0.05f);
-            animScale *= 1.1f;
+            
             tapCount--;
             text.text = tapCount.ToString();
             NoteController.score += (int)(NoteController.Multiplier * 25.0f);
@@ -88,5 +90,17 @@ public class QuickTap : Note
             }
         }
         Destroy(gameObject);
+    }
+    public void growBalloon()
+    {
+        
+        Debug.Log("growBalloon");
+        animScale *= 2f;
+        Debug.Log("animScale" + animScale);
+    }    
+    public void exploreAnim()
+    {
+        animExplore.SetBool("canExplore", true);
+        Debug.Log(animExplore.GetBool("canExplore"));
     }
 }
