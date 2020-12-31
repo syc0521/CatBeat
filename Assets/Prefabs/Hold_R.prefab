@@ -271,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 6023554678401246616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 6023554676917626596}
   - {fileID: 6023554678931067333}
@@ -291,7 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfa5b5090c1299489399af325b8b085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  judgeDetail: 0
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   judgePos: {x: 0, y: 0, z: 0}
