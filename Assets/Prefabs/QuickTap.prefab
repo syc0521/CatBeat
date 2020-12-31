@@ -140,7 +140,7 @@ MonoBehaviour:
   fx: {fileID: 8484072823467148885, guid: d1b338d7c4fe1894ca598f11e21d03b6, type: 3}
   tapTime: 0
   animScale: {x: 0, y: 0, z: 0}
-  animExplore: {fileID: 0}
+  animExplore: {fileID: 8619547724427717104}
 --- !u!212 &3647492674427279724
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -476,13 +476,13 @@ MonoBehaviour:
   m_margin: {x: 9.292321, y: 1.7464283, z: 9.290701, w: 1.872747}
   m_textInfo:
     textComponent: {fileID: 5312526610062111311}
-    characterCount: 2
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

@@ -174,14 +174,14 @@ public class InputController : MonoBehaviour
             Instantiate(R_FX);
             if (currentQuickTap.tapCount <= 0)
             {
-                currentQuickTap.exploreAnim();
+                //currentQuickTap.ExploreAnim();
                
                 NoteController.score += (int)(NoteController.Multiplier * 25.0f);
                 NoteController.combo++;
                 StartCoroutine(ModifyNote(currentQuickTap.Data));
                 currentQuickTap.ShowJudge(JudgeType.Perfect);
-                StartCoroutine(wait());
-               // Destroy(currentQuickTap.gameObject);
+               // StartCoroutine(wait());
+                Destroy(currentQuickTap.gameObject);
                 currentQuickTap = null;
             }
         }

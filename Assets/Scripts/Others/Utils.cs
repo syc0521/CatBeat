@@ -6,17 +6,14 @@ using UnityEngine;
 public class Utils : MonoBehaviour
 {
     public static SaveData save;
-#if UNITY_EDITOR
     public static readonly string filePath = "D:\\save.json";
-#else
-    public static readonly string filePath = Application.streamingAssetsPath + "/save.json";
-#endif
     public static void SavePrefs()
     {
         var jsonStr = JsonMapper.ToJson(save);
         StreamWriter sw = new StreamWriter(filePath);
         sw.Write(jsonStr);
         sw.Close();
+        sw.Dispose();
     }
     public static void GetSave()
     {
@@ -25,12 +22,19 @@ public class Utils : MonoBehaviour
         foreach (var song in SongManager.songList)
         {
             var current = save.Songs.Find(item => item.path.Equals(song.Path));
-            if (current.ToString() != null)
+            if (current != null)
             {
                 song.GradeLevel = (Grade[])current.grade.Clone();
                 song.Score = (int[])current.score.Clone();
             }
+            else
+            {
+                save.Songs.Add(new SaveData.SongSave(song.Path));
+            }
         }
+        sr.Close();
+        sr.Dispose();
+        SavePrefs();
         NoteController.isAutoPlay = save.SystemSettings.isAutoPlay;
         NoteController.speed = save.SystemSettings.speed;
         NoteController.hitVolume = (float)save.SystemSettings.hitVol;

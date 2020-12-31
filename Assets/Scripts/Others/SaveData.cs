@@ -9,7 +9,7 @@ public enum Grade { S, A, B, C, D }
 public class SaveData
 {
     [Serializable]
-    public struct SongSave
+    public class SongSave
     {
         public string path;
         public int[] score;
@@ -20,6 +20,10 @@ public class SaveData
             this.path = path;
             score = new int[3];
             grade = new Grade[3] { Grade.D, Grade.D, Grade.D };
+        }
+        public SongSave()
+        {
+
         }
     }
     [Serializable]
