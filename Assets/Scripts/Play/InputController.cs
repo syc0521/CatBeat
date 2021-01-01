@@ -180,8 +180,9 @@ public class InputController : MonoBehaviour
                 NoteController.combo++;
                 StartCoroutine(ModifyNote(currentQuickTap.Data));
                 currentQuickTap.ShowJudge(JudgeType.Perfect);
-               // StartCoroutine(wait());
-                Destroy(currentQuickTap.gameObject);
+                StartCoroutine(currentQuickTap.ExploreAnim());
+               
+               // Destroy(currentQuickTap.gameObject);
                 currentQuickTap = null;
             }
         }

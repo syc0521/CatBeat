@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 87123513}
   - component: {fileID: 87123516}
   - component: {fileID: 87123517}
+  - component: {fileID: 87123518}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -419,6 +420,25 @@ MonoBehaviour:
   m_EffectColor: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 0.7019608}
   m_EffectDistance: {x: 2.1, y: -2.38}
   m_UseGraphicAlpha: 1
+--- !u!95 &87123518
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87123511}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 12b8001f4a5279b49a6d6fadb1ab44e0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &284562373
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1530387074}
   - component: {fileID: 1530387073}
+  - component: {fileID: 1530387075}
   m_Layer: 0
   m_Name: hand
   m_TagString: Untagged
@@ -566,6 +587,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1530387075
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530387072}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 548dc6fb512e957479ebac4db9c82c25, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1847434569
 GameObject:
   m_ObjectHideFlags: 0

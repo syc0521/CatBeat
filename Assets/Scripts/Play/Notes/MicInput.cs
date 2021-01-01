@@ -9,7 +9,7 @@ public class MicInput : Note
     public Animator micAnim;
     private void Start()
     {
-        moveTime = NoteController.noteSpeed;
+        moveTime = NoteController.NoteSpeed;
         micAnim = transform.GetComponent<Animator>();
     }
     public override void Update()
