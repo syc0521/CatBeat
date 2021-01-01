@@ -11,9 +11,10 @@ public class SongManager : MonoBehaviour
 {
     public static List<Song> songList = new List<Song>();
     public Text[] diffBtn = new Text[3];
-    public Text songName, songArtist;
+    public Text songName, songArtist, scoreText;
     public GameObject songBtn;
     public Transform songPanel;
+
     public Song CurrentSong { get => currentSong; set => PlayAudio(value); }
     private Song currentSong;
     private AudioSource source;
@@ -31,24 +32,51 @@ public class SongManager : MonoBehaviour
     {
         UpdateText();
         Utils.QuitProgram();
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            InitializeSave(Utils.filePath);
+        }
     }
     private void GetPrefs()
+    {
+        if (!File.Exists(Utils.filePath))
+        {
+            InitializeSave(Utils.filePath);
+        }
+        else
+        {
+            GetSave(Utils.filePath);
+        }
+    }
+
+    private void GetSave(string filePath)
+    {
+        StreamReader sr = new StreamReader(filePath);
+        SaveData save = JsonMapper.ToObject<SaveData>(sr.ReadToEnd());
+        foreach (var song in save.Songs)
+        {
+            var current = songList.Find(item => item.Path.Equals(song.path));
+            current.GradeLevel = (Grade[])song.grade.Clone();
+            current.Score = (int[])song.score.Clone();
+        }
+        NoteController.isAutoPlay = save.SystemSettings.isAutoPlay;
+        NoteController.speed = save.SystemSettings.speed;
+        NoteController.hitVolume = save.SystemSettings.hitVol;
+    }
+
+    private static void InitializeSave(string filePath)
     {
         SaveData save = new SaveData();
         foreach (var song in songList)
         {
             save.Songs.Add(new SaveData.SongSave(song.Path));
         }
-#if UNITY_EDITOR
-        string filePath = "D:\\save.json";
-#else
-        string filePath = Application.streamingAssetsPath + "/save.json";
-#endif
         var jsonStr = JsonMapper.ToJson(save);
         StreamWriter sw = new StreamWriter(filePath);
         sw.Write(jsonStr);
         sw.Close();
     }
+
     public void PlayAudio(Song song)
     {
         currentSong = song;
@@ -63,6 +91,7 @@ public class SongManager : MonoBehaviour
         diffBtn[2].text = CurrentSong.HardLevel.ToString();
         songName.text = CurrentSong.Name;
         songArtist.text = CurrentSong.Artist;
+        scoreText.text = CurrentSong.Score.ToString();
     }
 
     private void GetList()

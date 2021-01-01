@@ -12,6 +12,8 @@ public class Result : MonoBehaviour
     public Text nameText;
     public Text diffText;
     private Song song;
+    public Sprite[] gradeSprite;
+    public GameObject gradeObj;
 
     private void Start()
     {
@@ -19,9 +21,13 @@ public class Result : MonoBehaviour
         StartCoroutine(ShowScore());
         ShowJudge();
     }
-
     private void ShowJudge()
     {
+        int total = NoteController.perfect + NoteController.great + NoteController.good + NoteController.miss;
+        int realScore = (int)(NoteController.perfect + NoteController.great * 0.8f + NoteController.good * 0.5f);
+        float rate = realScore / (float)total;
+        Grade grade = Utils.GetGrade(rate);
+        gradeObj.GetComponent<SpriteRenderer>().sprite = gradeSprite[(int)grade];
         judgeDetail[0].text = NoteController.perfect.ToString();
         judgeDetail[1].text = NoteController.great.ToString();
         judgeDetail[2].text = NoteController.good.ToString();
@@ -47,14 +53,12 @@ public class Result : MonoBehaviour
     /// <summary>
     /// 展示分数
     /// </summary>
-    /// <returns></returns>
     private IEnumerator ShowScore()
     {
-        yield return new WaitForSeconds(0.5f);
         int score = NoteController.score;
         for (int i = 0; i <= score; i++)
         {
-            if (score - i < 10)
+            if (score - i < 1)
             {
                 i++;
             }
@@ -74,8 +78,12 @@ public class Result : MonoBehaviour
             {
                 i += 100;
             }
+            else if (i + 10 < score)
+            {
+                i += 10;
+            }
             float waitSec = 0.025f;
-            waitSec += 0.01f;
+            waitSec += 0.008f;
             yield return new WaitForSeconds(waitSec);
             scoreText.text = Utils.ConvertDigit(i);
         }

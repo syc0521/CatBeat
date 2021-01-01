@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: 69e76c954b8a88745a6b5248ecc63dbb
+guid: 33ae6ba7ceba19f47b5137b1379d5182
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5525261893704003218
-    second: note_pre_0
+      213: -7867846870963327778
+    second: grade_0
   - first:
-      213: -7717204412666767384
-    second: note_pre_1
+      213: 4197842421880011212
+    second: grade_1
   - first:
-      213: -5734282627111294786
-    second: note_pre_2
+      213: -7047263379030844798
+    second: grade_2
+  - first:
+      213: -5277980273396619851
+    second: grade_3
+  - first:
+      213: -8108331972411819852
+    second: grade_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -54,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,13 +114,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: note_pre_0
+      name: grade_0
       rect:
         serializedVersion: 2
-        x: 77
-        y: 49
-        width: 190
-        height: 190
+        x: 24
+        y: 41
+        width: 122
+        height: 168
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,20 +128,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6155cee4935253b0800000000000000
-      internalID: -5525261893704003218
+      spriteID: edcef0dd4facfc290800000000000000
+      internalID: -7867846870963327778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: note_pre_1
+      name: grade_1
       rect:
         serializedVersion: 2
-        x: 318
-        y: 49
-        width: 190
-        height: 190
+        x: 237
+        y: 41
+        width: 122
+        height: 168
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +149,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e79be3697bf6e490800000000000000
-      internalID: -7717204412666767384
+      spriteID: cc9393b017bb14a30800000000000000
+      internalID: 4197842421880011212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: note_pre_2
+      name: grade_2
       rect:
         serializedVersion: 2
-        x: 559
-        y: 49
-        width: 190
-        height: 190
+        x: 450
+        y: 41
+        width: 122
+        height: 168
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,8 +170,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb86659055cbb60b0800000000000000
-      internalID: -5734282627111294786
+      spriteID: 28a5f367b47133e90800000000000000
+      internalID: -7047263379030844798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grade_3
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 41
+        width: 122
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b5eca0c7e8d0c6b0800000000000000
+      internalID: -5277980273396619851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grade_4
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 42
+        width: 122
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b87377e70b697f80800000000000000
+      internalID: -8108331972411819852
       vertices: []
       indices: 
       edges: []

@@ -43,15 +43,6 @@ public class Hold : Note
                     StartCoroutine(ModifyNote(Data));
                 }
             }
-            if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur)
-            {
-                if (finalType != JudgeType.Default && finalType != JudgeType.Miss)
-                {
-                    Instantiate(B_FX);
-                    ShowJudge(finalType);
-                }
-                Destroy(gameObject);
-            }
             if (Time.timeSinceLevelLoad >= Data.Time + moveTime - NoteController.goodTime &&
                 Time.timeSinceLevelLoad <= Data.Time + moveTime + Data.Dur && isHold)
             {
@@ -63,7 +54,7 @@ public class Hold : Note
                 {
                     JudgeBlueHoldEnd();
                 }
-                if (holdTime > Data.Dur)
+                if (holdTime > Data.Dur - 0.005f)
                 {
                     secondType = JudgeType.Perfect;
                     finalType = GetHoldJudge(firstType, secondType);
@@ -73,6 +64,16 @@ public class Hold : Note
                     ShowJudge(finalType);
                     Destroy(gameObject);
                 }
+            }
+            if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur && isHold)
+            {
+                if (finalType != JudgeType.Default && finalType != JudgeType.Miss)
+                {
+                    finalType = GetHoldJudge(firstType, secondType);
+                    Instantiate(B_FX);
+                    ShowJudge(finalType);
+                }
+                Destroy(gameObject);
             }
         }
     }

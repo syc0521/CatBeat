@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class SettingButton : MonoBehaviour
 {
-    private void Start()
-    {
-        NoteController.isAutoPlay = false;
-    }
+    public GameObject settingCanvas;
+    public GameObject selectCanvas;
     public void OnAutoPressed()
     {
         if (GetComponent<Toggle>().isOn)
@@ -19,6 +17,24 @@ public class SettingButton : MonoBehaviour
         {
             NoteController.isAutoPlay = false;
         }
-        Debug.Log(NoteController.isAutoPlay);
     }
+    public void OnSpeedChanged()
+    {
+        NoteController.speed = (int)GetComponent<Slider>().value;
+    }
+    public void OnVolumeChanged()
+    {
+        NoteController.hitVolume = (int)GetComponent<Slider>().value;
+    }
+    public void OnClosePressed()
+    {
+        settingCanvas.SetActive(false);
+        selectCanvas.SetActive(true);
+    }
+    public void OnSettingPressed()
+    {
+        settingCanvas.SetActive(true);
+        selectCanvas.SetActive(false);
+    }
+
 }

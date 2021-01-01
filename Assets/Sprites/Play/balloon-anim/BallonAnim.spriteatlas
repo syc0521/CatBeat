@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BallonAnim
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 21300000, guid: f406a3d390bdb7b4cb8dfbbc553c81b4, type: 3}
+    - {fileID: 21300000, guid: 5b269b7dab0cbad47abb562b001cc8dd, type: 3}
+    - {fileID: 21300000, guid: 6a3f8ba06717c7d4f889f86cf071c351, type: 3}
+    - {fileID: 21300000, guid: d6a3f53a8127ac84c9ba3ba34a292934, type: 3}
+    - {fileID: 21300000, guid: b6134ef94ea25a34d9ab6c3f7d5e8920, type: 3}
+    totalSpriteSurfaceArea: 450000
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 6a3f8ba06717c7d4f889f86cf071c351, type: 3}
+  - {fileID: 21300000, guid: f406a3d390bdb7b4cb8dfbbc553c81b4, type: 3}
+  - {fileID: 21300000, guid: b6134ef94ea25a34d9ab6c3f7d5e8920, type: 3}
+  - {fileID: 21300000, guid: d6a3f53a8127ac84c9ba3ba34a292934, type: 3}
+  - {fileID: 21300000, guid: 5b269b7dab0cbad47abb562b001cc8dd, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - 3
+  - 1
+  - 5
+  - 4
+  - 2
+  m_Tag: BallonAnim
+  m_IsVariant: 0

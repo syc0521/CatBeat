@@ -11,7 +11,7 @@ public abstract class Note : MonoBehaviour
     public float moveTime;
     private void Awake()
     {
-        moveTime = NoteController.noteSpeed;
+        moveTime = NoteController.NoteSpeed;
     }
     public virtual void Update()
     {

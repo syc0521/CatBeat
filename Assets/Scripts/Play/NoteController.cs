@@ -20,7 +20,7 @@ public class NoteController : MonoBehaviour
     public Transform judgePos;
     public static List<NoteData> notes = new List<NoteData>();
     public static List<Note> noteObjs = new List<Note>();
-    public static float noteSpeed = 1.15f;
+    public static float NoteSpeed => 3 - 0.3f * speed;
     public static int combo;
     public TextMeshPro comboText;
     public TextMeshPro scoreText;
@@ -29,9 +29,10 @@ public class NoteController : MonoBehaviour
     public static readonly float greatTime = 0.09f;
     public static readonly float goodTime = 0.15f;
     public static int perfect, great, good, miss;
+    public static float hitVolume;
     public static int noteCount;
     public static bool isAutoPlay;
-    //public bool IsAutoPlay;
+    public static int speed;
     public static bool isPaused = false;
     public GameObject pauseCanvas;
     [HideInInspector]
@@ -102,7 +103,7 @@ public class NoteController : MonoBehaviour
         var clip = Resources.Load<AudioClip>("Songs/" + path + "/song");
         source.clip = clip;
         source.playOnAwake = false;
-        yield return new WaitForSeconds(noteSpeed);
+        yield return new WaitForSeconds(NoteSpeed);
         source.Play();
         yield return new WaitForSeconds(clip.length);
         if (isAutoPlay)

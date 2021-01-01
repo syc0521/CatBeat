@@ -51,7 +51,7 @@ public class QuickTap : Note
     }
     private IEnumerator ReduceCount()
     {
-        yield return new WaitForSeconds(NoteController.noteSpeed);
+        yield return new WaitForSeconds(NoteController.NoteSpeed);
         do
         {
             yield return new WaitForSeconds(0.05f);
