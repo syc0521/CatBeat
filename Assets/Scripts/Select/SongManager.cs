@@ -1,23 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using LitJson;
+using TMPro;
+using System;
 
 public class SongManager : MonoBehaviour
 {
     public static List<Song> songList = new List<Song>();
     public Text[] diffBtn = new Text[3];
-    public Text songName, songArtist, scoreText;
+    public TextMeshProUGUI songName, songArtist, scoreText;
     public GameObject songBtn;
     public Transform songPanel;
-
+    public Toggle autoBtn;
+    public Slider speedSli, volSli;
+    public static Diff currentDiff;
     public Song CurrentSong { get => currentSong; set => PlayAudio(value); }
     private Song currentSong;
     private AudioSource source;
+    public Image ezBtn;
     private void Awake()
     {
         GetList();
@@ -27,6 +31,8 @@ public class SongManager : MonoBehaviour
     private void Start()
     {
         CurrentSong = songList[0];
+        currentDiff = Diff.Easy;
+        ezBtn.color = new Color(0.75f, 0.65f, 1.0f);
     }
     private void Update()
     {
@@ -45,33 +51,17 @@ public class SongManager : MonoBehaviour
         }
         else
         {
-            GetSave(Utils.filePath);
+            Utils.GetSave();
         }
     }
-
-    private void GetSave(string filePath)
-    {
-        StreamReader sr = new StreamReader(filePath);
-        SaveData save = JsonMapper.ToObject<SaveData>(sr.ReadToEnd());
-        foreach (var song in save.Songs)
-        {
-            var current = songList.Find(item => item.Path.Equals(song.path));
-            current.GradeLevel = (Grade[])song.grade.Clone();
-            current.Score = (int[])song.score.Clone();
-        }
-        NoteController.isAutoPlay = save.SystemSettings.isAutoPlay;
-        NoteController.speed = save.SystemSettings.speed;
-        NoteController.hitVolume = save.SystemSettings.hitVol;
-    }
-
     private static void InitializeSave(string filePath)
     {
-        SaveData save = new SaveData();
+        Utils.save = new SaveData();
         foreach (var song in songList)
         {
-            save.Songs.Add(new SaveData.SongSave(song.Path));
+            Utils.save.Songs.Add(new SaveData.SongSave(song.Path));
         }
-        var jsonStr = JsonMapper.ToJson(save);
+        var jsonStr = JsonMapper.ToJson(Utils.save);
         StreamWriter sw = new StreamWriter(filePath);
         sw.Write(jsonStr);
         sw.Close();
@@ -91,7 +81,7 @@ public class SongManager : MonoBehaviour
         diffBtn[2].text = CurrentSong.HardLevel.ToString();
         songName.text = CurrentSong.Name;
         songArtist.text = CurrentSong.Artist;
-        scoreText.text = CurrentSong.Score.ToString();
+        scoreText.text = CurrentSong.Score[(int)currentDiff].ToString();
     }
 
     private void GetList()

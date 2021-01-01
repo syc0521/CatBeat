@@ -9,7 +9,7 @@ public enum Grade { S, A, B, C, D }
 public class SaveData
 {
     [Serializable]
-    public struct SongSave
+    public class SongSave
     {
         public string path;
         public int[] score;
@@ -21,13 +21,17 @@ public class SaveData
             score = new int[3];
             grade = new Grade[3] { Grade.D, Grade.D, Grade.D };
         }
+        public SongSave()
+        {
+
+        }
     }
     [Serializable]
     public struct Settings
     {
         public bool isAutoPlay;
         public int speed;
-        public float hitVol;
+        public double hitVol;
     }
     private List<SongSave> songs;
     private Settings systemSettings;
@@ -41,7 +45,7 @@ public class SaveData
         {
             isAutoPlay = false,
             speed = 4,
-            hitVol = 0.8f
+            hitVol = 0.8
         };
     }
 }

@@ -13,6 +13,7 @@ public class QuickTap : Note
     [HideInInspector]
     public float tapTime;
     private int cnt;
+    private bool animPlayed = false;
 
     public Vector3 animScale;
     public Animator animExplore;
@@ -40,13 +41,17 @@ public class QuickTap : Note
     public override void Update()
     {
         base.Update();
-        text.text = tapCount.ToString();
+        if (!animPlayed)
+        {
+            text.text = tapCount.ToString();
+        }
         if (tapCount == 0 && NoteController.isAutoPlay)
         {
-            NoteController.combo++;
-            ShowJudge(JudgeType.Perfect);
-
-            Destroy(gameObject);
+            if (!animPlayed)
+            {
+                animPlayed = true;
+                StartCoroutine(ExploreAnim());
+            }
         }
     }
     private IEnumerator ReduceCount()
@@ -55,7 +60,6 @@ public class QuickTap : Note
         do
         {
             yield return new WaitForSeconds(0.05f);
-            
             tapCount--;
             text.text = tapCount.ToString();
             NoteController.score += (int)(NoteController.Multiplier * 25.0f);
@@ -96,7 +100,7 @@ public class QuickTap : Note
         }
         Destroy(gameObject);
     }
-    public void growBalloon()
+    public void GrowBalloon()
     {
         
         Debug.Log("growBalloon");
@@ -104,9 +108,16 @@ public class QuickTap : Note
         transform.GetChild(0).transform.localScale = new Vector3(animScale.x, animScale.y,animScale.z);
         Debug.Log(transform.GetChild(0).transform.localScale);
     }    
-    public void exploreAnim()
+
+    public IEnumerator ExploreAnim()
     {
-        Debug.Log("exploreAnim");
+        NoteController.combo++;
+        transform.GetChild(1).GetComponent<TextMeshPro>().text = "";
+        Destroy(transform.GetChild(0).GetChild(0).gameObject);
+        ShowJudge(JudgeType.Perfect);
         transform.GetChild(0).GetComponent<Animator>().Play("balloon");
+        yield return new WaitForSeconds(animExplore.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject);
+        yield break;
     }
 }

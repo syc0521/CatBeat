@@ -9,8 +9,8 @@ public class Result : MonoBehaviour
     public TextMeshPro scoreText;
     public Text[] judgeDetail;
     public Text comboText;
-    public Text nameText;
-    public Text diffText;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI diffText;
     private Song song;
     public Sprite[] gradeSprite;
     public GameObject gradeObj;
@@ -23,8 +23,8 @@ public class Result : MonoBehaviour
     }
     private void ShowJudge()
     {
-        int total = NoteController.perfect + NoteController.great + NoteController.good + NoteController.miss;
-        int realScore = (int)(NoteController.perfect + NoteController.great * 0.8f + NoteController.good * 0.5f);
+        int total = NoteController.noteCount * 3;
+        int realScore = NoteController.perfect * 3 + NoteController.great * 2 + NoteController.good;
         float rate = realScore / (float)total;
         Grade grade = Utils.GetGrade(rate);
         gradeObj.GetComponent<SpriteRenderer>().sprite = gradeSprite[(int)grade];
