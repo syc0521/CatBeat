@@ -16,6 +16,7 @@ public class Hold : Note
     private KeyCode keyCode = KeyCode.None;
     private bool isChanged = false;
     private bool isJudged = false;
+    public ParticleSystem shiny;
 
     private void Start()
     {

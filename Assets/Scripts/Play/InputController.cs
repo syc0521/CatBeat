@@ -63,12 +63,13 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             JudgeType judgeType = JudgeTap(note);
-            TapJudgeFinished(judgeType);
+           // TapJudgeFinished(judgeType);
             Instantiate(R_FX);
             StartCoroutine(ModifyNote(note));
             note.CanJudge = false;
-            noteObj.ShowJudge(judgeType);
-            Destroy(noteObj.gameObject);
+           // noteObj.ShowJudge(judgeType);
+            StartCoroutine(noteObj.gameObject.GetComponent<Tap>().DestroyAnim(judgeType));
+            //Destroy(noteObj.gameObject);
         }
     }
     private void DestroyBlueTap(InputAction.CallbackContext obj)
@@ -81,12 +82,13 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             JudgeType judgeType = JudgeTap(note);
-            TapJudgeFinished(judgeType);
+           // TapJudgeFinished(judgeType);
             Instantiate(B_FX);
             StartCoroutine(ModifyNote(note));
             note.CanJudge = false;
-            noteObj.ShowJudge(judgeType);
-            Destroy(noteObj.gameObject);
+           // noteObj.ShowJudge(judgeType);
+            StartCoroutine(noteObj.gameObject.GetComponent<Tap>().DestroyAnim(judgeType));
+            //Destroy(noteObj.gameObject);
         }
     }
     private void DestroyPurpleTap(InputAction.CallbackContext obj)
@@ -99,13 +101,14 @@ public class InputController : MonoBehaviour
         {
             var noteObj = NoteController.noteObjs[note.Index];
             JudgeType judgeType = JudgeTap(note);
-            TapJudgeFinished(judgeType);
+           // TapJudgeFinished(judgeType);
             StartCoroutine(ModifyNote(note));
             note.CanJudge = false;
             Instantiate(R_FX);
             Instantiate(B_FX);
-            noteObj.ShowJudge(judgeType);
-            Destroy(noteObj.gameObject);
+           // noteObj.ShowJudge(judgeType);
+            StartCoroutine(noteObj.gameObject.GetComponent<Tap>().DestroyAnim(judgeType));
+           // Destroy(noteObj.gameObject);
         }
     }
     private void DestroyRedHold(InputAction.CallbackContext obj)
@@ -249,7 +252,7 @@ public class InputController : MonoBehaviour
         Destroy(currentQuickTap.gameObject);
         yield break;
     }
-    private void TapJudgeFinished(JudgeType judgeType)
+    public static void TapJudgeFinished(JudgeType judgeType)
     {
         switch (judgeType)
         {

@@ -9,6 +9,7 @@ public abstract class Note : MonoBehaviour
     public GameObject[] judge;
     [HideInInspector]
     public float moveTime;
+
     private void Awake()
     {
         moveTime = NoteController.NoteSpeed;
@@ -56,4 +57,5 @@ public abstract class Note : MonoBehaviour
                 break;
         }
     }
+
 }

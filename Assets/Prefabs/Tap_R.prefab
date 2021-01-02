@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8789237378859752179}
   - component: {fileID: 1561037848528430173}
   - component: {fileID: 4472636017107302705}
+  - component: {fileID: 4331135655219323562}
   m_Layer: 0
   m_Name: Tap_R
   m_TagString: Untagged
@@ -107,6 +108,25 @@ MonoBehaviour:
   R_FX: {fileID: 8484072823467148885, guid: d1b338d7c4fe1894ca598f11e21d03b6, type: 3}
   B_FX: {fileID: 0}
   type: 0
+--- !u!95 &4331135655219323562
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438750550914658638}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c943c376daafdb9468dcc50461d660ba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1536070542440600992
 GameObject:
   m_ObjectHideFlags: 0
