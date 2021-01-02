@@ -14,19 +14,21 @@ public class Result : MonoBehaviour
     private Song song;
     public Sprite[] gradeSprite;
     public GameObject gradeObj;
+    private Grade grade;
 
     private void Start()
     {
         song = SongManager.songList.Find(item => item.Path == NoteController.path);
         StartCoroutine(ShowScore());
         ShowJudge();
+        SetScore();
     }
     private void ShowJudge()
     {
         int total = NoteController.noteCount * 3;
         int realScore = NoteController.perfect * 3 + NoteController.great * 2 + NoteController.good;
         float rate = realScore / (float)total;
-        Grade grade = Utils.GetGrade(rate);
+        grade = Utils.GetGrade(rate);
         gradeObj.GetComponent<SpriteRenderer>().sprite = gradeSprite[(int)grade];
         judgeDetail[0].text = NoteController.perfect.ToString();
         judgeDetail[1].text = NoteController.great.ToString();
@@ -91,7 +93,14 @@ public class Result : MonoBehaviour
     }
     private void SetScore()
     {
-        
+        SaveData save = Utils.save;
+        SaveData.SongSave songSave = save.Songs.Find(item => item.path.Equals(NoteController.path));
+        if (songSave != null)
+        {
+            songSave.score[(int)NoteController.diff] = NoteController.score;
+            songSave.grade[(int)NoteController.diff] = grade;
+        }
+        Utils.SavePrefs();
     }
 
 }
