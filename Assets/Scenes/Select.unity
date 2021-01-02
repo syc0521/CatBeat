@@ -734,7 +734,14 @@ MonoBehaviour:
   autoBtn: {fileID: 553972893}
   speedSli: {fileID: 227154753}
   volSli: {fileID: 1658385615}
+  judgeSprite:
+  - {fileID: -7867846870963327778, guid: 33ae6ba7ceba19f47b5137b1379d5182, type: 3}
+  - {fileID: 4197842421880011212, guid: 33ae6ba7ceba19f47b5137b1379d5182, type: 3}
+  - {fileID: -7047263379030844798, guid: 33ae6ba7ceba19f47b5137b1379d5182, type: 3}
+  - {fileID: -5277980273396619851, guid: 33ae6ba7ceba19f47b5137b1379d5182, type: 3}
+  - {fileID: -8108331972411819852, guid: 33ae6ba7ceba19f47b5137b1379d5182, type: 3}
   ezBtn: {fileID: 69565664}
+  gradeSprite: {fileID: 658343035}
 --- !u!4 &374966554
 Transform:
   m_ObjectHideFlags: 0
@@ -3945,7 +3952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 12345
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4386702305d62f4ea6c2c44837c3cb0, type: 2}
   m_sharedMaterial: {fileID: -5910772997161429319, guid: f4386702305d62f4ea6c2c44837c3cb0,
@@ -4015,7 +4022,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1851998173}
-    characterCount: 5
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1

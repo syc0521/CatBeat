@@ -1,12 +1,10 @@
-﻿using System.Collections;
+﻿using LitJson;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using LitJson;
-using TMPro;
-using System;
 
 public class SongManager : MonoBehaviour
 {
@@ -17,11 +15,13 @@ public class SongManager : MonoBehaviour
     public Transform songPanel;
     public Toggle autoBtn;
     public Slider speedSli, volSli;
-    public static Diff currentDiff;
+    private Diff currentDiff;
+    public Sprite[] judgeSprite;
     public Song CurrentSong { get => currentSong; set => PlayAudio(value); }
     private Song currentSong;
     private AudioSource source;
     public Image ezBtn;
+    public SpriteRenderer gradeSprite;
     private void Awake()
     {
         GetList();
@@ -76,12 +76,14 @@ public class SongManager : MonoBehaviour
     }
     private void UpdateText()
     {
+        currentDiff = NoteController.diff;
         diffBtn[0].text = CurrentSong.EasyLevel.ToString();
         diffBtn[1].text = CurrentSong.NormalLevel.ToString();
         diffBtn[2].text = CurrentSong.HardLevel.ToString();
         songName.text = CurrentSong.Name;
         songArtist.text = CurrentSong.Artist;
         scoreText.text = CurrentSong.Score[(int)currentDiff].ToString();
+        gradeSprite.sprite = judgeSprite[(int)currentSong.GradeLevel[(int)currentDiff]];
     }
 
     private void GetList()

@@ -97,8 +97,14 @@ public class Result : MonoBehaviour
         SaveData.SongSave songSave = save.Songs.Find(item => item.path.Equals(NoteController.path));
         if (songSave != null)
         {
-            songSave.score[(int)NoteController.diff] = NoteController.score;
-            songSave.grade[(int)NoteController.diff] = grade;
+            if (NoteController.score > songSave.score[(int)NoteController.diff])
+            {
+                songSave.score[(int)NoteController.diff] = NoteController.score;
+            }
+            if ((int)grade < (int)songSave.grade[(int)NoteController.diff])
+            {
+                songSave.grade[(int)NoteController.diff] = grade;
+            }
         }
         Utils.SavePrefs();
     }
