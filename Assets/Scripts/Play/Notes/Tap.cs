@@ -7,8 +7,11 @@ public class Tap : Note
 {
     public GameObject R_FX, B_FX;
     public int type;
+	public Animator destroyAnim;
+	public bool firstDestroy = true;
     private void Start()
     {
+		destroyAnim = transform.GetComponent<Animator>();
 		type = Data.Information;
 	}
 	
@@ -18,8 +21,9 @@ public class Tap : Note
 		base.Update();
         if (!NoteController.isAutoPlay)
         {
-			if (Time.timeSinceLevelLoad >= Data.Time + moveTime + NoteController.goodTime)
+			if (Time.timeSinceLevelLoad >= Data.Time + moveTime + NoteController.goodTime && firstDestroy)
 			{
+				firstDestroy = false;
 				DestroyMissNote();
 			}
 		}
@@ -46,10 +50,11 @@ public class Tap : Note
 		if (transform.position.x <= endPos.x)
 		{
 			GenerateHitSound();
-			ShowJudge(JudgeType.Perfect);
-			NoteController.combo++;
-			NoteController.score += (int)(NoteController.Multiplier * 100.0f);
-			Destroy(gameObject);
+			//ShowJudge(JudgeType.Perfect);
+			//NoteController.combo++;
+			//NoteController.score += (int)(NoteController.Multiplier * 100.0f);
+			StartCoroutine(DestroyAnim(JudgeType.Perfect));
+			//Destroy(gameObject);
 		}
 	}
 
@@ -69,6 +74,21 @@ public class Tap : Note
             Instantiate(B_FX);
         }
     }
-
+	public IEnumerator DestroyAnim(JudgeType type)
+    {
+		if(firstDestroy)
+        {
+			firstDestroy = false;
+			ShowJudge(type);
+			InputController.TapJudgeFinished(type);
+			//NoteController.combo++;
+			//NoteController.score += (int)(NoteController.Multiplier * 100.0f);
+			destroyAnim.Play("tap");
+			yield return new WaitForSeconds(0.3f);
+			Destroy(gameObject);
+			yield break;
+        }
+		
+    }
 
 }

@@ -7,6 +7,8 @@ public class MicInput : Note
     private bool canInput = false;
     private bool isPerfect = false;
     public Animator micAnim;
+    public ParticleSystem shiny;
+    private bool firstDestroy = true;
     private void Start()
     {
         moveTime = NoteController.NoteSpeed;
@@ -26,15 +28,18 @@ public class MicInput : Note
     }
     private void UserPlayMode()
     {
-
+        Debug.Log(canInput);
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime - NoteController.goodTime * 1.5f)
         {
             canInput = true;
             if (MicrophoneController.realVolume >= 0.55f && canInput)
             {
+                Debug.Log("mic-taping");
+                micAnim.Play("mic-taping");
                 holdTime += Time.deltaTime;
                 NoteController.score += (int)(NoteController.Multiplier * 15.0f);
             }
+           
             if (holdTime > Data.Dur * 0.5f && !isPerfect)
             {
                 isPerfect = true;
@@ -42,46 +47,65 @@ public class MicInput : Note
             if (holdTime > Data.Dur * 0.8f)
             {
                 canInput = false;
-                if (isPerfect)
+                if(firstDestroy)
                 {
-                    NoteController.perfect++;
-                    NoteController.combo++;
-                    Instantiate(fx);
+                    if (isPerfect)
+                    {
+                        // NoteController.perfect++;
+                        //NoteController.combo++;
+                        StartCoroutine(DestroyMic());
+                        Instantiate(fx);
+                    }
+                    else
+                    {
+                  
+                            NoteController.miss++;
+                            NoteController.combo = 0;
+                            ShowJudge(JudgeType.Miss);
+                            Destroy(gameObject);
+                    
+                   
+                    }
+                    firstDestroy = false;
                 }
-                else
-                {
-                    NoteController.miss++;
-                    NoteController.combo = 0;
-                }
+
                 if (Data.Index < NoteController.noteCount - 1)
                 {
                     NoteController.notes[Data.Index + 1].CanJudge = true;
                 }
-                Destroy(gameObject);
+                // StartCoroutine(DestroyMic());
+               // Destroy(gameObject);
             }
 
         }
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur * 0.8f)
         {
-            if (isPerfect)
+            if(firstDestroy)
             {
-                NoteController.perfect++;
-                NoteController.combo++;
-                ShowJudge(JudgeType.Perfect);
-                Instantiate(fx);
+                    if (isPerfect)
+                    {
+                        //NoteController.perfect++;
+                       // NoteController.combo++;
+                        //ShowJudge(JudgeType.Perfect); 
+                        StartCoroutine(DestroyMic());
+                        Instantiate(fx);
+                    }
+                    else
+                    {
+                        NoteController.miss++;
+                        NoteController.combo = 0;
+                        ShowJudge(JudgeType.Miss);
+                        Destroy(gameObject);
+                    }
+                    if (Data.Index < NoteController.noteCount - 1)
+                    {
+                        NoteController.notes[Data.Index + 1].CanJudge = true;
+                    }
+
+                firstDestroy = false;
             }
-            else
-            {
-                NoteController.miss++;
-                NoteController.combo = 0;
-                ShowJudge(JudgeType.Miss);
-            }
-            if (Data.Index < NoteController.noteCount - 1)
-            {
-                NoteController.notes[Data.Index + 1].CanJudge = true;
-            }
-            StartCoroutine(MicAnimPlay());
-            //Destroy(gameObject);
+           
+          
         }
     }
 
@@ -90,23 +114,34 @@ public class MicInput : Note
     {
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime)
         {
+            micAnim.Play("mic-taping");
             NoteController.score += (int)(NoteController.Multiplier * 15.0f);
         }
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur * 0.8f)
         {
-            NoteController.combo++;
+            micAnim.Play("stop");
+            //NoteController.combo++;
             Instantiate(fx);
-            ShowJudge(JudgeType.Perfect);
-            Destroy(gameObject);
+           // ShowJudge(JudgeType.Perfect);
+            StartCoroutine(DestroyMic());
+            //Destroy(gameObject);
         }
     }
     
 
-    public IEnumerator MicAnimPlay()
+    public IEnumerator DestroyMic()
     {
-        Debug.Log("MicAnimPlay");
-        micAnim.Play("mic");
-        yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
+        if(firstDestroy)
+        {
+            NoteController.perfect++;
+            NoteController.combo++;
+            ShowJudge(JudgeType.Perfect);
+            firstDestroy = false;
+            Debug.Log("MicAnimPlay");
+            transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+            yield return new WaitForSeconds(1f);
+            Destroy(gameObject);
+        }
+        
     }
 }
