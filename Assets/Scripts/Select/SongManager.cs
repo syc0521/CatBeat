@@ -24,7 +24,7 @@ public class SongManager : MonoBehaviour
     public SpriteRenderer gradeSprite;
     private void Awake()
     {
-        GetList();
+        InitializeList();
         GetPrefs();
         source = GetComponent<AudioSource>();
     }
@@ -40,33 +40,20 @@ public class SongManager : MonoBehaviour
         Utils.QuitProgram();
         if (Input.GetKeyDown(KeyCode.F12))
         {
-            InitializeSave(Utils.filePath);
+            Utils.InitializeSave(Utils.filePath);
         }
     }
     private void GetPrefs()
     {
         if (!File.Exists(Utils.filePath))
         {
-            InitializeSave(Utils.filePath);
+            Utils.InitializeSave(Utils.filePath);
         }
         else
         {
             Utils.GetSave();
         }
     }
-    private static void InitializeSave(string filePath)
-    {
-        Utils.save = new SaveData();
-        foreach (var song in songList)
-        {
-            Utils.save.Songs.Add(new SaveData.SongSave(song.Path));
-        }
-        var jsonStr = JsonMapper.ToJson(Utils.save);
-        StreamWriter sw = new StreamWriter(filePath);
-        sw.Write(jsonStr);
-        sw.Close();
-    }
-
     public void PlayAudio(Song song)
     {
         currentSong = song;
@@ -85,22 +72,22 @@ public class SongManager : MonoBehaviour
         scoreText.text = CurrentSong.Score[(int)currentDiff].ToString();
         gradeSprite.sprite = judgeSprite[(int)currentSong.GradeLevel[(int)currentDiff]];
     }
-
-    private void GetList()
+    private void InitializeSongData()
     {
-        TextAsset text = Resources.Load<TextAsset>("SongList");
-        var lines = text.text.Split('\n');
-        foreach (var item in lines)
+        foreach (var song in songList)
         {
-            var tmp = item.Split(',');
-            var name = tmp[0].Trim('\"');
-            var artist = tmp[1].Trim('\"');
-            var path = tmp[2];
-            var ez = int.Parse(tmp[3]);
-            var nm = int.Parse(tmp[4]);
-            var hd = int.Parse(tmp[5]);
-            var song = new Song(name, artist, path, ez, nm, hd);
-            songList.Add(song);
+            Utils.save.Songs.Add(new SaveData.SongSave(song.Path));
+        }
+        var jsonStr = JsonMapper.ToJson(Utils.save);
+        StreamWriter sw = new StreamWriter(Utils.filePath);
+        sw.Write(jsonStr);
+        sw.Close();
+        sw.Dispose();
+    }
+    private void InitializeList()
+    {
+        foreach (var song in songList)
+        {
             var obj = Instantiate(songBtn).GetComponent<SongButton>();
             obj.transform.SetParent(songPanel, false);
             obj.song = song;

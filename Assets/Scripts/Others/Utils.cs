@@ -6,7 +6,7 @@ using UnityEngine;
 public class Utils : MonoBehaviour
 {
     public static SaveData save;
-    public static readonly string filePath = "D:\\save.json";
+    public static readonly string filePath = Application.persistentDataPath + "/save.json";
     public static void SavePrefs()
     {
         var jsonStr = JsonMapper.ToJson(save);
@@ -38,6 +38,36 @@ public class Utils : MonoBehaviour
         NoteController.isAutoPlay = save.SystemSettings.isAutoPlay;
         NoteController.speed = save.SystemSettings.speed;
         NoteController.hitVolume = (float)save.SystemSettings.hitVol;
+    }
+    public static void InitializeSave(string filePath)
+    {
+        save = new SaveData();
+        foreach (var song in SongManager.songList)
+        {
+            save.Songs.Add(new SaveData.SongSave(song.Path));
+        }
+        var jsonStr = JsonMapper.ToJson(save);
+        StreamWriter sw = new StreamWriter(filePath);
+        sw.Write(jsonStr);
+        sw.Close();
+        sw.Dispose();
+    }
+    public static void GetList()
+    {
+        TextAsset text = Resources.Load<TextAsset>("SongList");
+        var lines = text.text.Split('\n');
+        foreach (var item in lines)
+        {
+            var tmp = item.Split(',');
+            var name = tmp[0].Trim('\"');
+            var artist = tmp[1].Trim('\"');
+            var path = tmp[2];
+            var ez = int.Parse(tmp[3]);
+            var nm = int.Parse(tmp[4]);
+            var hd = int.Parse(tmp[5]);
+            var song = new Song(name, artist, path, ez, nm, hd);
+            SongManager.songList.Add(song);
+        }
     }
     public static float Lerp(float time, float timeRangeL, float timeRangeR, float posRangeL, float posRangeR)
 	{
@@ -89,4 +119,3 @@ public class Utils : MonoBehaviour
         }
     }
 }
-
