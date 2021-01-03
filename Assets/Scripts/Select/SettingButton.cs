@@ -40,7 +40,9 @@ public class SettingButton : MonoBehaviour
         {
             isAutoPlay = autoPlay.isOn,
             speed = (int)speed.value,
-            hitVol = vol.value
+            hitVol = vol.value,
+            ending = Utils.save.SystemSettings.ending,
+            secret = Utils.save.SystemSettings.secret
         };
         Utils.SavePrefs();
     }

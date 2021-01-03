@@ -38,6 +38,9 @@ public class Utils : MonoBehaviour
         NoteController.isAutoPlay = save.SystemSettings.isAutoPlay;
         NoteController.speed = save.SystemSettings.speed;
         NoteController.hitVolume = (float)save.SystemSettings.hitVol;
+        MainSceneManager.secret = save.SystemSettings.secret;
+        MainSceneManager.ending = save.SystemSettings.ending;
+        SongManager.songList.Find(item => item.Path.Equals("wwb")).Unlock = save.SystemSettings.secret;
     }
     public static void InitializeSave(string filePath)
     {
@@ -54,6 +57,7 @@ public class Utils : MonoBehaviour
     }
     public static void GetList()
     {
+        SongManager.songList.Clear();
         TextAsset text = Resources.Load<TextAsset>("SongList");
         var lines = text.text.Split('\n');
         foreach (var item in lines)
@@ -118,4 +122,16 @@ public class Utils : MonoBehaviour
 #endif
         }
     }
+    public static void GetPrefs()
+    {
+        if (!File.Exists(filePath))
+        {
+            InitializeSave(filePath);
+        }
+        else
+        {
+            GetSave();
+        }
+    }
+
 }

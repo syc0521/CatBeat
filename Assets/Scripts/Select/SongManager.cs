@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class SongManager : MonoBehaviour
 {
@@ -24,19 +25,27 @@ public class SongManager : MonoBehaviour
     public SpriteRenderer gradeSprite;
     private void Awake()
     {
-        InitializeList();
         source = GetComponent<AudioSource>();
     }
     private void Start()
     {
-        CurrentSong = songList[0];
-        currentDiff = Diff.Easy;
+        Utils.GetPrefs();
+        InitializeList();
+        PlayAudio(CurrentSong);
+        if (currentDiff.Equals(Diff.Easy))
+        {
+            currentDiff = Diff.Easy;
+        }
         ezBtn.color = new Color(0.75f, 0.65f, 1.0f);
     }
     private void Update()
     {
         UpdateText();
-        Utils.QuitProgram();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadingManager.nextScene = "Main";
+            SceneManager.LoadScene("Loading");
+        }
         if (Input.GetKeyDown(KeyCode.F12))
         {
             Utils.InitializeSave(Utils.filePath);
@@ -63,7 +72,7 @@ public class SongManager : MonoBehaviour
     private void InitializeList()
     {
         List<Selectable> buttonList = new List<Selectable>();
-        foreach (var song in songList)//生成按钮
+        foreach (var song in songList.Where(song => song.Unlock))//生成按钮
         {
             var obj = Instantiate(songBtn).GetComponent<SongButton>();
             obj.transform.SetParent(songPanel, false);
