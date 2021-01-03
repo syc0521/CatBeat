@@ -98,7 +98,7 @@ public class QuickTap : Note
                 Debug.Log(Data + "miss");
             }
         }
-        //StartCoroutine(ExploreAnim());
+        Destroy(gameObject);
     }
     public void GrowBalloon()
     {
