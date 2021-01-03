@@ -106,7 +106,9 @@ MonoBehaviour:
   - {fileID: 5552616462124779837, guid: d938e6e183fa08a45b211d2ff0cfca5c, type: 3}
   - {fileID: 5552616462124779837, guid: 112e77cdf1cb3534691c954c9cd98650, type: 3}
   moveTime: 0
-  fx: {fileID: 5188627284051723214, guid: ea1b1cc6b8c343548ba665fb991214e7, type: 3}
+  hitEffect: {fileID: 4271850206386594596, guid: a2936001603b2024a88b4811b03157e8,
+    type: 3}
+  fx: {fileID: 8484072823467148885, guid: d1b338d7c4fe1894ca598f11e21d03b6, type: 3}
   micAnim: {fileID: 0}
   shiny: {fileID: 9016308928467931848}
 --- !u!95 &1619520079151918335

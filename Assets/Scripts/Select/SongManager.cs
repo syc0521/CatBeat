@@ -25,7 +25,6 @@ public class SongManager : MonoBehaviour
     private void Awake()
     {
         InitializeList();
-        GetPrefs();
         source = GetComponent<AudioSource>();
     }
     private void Start()
@@ -41,17 +40,6 @@ public class SongManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F12))
         {
             Utils.InitializeSave(Utils.filePath);
-        }
-    }
-    private void GetPrefs()
-    {
-        if (!File.Exists(Utils.filePath))
-        {
-            Utils.InitializeSave(Utils.filePath);
-        }
-        else
-        {
-            Utils.GetSave();
         }
     }
     public void PlayAudio(Song song)
@@ -72,25 +60,34 @@ public class SongManager : MonoBehaviour
         scoreText.text = CurrentSong.Score[(int)currentDiff].ToString();
         gradeSprite.sprite = judgeSprite[(int)currentSong.GradeLevel[(int)currentDiff]];
     }
-    private void InitializeSongData()
-    {
-        foreach (var song in songList)
-        {
-            Utils.save.Songs.Add(new SaveData.SongSave(song.Path));
-        }
-        var jsonStr = JsonMapper.ToJson(Utils.save);
-        StreamWriter sw = new StreamWriter(Utils.filePath);
-        sw.Write(jsonStr);
-        sw.Close();
-        sw.Dispose();
-    }
     private void InitializeList()
     {
-        foreach (var song in songList)
+        List<Selectable> buttonList = new List<Selectable>();
+        foreach (var song in songList)//生成按钮
         {
             var obj = Instantiate(songBtn).GetComponent<SongButton>();
             obj.transform.SetParent(songPanel, false);
             obj.song = song;
+            buttonList.Add(obj.gameObject.GetComponent<Button>());
+        }
+        for (int i = 0; i < buttonList.Count; i++)//设置导航
+        {
+            Navigation navigation = buttonList[i].navigation;
+            navigation.mode = Navigation.Mode.Explicit;
+            if (i == 0)
+            {
+                navigation.selectOnDown = buttonList[1];
+            }
+            else if (i == buttonList.Count - 1)
+            {
+                navigation.selectOnUp = buttonList[buttonList.Count - 2];
+            }
+            else
+            {
+                navigation.selectOnUp = buttonList[i - 1];
+                navigation.selectOnDown = buttonList[i + 1];
+            }
+            buttonList[i].navigation = navigation;
         }
         currentSong = songList[0];
     }

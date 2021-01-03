@@ -9,7 +9,7 @@ public abstract class Note : MonoBehaviour
     public GameObject[] judge;
     [HideInInspector]
     public float moveTime;
-
+    public GameObject hitEffect;
     private void Awake()
     {
         moveTime = NoteController.NoteSpeed;
@@ -56,6 +56,10 @@ public abstract class Note : MonoBehaviour
                 Instantiate(judge[3]);
                 break;
         }
+    }
+    public virtual void ShowJudgeEffect()
+    {
+        Instantiate(hitEffect, endPos, Quaternion.identity);
     }
 
 }

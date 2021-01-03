@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Tap : Note
 {
@@ -13,9 +12,8 @@ public class Tap : Note
     {
 		destroyAnim = transform.GetComponent<Animator>();
 		type = Data.Information;
+		GetComponent<SpriteRenderer>().sortingOrder = Data.Index + 4;
 	}
-	
-
 	public override void Update()
     {
 		base.Update();
@@ -50,11 +48,11 @@ public class Tap : Note
 		if (transform.position.x <= endPos.x)
 		{
 			GenerateHitSound();
-			//ShowJudge(JudgeType.Perfect);
-			//NoteController.combo++;
-			//NoteController.score += (int)(NoteController.Multiplier * 100.0f);
-			StartCoroutine(DestroyAnim(JudgeType.Perfect));
-			//Destroy(gameObject);
+			ShowJudge(JudgeType.Perfect);
+			NoteController.combo++;
+			NoteController.score += (int)(NoteController.Multiplier * 100.0f);
+			ShowJudgeEffect();
+			Destroy(gameObject);
 		}
 	}
 

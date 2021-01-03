@@ -11,7 +11,6 @@ public class LoadingManager : MonoBehaviour
     }
     private IEnumerator LoadScene(string scene)
     {
-        InputController.controls.Disable();
         yield return new WaitForSeconds(0.65f);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
         while (!asyncLoad.isDone)

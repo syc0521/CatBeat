@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class SongButton : MonoBehaviour
@@ -14,7 +12,10 @@ public class SongButton : MonoBehaviour
     public void OnPressed()
     {
         var controller = GameObject.FindWithTag("GameController").GetComponent<SongManager>();
-        controller.CurrentSong = song;
+        if (!controller.CurrentSong.Equals(song))
+        {
+            controller.CurrentSong = song;
+        }
     }
 
 }

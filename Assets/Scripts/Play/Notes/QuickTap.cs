@@ -14,14 +14,14 @@ public class QuickTap : Note
     public float tapTime;
     private int cnt;
     private bool animPlayed = false;
-
+    private bool destroyed = false;
     public Vector3 animScale;
     public Animator animExplore;
 
     void Start()
     {
-        cnt = tapCount;
         tapCount = Data.Information;
+        cnt = tapCount;
         tapTime = tapCount * 0.1f;
         text = transform.GetChild(1).GetComponent<TextMeshPro>();
         animScale = transform.GetChild(0).transform.localScale;
@@ -76,33 +76,33 @@ public class QuickTap : Note
         }
         if (tapCount > 0)
         {
-            if (cnt - tapCount < cnt * 0.2)
-            {
-                NoteController.combo++;
-                NoteController.great++;
-                ShowJudge(JudgeType.LateGreat);
-                Debug.Log(Data + "great");
-            }
-            else if (cnt - tapCount < cnt * 0.5)
-            {
-                NoteController.combo++;
-                NoteController.good++;
-                ShowJudge(JudgeType.LateGood);
-                Debug.Log(Data + "good");
-            }
-            else
+            if (tapCount == cnt)
             {
                 NoteController.combo = 0;
                 NoteController.miss++;
                 ShowJudge(JudgeType.Miss);
                 Debug.Log(Data + "miss");
             }
+            else if (tapCount < cnt * 0.5)
+            {
+                NoteController.combo++;
+                NoteController.good++;
+                ShowJudge(JudgeType.LateGood);
+                Debug.Log(Data + "good");
+            }
+            else if (tapCount < cnt * 0.8)
+            {
+                NoteController.combo++;
+                NoteController.great++;
+                ShowJudge(JudgeType.LateGreat);
+                Debug.Log(Data + "great");
+            }
         }
+        destroyed = true;
         Destroy(gameObject);
     }
     public void GrowBalloon()
     {
-        
         Debug.Log("growBalloon");
         animScale *= 2f;
         transform.GetChild(0).transform.localScale = new Vector3(animScale.x, animScale.y,animScale.z);
@@ -118,7 +118,10 @@ public class QuickTap : Note
         ShowJudge(JudgeType.Perfect);
         transform.GetChild(0).GetComponent<Animator>().Play("balloon");
         yield return new WaitForSeconds(animExplore.GetCurrentAnimatorStateInfo(0).length);
-        Destroy(gameObject);
+        if (!destroyed)
+        {
+            Destroy(gameObject);
+        }
         yield break;
     }
 }
