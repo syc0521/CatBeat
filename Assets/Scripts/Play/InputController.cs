@@ -123,6 +123,7 @@ public class InputController : MonoBehaviour
             currentHold = noteObj;
             JudgeType judgeType = JudgeTap(note);
             noteObj.ShowJudge(judgeType);
+            noteObj.ShowJudgeEffect();
             StartCoroutine(ModifyNote(note));
             noteObj.isHold = true;
             noteObj.firstType = judgeType;
@@ -142,6 +143,7 @@ public class InputController : MonoBehaviour
             currentHold = noteObj;
             JudgeType judgeType = JudgeTap(note);
             noteObj.ShowJudge(judgeType);
+            noteObj.ShowJudgeEffect();
             StartCoroutine(ModifyNote(note));
             noteObj.isHold = true;
             noteObj.firstType = judgeType;
