@@ -36,48 +36,53 @@ public class Hold : Note
         base.Update();
         if (!NoteController.isAutoPlay)
         {
-            if (Time.timeSinceLevelLoad >= Data.Time + moveTime)
+            UserPlayMode();
+        }
+    }
+
+    private void UserPlayMode()
+    {
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime)
+        {
+            if (!isChanged)
             {
-                if (!isChanged)
-                {
-                    isChanged = true;
-                    StartCoroutine(ModifyNote(Data));
-                }
+                isChanged = true;
+                StartCoroutine(ModifyNote(Data));
             }
-            if (Time.timeSinceLevelLoad >= Data.Time + moveTime - NoteController.goodTime &&
-                Time.timeSinceLevelLoad <= Data.Time + moveTime + Data.Dur && isHold)
+        }
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime - NoteController.goodTime &&
+            Time.timeSinceLevelLoad <= Data.Time + moveTime + Data.Dur && isHold)
+        {
+            if (type == 1)
             {
-                if (type == 1)
-                {
-                    JudgeRedHoldEnd();
-                }
-                else if (type == 2)
-                {
-                    JudgeBlueHoldEnd();
-                }
-                if (holdTime > Data.Dur - 0.005f)
-                {
-                    secondType = JudgeType.Perfect;
-                    finalType = GetHoldJudge(firstType, secondType);
-                    Debug.Log(Data + finalType.ToString());
-                    isHold = false;
-                    Instantiate(B_FX);
-                    ShowJudge(finalType); 
-                    ShowJudgeEffect();
-                    Destroy(gameObject);
-                }
+                JudgeRedHoldEnd();
             }
-            if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur && isHold)
+            else if (type == 2)
             {
-                if (finalType != JudgeType.Default && finalType != JudgeType.Miss)
-                {
-                    finalType = GetHoldJudge(firstType, secondType);
-                    Instantiate(B_FX);
-                    ShowJudge(finalType); 
-                    ShowJudgeEffect();
-                }
+                JudgeBlueHoldEnd();
+            }
+            if (holdTime > Data.Dur - 0.005f)
+            {
+                secondType = JudgeType.Perfect;
+                finalType = GetHoldJudge(firstType, secondType);
+                Debug.Log(Data + finalType.ToString());
+                isHold = false;
+                Instantiate(B_FX);
+                ShowJudge(finalType);
+                ShowJudgeEffect();
                 Destroy(gameObject);
             }
+        }
+        if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur && isHold)
+        {
+            if (finalType != JudgeType.Default && finalType != JudgeType.Miss)
+            {
+                finalType = GetHoldJudge(firstType, secondType);
+                Instantiate(B_FX);
+                ShowJudge(finalType);
+                ShowJudgeEffect();
+            }
+            Destroy(gameObject);
         }
     }
 
@@ -245,6 +250,11 @@ public class Hold : Note
                 Destroy(gameObject);
             }
         }
+        DestroyMissHold(time);
+    }
+
+    private void DestroyMissHold(float time)
+    {
         if (time > Data.Time + moveTime + NoteController.goodTime)
         {
             if (!NoteController.isAutoPlay)
@@ -260,6 +270,7 @@ public class Hold : Note
             }
         }
     }
+
     private void AutoPlayMode()
     {
         GenerateHitSound();

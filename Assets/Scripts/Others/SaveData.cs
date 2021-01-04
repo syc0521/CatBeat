@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 [Serializable]
@@ -49,7 +48,7 @@ public class SaveData
             speed = 4,
             hitVol = 0.8,
             secret = false,
-            ending = true
+            ending = false
         };
     }
 }

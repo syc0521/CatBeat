@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Result : MonoBehaviour
 {
@@ -106,6 +107,17 @@ public class Result : MonoBehaviour
                 songSave.grade[(int)NoteController.diff] = grade;
             }
         }
+        int sCount = 0;
+        save.Songs.ForEach(song => sCount += song.grade.Where(grade => grade.Equals(Grade.S)).Count());//获取S等级数量
+        MainSceneManager.ending = sCount >= 2;
+        Utils.save.SystemSettings = new SaveData.Settings
+        {
+            isAutoPlay = Utils.save.SystemSettings.isAutoPlay,
+            speed = Utils.save.SystemSettings.speed,
+            hitVol = Utils.save.SystemSettings.hitVol,
+            ending = MainSceneManager.ending,
+            secret = Utils.save.SystemSettings.secret
+        };
         Utils.SavePrefs();
     }
 
