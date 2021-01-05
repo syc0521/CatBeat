@@ -2,6 +2,7 @@
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using System.Linq;
 
 public class Utils : MonoBehaviour
 {
@@ -19,12 +20,14 @@ public class Utils : MonoBehaviour
     {
         StreamReader sr = new StreamReader(filePath);
         save = JsonMapper.ToObject<SaveData>(sr.ReadToEnd());
+        int sCount = 0;
         foreach (var song in SongManager.songList)
         {
             var current = save.Songs.Find(item => item.path.Equals(song.Path));
             if (current != null)
             {
                 song.GradeLevel = (Grade[])current.grade.Clone();
+                sCount += (current.grade.Where(item => item.Equals(Grade.S))).Count();
                 song.Score = (int[])current.score.Clone();
             }
             else
@@ -34,12 +37,20 @@ public class Utils : MonoBehaviour
         }
         sr.Close();
         sr.Dispose();
-        SavePrefs();
         NoteController.isAutoPlay = save.SystemSettings.isAutoPlay;
         NoteController.speed = save.SystemSettings.speed;
         NoteController.hitVolume = (float)save.SystemSettings.hitVol;
         MainSceneManager.secret = save.SystemSettings.secret;
-        MainSceneManager.ending = save.SystemSettings.ending;
+        MainSceneManager.ending = sCount >= 2;
+        save.SystemSettings = new SaveData.Settings
+        {
+            isAutoPlay = save.SystemSettings.isAutoPlay,
+            speed = save.SystemSettings.speed,
+            hitVol = save.SystemSettings.hitVol,
+            ending = MainSceneManager.ending,
+            secret = save.SystemSettings.secret
+        };
+        SavePrefs();
         SongManager.songList.Find(item => item.Path.Equals("wwb")).Unlock = save.SystemSettings.secret;
     }
     public static void InitializeSave(string filePath)
