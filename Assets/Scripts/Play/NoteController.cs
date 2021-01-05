@@ -41,6 +41,7 @@ public class NoteController : MonoBehaviour
     public int bpm;
     public static int maxCombo;
     public static bool isTutorial;
+    public GameObject tutCanvas;
 #if testMode
     public string path;
     public Diff diff;
@@ -64,6 +65,14 @@ public class NoteController : MonoBehaviour
     }
     void Start()
     {
+        if (isTutorial)
+        {
+            tutCanvas.SetActive(true);
+        }
+        else
+        {
+            tutCanvas.SetActive(false);
+        }
         foreach (NoteData note in notes)
         {
             StartCoroutine(CreateNote(note));
@@ -109,6 +118,7 @@ public class NoteController : MonoBehaviour
         yield return new WaitForSeconds(clip.length);
         if (isAutoPlay || path.Equals("tut"))
         {
+            isTutorial = false;
             LoadingManager.nextScene = "Select";
             SceneManager.LoadScene("Loading");
         }
