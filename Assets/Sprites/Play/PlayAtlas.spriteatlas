@@ -40,8 +40,7 @@ SpriteAtlas:
     - {fileID: 21300000, guid: bad71dc15a009054989c9fee871a122f, type: 3}
     - {fileID: 21300000, guid: 4def47d01010e954ab73ab359043f84d, type: 3}
     - {fileID: 21300000, guid: 25730bd530864eb488c6baf49d6e2105, type: 3}
-    - {fileID: 21300000, guid: 16cfaf247617b1c49a71b1c5517af765, type: 3}
-    totalSpriteSurfaceArea: 249734
+    totalSpriteSurfaceArea: 235934
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -49,7 +48,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: bad71dc15a009054989c9fee871a122f, type: 3}
   - {fileID: 21300000, guid: 5cb9e1127de5364438a9d052dd765bec, type: 3}
   - {fileID: 21300000, guid: f006cfd24bd86334d931d7b4b34d79f6, type: 3}
-  - {fileID: 21300000, guid: 16cfaf247617b1c49a71b1c5517af765, type: 3}
   - {fileID: 21300000, guid: 25730bd530864eb488c6baf49d6e2105, type: 3}
   - {fileID: 21300000, guid: 339a8ce74aa3feb429c86916ccfe857a, type: 3}
   - {fileID: 21300000, guid: e860c37bb0244e64690a03b9f0a5cb46, type: 3}
@@ -61,7 +59,6 @@ SpriteAtlas:
   - squareblueend
   - btnRetry
   - CatNoteRed
-  - blow01
   - squareredend
   - btnContinue
   - btnBack
