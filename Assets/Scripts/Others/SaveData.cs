@@ -33,6 +33,7 @@ public class SaveData
         public double hitVol;
         public bool secret;
         public bool ending;
+        public bool endingSeen;
     }
     private List<SongSave> songs;
     private Settings systemSettings;
@@ -48,7 +49,8 @@ public class SaveData
             speed = 4,
             hitVol = 0.8,
             secret = false,
-            ending = false
+            ending = false,
+            endingSeen = false//TODO endingseen
         };
     }
 }

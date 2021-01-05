@@ -22,7 +22,8 @@ public class HandButton : MonoBehaviour
                     speed = Utils.save.SystemSettings.speed,
                     hitVol = Utils.save.SystemSettings.hitVol,
                     ending = MainSceneManager.ending,
-                    secret = MainSceneManager.secret
+                    secret = MainSceneManager.secret,
+                    endingSeen = Utils.save.SystemSettings.endingSeen
                 };
                 Utils.SavePrefs();
             }

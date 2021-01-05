@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loading.unity
     guid: f6823734658b4e847926c181aef6eab8
+  - enabled: 1
+    path: Assets/Scenes/StaffRolling.unity
+    guid: 96b0ee26484fa04488856919467b2db0
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 00c554aa08267fb4b80e1f27af474b87,
       type: 2}

@@ -42,7 +42,8 @@ public class SettingButton : MonoBehaviour
             speed = (int)speed.value,
             hitVol = vol.value,
             ending = Utils.save.SystemSettings.ending,
-            secret = Utils.save.SystemSettings.secret
+            secret = Utils.save.SystemSettings.secret,
+            endingSeen = Utils.save.SystemSettings.endingSeen
         };
         Utils.SavePrefs();
     }

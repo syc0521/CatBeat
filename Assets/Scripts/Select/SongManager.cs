@@ -21,9 +21,10 @@ public class SongManager : MonoBehaviour
     private AudioSource source;
     public Image ezBtn;
     public SpriteRenderer gradeSprite;
+    public static bool endingSeen;
     private void Awake()
     {
-        source = GetComponent<AudioSource>();
+        source = GetComponent<AudioSource>();//TODO tutorial
     }
     private void Start()
     {

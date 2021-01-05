@@ -9,6 +9,14 @@ public class VideoController : MonoBehaviour
     {
         StartCoroutine(ChangeScene());
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            LoadingManager.nextScene = "Main";
+            SceneManager.LoadScene("Loading");
+        }
+    }
     private IEnumerator ChangeScene()
     {
         yield return new WaitForSeconds((float)GetComponent<VideoPlayer>().clip.length + 0.5f);

@@ -48,7 +48,8 @@ public class Utils : MonoBehaviour
             speed = save.SystemSettings.speed,
             hitVol = save.SystemSettings.hitVol,
             ending = MainSceneManager.ending,
-            secret = save.SystemSettings.secret
+            secret = save.SystemSettings.secret,
+            endingSeen = save.SystemSettings.endingSeen
         };
         SavePrefs();
         SongManager.songList.Find(item => item.Path.Equals("wwb")).Unlock = save.SystemSettings.secret;

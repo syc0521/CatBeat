@@ -61,7 +61,7 @@ public class Result : MonoBehaviour
         int score = NoteController.score;
         for (int i = 0; i < score; i++)
         {
-            if (score - i < 1)
+            if (score - i <= 1)
             {
                 i++;
             }
@@ -116,7 +116,8 @@ public class Result : MonoBehaviour
             speed = Utils.save.SystemSettings.speed,
             hitVol = Utils.save.SystemSettings.hitVol,
             ending = MainSceneManager.ending,
-            secret = Utils.save.SystemSettings.secret
+            secret = Utils.save.SystemSettings.secret,
+            endingSeen = Utils.save.SystemSettings.endingSeen
         };
         Utils.SavePrefs();
     }
