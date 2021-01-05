@@ -218,6 +218,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 414875825664216045}
     m_Modifications:
+    - target: {fileID: 2431243340345619308, guid: 3164417fb5548e24e97330c184ac4d89,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2431243340345619308, guid: 3164417fb5548e24e97330c184ac4d89,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2450935212603782524, guid: 3164417fb5548e24e97330c184ac4d89,
         type: 3}
       propertyPath: m_LocalPosition.x
