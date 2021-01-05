@@ -40,6 +40,7 @@ public class NoteController : MonoBehaviour
     [HideInInspector]
     public int bpm;
     public static int maxCombo;
+    public static bool isTutorial;
 #if testMode
     public string path;
     public Diff diff;
@@ -106,7 +107,7 @@ public class NoteController : MonoBehaviour
         yield return new WaitForSeconds(NoteSpeed);
         source.Play();
         yield return new WaitForSeconds(clip.length);
-        if (isAutoPlay)
+        if (isAutoPlay || path.Equals("tut"))
         {
             LoadingManager.nextScene = "Select";
             SceneManager.LoadScene("Loading");

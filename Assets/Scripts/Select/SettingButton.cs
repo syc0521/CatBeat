@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingButton : MonoBehaviour
@@ -55,5 +56,14 @@ public class SettingButton : MonoBehaviour
         autoPlay.isOn = Utils.save.SystemSettings.isAutoPlay;
         speed.value = Utils.save.SystemSettings.speed;
         vol.value = (float)Utils.save.SystemSettings.hitVol;
+    }
+    public void OnTutorialPressed()
+    {
+        NoteController.isTutorial = true;
+        NoteController.path = "tut";
+        NoteController.diff = Diff.Easy;
+        LoadingManager.nextScene = "Play";
+        NoteController.isAutoPlay = false;
+        SceneManager.LoadScene("Loading");
     }
 }

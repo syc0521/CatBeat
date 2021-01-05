@@ -145,5 +145,23 @@ public class Utils : MonoBehaviour
             GetSave();
         }
     }
+    public static float GetAlpha(int startTime, int endTime)
+    {
+        float alpha;
+        float start = startTime / 1000.0f;
+        float end = endTime / 1000.0f;
+        float time = Time.timeSinceLevelLoad - NoteController.NoteSpeed;
+        if (time > end - 0.3f)
+        {
+            alpha = Mathf.Lerp(1.0f, 0.0f, Mathf.InverseLerp(end - 0.3f, end, time));
+            Debug.Log(alpha);
+        }
+        else
+        {
+            alpha = Mathf.Lerp(0.0f, 1.0f, Mathf.InverseLerp(start, start + 0.3f, time));
+        }
+
+        return alpha;
+    }
 
 }

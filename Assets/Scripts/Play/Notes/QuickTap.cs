@@ -111,8 +111,6 @@ public class QuickTap : Note
 
     public IEnumerator ExploreAnim()
     {
-        //Debug.Log("exploreAnim");
-        NoteController.combo++;
         transform.GetChild(1).GetComponent<TextMeshPro>().text = "";
         Destroy(transform.GetChild(0).GetChild(0).gameObject);
         ShowJudge(JudgeType.Perfect);
