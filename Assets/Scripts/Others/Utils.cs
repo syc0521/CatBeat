@@ -1,4 +1,5 @@
 ﻿using LitJson;
+using System.Collections;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -43,9 +44,15 @@ public class Utils : MonoBehaviour
             var current = save.Songs.Find(item => item.path.Equals(song.Path));
             if (current != null)
             {
-                song.GradeLevel = (Grade[])current.grade.Clone();
-                sCount += (current.grade.Where(item => item.Equals(Grade.S))).Count();
-                song.Score = (int[])current.score.Clone();
+                for (int i = 0; i < current.grade.Length; i++)
+                {
+                    song.GradeLevel[i] = current.grade[i];
+                }
+                for (int i = 0; i < current.score.Length; i++)
+                {
+                    song.Score[i] = current.score[i];
+                }
+                sCount += current.grade.Where(item => item.Equals(Grade.S)).Count();
             }
             else
             {
@@ -58,9 +65,7 @@ public class Utils : MonoBehaviour
         NoteController.speed = save.SystemSettings.speed;
         NoteController.hitVolume = (float)save.SystemSettings.hitVol;
         MainSceneManager.secret = save.SystemSettings.secret;
-        Debug.Log(sCount);
-        Debug.Log(MainSceneManager.ending);
-        MainSceneManager.ending = sCount >= 2;
+        MainSceneManager.ending = save.SystemSettings.ending;
         save.SystemSettings = new SaveData.Settings
         {
             isAutoPlay = save.SystemSettings.isAutoPlay,
