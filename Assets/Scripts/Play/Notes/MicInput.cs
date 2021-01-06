@@ -7,7 +7,7 @@ public class MicInput : Note
     private bool canInput = false;
     private bool isPerfect = false;
     public Animator micAnim;
-    public ParticleSystem shiny;
+    public GameObject shiny;
     private bool firstDestroy = true;
     private void Start()
     {
@@ -28,14 +28,14 @@ public class MicInput : Note
     }
     private void UserPlayMode()
     {
-        Debug.Log(canInput);
+       // Debug.Log(canInput);
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime - NoteController.goodTime * 1.5f)
         {
             canInput = true;
             if (MicrophoneController.realVolume >= 0.38f && canInput)
             {
-                //transform.GetChild(1).GetComponent<ParticleSystem>().Play();
-                Debug.Log("mic-taping");
+                shiny.GetComponent<ParticleSystem>().Play();
+               // Debug.Log("mic-taping");
                 micAnim.Play("mic-taping");
                 holdTime += Time.deltaTime;
                 NoteController.score += (int)(NoteController.Multiplier * 15.0f);
@@ -69,6 +69,7 @@ public class MicInput : Note
                 {
                     NoteController.notes[Data.Index + 1].CanJudge = true;
                 }
+                Instantiate(shiny, endPos, Quaternion.identity);
                 Destroy(gameObject);
             }
 
@@ -96,6 +97,7 @@ public class MicInput : Note
                     NoteController.notes[Data.Index + 1].CanJudge = true;
                 }
                 firstDestroy = false;
+                Instantiate(shiny, endPos, Quaternion.identity);
                 Destroy(gameObject);
             }
         }
@@ -105,7 +107,7 @@ public class MicInput : Note
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime)
         {
             micAnim.Play("mic-taping");
-            transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+            //transform.GetChild(1).GetComponent<ParticleSystem>().Play();
             NoteController.score += (int)(NoteController.Multiplier * 15.0f);
         }
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime + Data.Dur * 0.8f)
@@ -115,10 +117,11 @@ public class MicInput : Note
             Instantiate(fx);
             ShowJudge(JudgeType.Perfect);
             ShowJudgeEffect();
+            Instantiate(shiny,endPos,Quaternion.identity);
             Destroy(gameObject);
         }
     }
-    public IEnumerator DestroyMic()
+   /* public IEnumerator DestroyMic()
     {
         if (firstDestroy)
         {
@@ -131,5 +134,5 @@ public class MicInput : Note
             yield return new WaitForSeconds(1f);
             Destroy(gameObject);
         }
-    }
+    }*/
 }
