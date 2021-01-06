@@ -120,7 +120,7 @@ public class MicInput : Note
     }
     public IEnumerator DestroyMic()
     {
-        if(firstDestroy)
+        if (firstDestroy)
         {
             NoteController.perfect++;
             NoteController.combo++;

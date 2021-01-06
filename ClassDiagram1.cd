@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="LoadingAnimation" Collapsed="true">
-    <Position X="15" Y="1.5" Width="1.5" />
+    <Position X="16.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAgAAAAAACAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Loading\LoadingAnimation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LoadingManager" Collapsed="true">
-    <Position X="14.25" Y="0.5" Width="1.5" />
+    <Position X="18.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAACAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Loading\LoadingManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HandButton" Collapsed="true">
-    <Position X="20.25" Y="1.75" Width="1.5" />
+    <Position X="15" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Main\HandButton.cs</FileName>
@@ -35,23 +35,15 @@
       <FileName>Assets\Scripts\Main\MainSceneManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SaveData">
-    <Position X="17.25" Y="4.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Class Name="SaveData.SongSave" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Assets\Scripts\Others\SaveData.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-      <Struct Name="SaveData.Settings" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Assets\Scripts\Others\SaveData.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Struct>
-    </NestedTypes>
+  <Class Name="VideoController" Collapsed="true">
+    <Position X="16.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Scripts\Main\VideoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaveData" Collapsed="true">
+    <Position X="13.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAABAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Others\SaveData.cs</FileName>
@@ -60,12 +52,12 @@
   <Class Name="Utils" Collapsed="true">
     <Position X="15" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAQCAAAAAAAAAAIAAAAAAAEACgQAAAAABEAI=</HashCode>
+      <HashCode>ADAAAAAAAQCAAAAAAAAAAIAAAAAAAEACgQAAAAABEAI=</HashCode>
       <FileName>Assets\Scripts\Others\Utils.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InputController" Collapsed="true">
-    <Position X="10.25" Y="0.5" Width="1.5" />
+    <Position X="9.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACEABAAIAQIAAAAAAAAAUCAACCIAIIEAAEAiBA=</HashCode>
       <FileName>Assets\Scripts\Play\InputController.cs</FileName>
@@ -79,14 +71,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Hold" Collapsed="true">
-    <Position X="0.5" Y="2" Width="1.5" />
+    <Position X="7.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIQIAAACCKAAAAAkIIBkAAgAAACFABCCIIpAEAIAAaA=</HashCode>
       <FileName>Assets\Scripts\Play\Notes\Hold.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MicInput" Collapsed="true">
-    <Position X="5" Y="2" Width="1.5" />
+    <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAQAAABACCAAAAAAAABAAAAAAAAAAAEAAAgAEACEEAA=</HashCode>
       <FileName>Assets\Scripts\Play\Notes\MicInput.cs</FileName>
@@ -108,42 +100,49 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="QuickTap" Collapsed="true">
-    <Position X="7.25" Y="2" Width="1.5" />
+    <Position X="2.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAgAgAACAADAAAAAAAAAAAAACAAAQIAAYAgAAAEAA=</HashCode>
       <FileName>Assets\Scripts\Play\Notes\QuickTap.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tap" Collapsed="true">
-    <Position X="2.75" Y="2" Width="1.5" />
+    <Position X="5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAQAAAAAACAAAAAAAABAAAABAAAhAACAIIAAAAIAAAA=</HashCode>
       <FileName>Assets\Scripts\Play\Notes\Tap.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BackGround" Collapsed="true">
-    <Position X="19" Y="0.5" Width="1.5" />
+    <Position X="11.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAACAAAAAgAAAAAAAAABAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Assets\Scripts\Play\Other\BackGround.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HitEffect" Collapsed="true">
-    <Position X="20.25" Y="2.5" Width="1.5" />
+    <Position X="16.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Play\Other\HitEffect.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HitSound" Collapsed="true">
-    <Position X="19.5" Y="3.5" Width="1.5" />
+    <Position X="18.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAIAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Play\Other\HitSound.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="InputEffect" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAgACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Play\Other\InputEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="@InputMaster" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="20" Y="0.5" Width="1.5" />
+    <Position X="2.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAABAAAAgASRABBCAAAGBEAAAgIQIQAgA=</HashCode>
       <FileName>Assets\Scripts\Play\Other\InputMaster.cs</FileName>
@@ -165,58 +164,79 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PauseButton" Collapsed="true">
-    <Position X="20.25" Y="4.5" Width="1.5" />
+    <Position X="18.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAoAAAAAAAAAAAACAAAAAAEAAAAAAABAAAA=</HashCode>
       <FileName>Assets\Scripts\Play\PauseButton.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="LineController" Collapsed="true">
+    <Position X="15" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAgACAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Play\Tutorial\LineController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextController" Collapsed="true">
+    <Position X="13.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAgACAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Play\Tutorial\SpriteController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpriteController" Collapsed="true">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAgACAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Play\Tutorial\TextController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Result" Collapsed="true">
-    <Position X="11.5" Y="3.5" Width="1.5" />
+    <Position X="9.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABACAAAYCAgAQQIEAAAAAAAAAgIAAAAAQgAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Result\Result.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ReturnButton" Collapsed="true">
-    <Position X="19.75" Y="5" Width="1.5" />
+    <Position X="11.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Assets\Scripts\Result\ReturnButton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DiffButton" Collapsed="true">
-    <Position X="19.75" Y="1" Width="1.5" />
+    <Position X="13.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAEAAAAAIAAEAAAAABAA=</HashCode>
       <FileName>Assets\Scripts\Select\DiffButton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SettingButton" Collapsed="true">
-    <Position X="19.25" Y="2.25" Width="1.5" />
+    <Position X="15" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIABBABAAgAAAAACACCAAAAAAAQAAAAAAAgAAAGA=</HashCode>
+      <HashCode>AAAAIABBABAAgAAAAACACCAAAAAAAUAAAAAAAgAAAGA=</HashCode>
       <FileName>Assets\Scripts\Select\SettingButton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Song" Collapsed="true">
-    <Position X="9.75" Y="4.5" Width="1.5" />
+    <Position X="16.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAQAAAAoAAAAAAAUAAICAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Select\Song.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SongButton" Collapsed="true">
-    <Position X="20.5" Y="5.5" Width="1.5" />
+    <Position X="18.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAEAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Select\SongButton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SongManager" Collapsed="true">
-    <Position X="12.25" Y="0.5" Width="1.5" />
+    <Position X="9.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAQABAAgAKgAAQIIAABAgACAAEgQAAACAACIAIAAiMA=</HashCode>
+      <HashCode>IAQABAAgEKgAAQIIAABAgACAAEgQAAACAACIAIAAiMA=</HashCode>
       <FileName>Assets\Scripts\Select\SongManager.cs</FileName>
     </TypeIdentifier>
   </Class>

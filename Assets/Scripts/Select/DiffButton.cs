@@ -8,11 +8,12 @@ public class DiffButton : MonoBehaviour
     public Image ez, nm, hd;
     public void OnPressed()
     {
+        //统一设置成白色
         ez.color = Color.white;
         nm.color = Color.white;
         hd.color = Color.white;
-        GetComponent<Image>().color = new Color(0.75f, 0.65f, 1.0f);
-        switch (gameObject.name)
+        GetComponent<Image>().color = new Color(0.75f, 0.65f, 1.0f);//修改当前Button颜色
+        switch (gameObject.name)//切换难度
         {
             case "ez":
                 NoteController.diff = Diff.Easy;
@@ -29,6 +30,6 @@ public class DiffButton : MonoBehaviour
     {
         NoteController.isTutorial = false;
         var controller = GameObject.FindWithTag("GameController").GetComponent<SongManager>();
-        controller.JumpScene(NoteController.diff);
+        controller.JumpScene(NoteController.diff);//跳转Play场景
     }
 }

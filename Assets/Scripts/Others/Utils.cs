@@ -8,6 +8,9 @@ public class Utils : MonoBehaviour
 {
     public static SaveData save;
     public static readonly string filePath = Application.persistentDataPath + "/save.json";
+    /// <summary>
+    /// 保存存档
+    /// </summary>
     public static void SavePrefs()
     {
         var jsonStr = JsonMapper.ToJson(save);
@@ -16,18 +19,23 @@ public class Utils : MonoBehaviour
         sw.Close();
         sw.Dispose();
     }
+    /// <summary>
+    /// 保存解锁存档
+    /// </summary>
     public static void SaveUnlockPrefs()
     {
-        SaveData unlockSave = new SaveData();
-        unlockSave.SystemSettings = new SaveData.Settings
+        SaveData unlockSave = new SaveData
         {
-            isAutoPlay = save.SystemSettings.isAutoPlay,
-            speed = save.SystemSettings.speed,
-            hitVol = save.SystemSettings.hitVol,
-            ending = true,
-            secret = false,
-            endingSeen = false,
-            tutFinished = true
+            SystemSettings = new SaveData.Settings
+            {
+                isAutoPlay = save.SystemSettings.isAutoPlay,
+                speed = save.SystemSettings.speed,
+                hitVol = save.SystemSettings.hitVol,
+                ending = true,
+                secret = false,
+                endingSeen = false,
+                tutFinished = false
+            }
         };
         foreach (var song in SongManager.songList)
         {
@@ -49,6 +57,9 @@ public class Utils : MonoBehaviour
         sw.Close();
         sw.Dispose();
     }
+    /// <summary>
+    /// 获取存档
+    /// </summary>
     public static void GetSave()
     {
         StreamReader sr = new StreamReader(filePath);
@@ -88,6 +99,10 @@ public class Utils : MonoBehaviour
         SavePrefs();
         SongManager.songList.Find(item => item.Path.Equals("wwb")).Unlock = save.SystemSettings.secret;
     }
+    /// <summary>
+    /// 初始化存档
+    /// </summary>
+    /// <param name="filePath">文件位置</param>
     public static void InitializeSave(string filePath)
     {
         save = new SaveData();
@@ -101,6 +116,9 @@ public class Utils : MonoBehaviour
         sw.Close();
         sw.Dispose();
     }
+    /// <summary>
+    /// 获取歌曲列表
+    /// </summary>
     public static void GetList()
     {
         SongManager.songList.Clear();
@@ -119,10 +137,24 @@ public class Utils : MonoBehaviour
             SongManager.songList.Add(song);
         }
     }
+    /// <summary>
+    /// 自定义插值函数
+    /// </summary>
+    /// <param name="time">系统时间</param>
+    /// <param name="timeRangeL">开始时间</param>
+    /// <param name="timeRangeR">结束时间</param>
+    /// <param name="posRangeL">开始位置</param>
+    /// <param name="posRangeR">结束位置</param>
+    /// <returns></returns>
     public static float Lerp(float time, float timeRangeL, float timeRangeR, float posRangeL, float posRangeR)
 	{
 		return Mathf.LerpUnclamped(posRangeL, posRangeR, (time - timeRangeL) / (timeRangeR - timeRangeL));
     }
+    /// <summary>
+    /// 分数比率转换成等级
+    /// </summary>
+    /// <param name="rate">分数比率</param>
+    /// <returns></returns>
     public static Grade GetGrade(float rate)
     {
         if (rate >= 0.9f)
@@ -146,7 +178,11 @@ public class Utils : MonoBehaviour
             return Grade.D;
         }
     }
-
+    /// <summary>
+    /// 转换TextMeshPro分数
+    /// </summary>
+    /// <param name="num">分数</param>
+    /// <returns></returns>
     public static string ConvertDigit(int num)
     {
         string tmp = num.ToString();
@@ -157,6 +193,9 @@ public class Utils : MonoBehaviour
         }
         return result;
     }
+    /// <summary>
+    /// 退出程序
+    /// </summary>
     public static void QuitProgram()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -168,6 +207,9 @@ public class Utils : MonoBehaviour
 #endif
         }
     }
+    /// <summary>
+    /// 获取存档
+    /// </summary>
     public static void GetPrefs()
     {
         if (!File.Exists(filePath))
@@ -179,6 +221,12 @@ public class Utils : MonoBehaviour
             GetSave();
         }
     }
+    /// <summary>
+    /// 获取教程文字Alpha值
+    /// </summary>
+    /// <param name="startTime">开始时间</param>
+    /// <param name="endTime">结束时间</param>
+    /// <returns>Alpha值</returns>
     public static float GetAlpha(int startTime, int endTime)
     {
         float alpha;
