@@ -24,36 +24,9 @@ public class Utils : MonoBehaviour
     /// </summary>
     public static void SaveUnlockPrefs()
     {
-        SaveData unlockSave = new SaveData
-        {
-            SystemSettings = new SaveData.Settings
-            {
-                isAutoPlay = save.SystemSettings.isAutoPlay,
-                speed = save.SystemSettings.speed,
-                hitVol = save.SystemSettings.hitVol,
-                ending = true,
-                secret = false,
-                endingSeen = false,
-                tutFinished = false
-            }
-        };
-        foreach (var song in SongManager.songList)
-        {
-            var current = unlockSave.Songs.Find(item => item.path.Equals(song.Path));
-            if (current != null)
-            {
-                song.GradeLevel = (Grade[])current.grade.Clone();
-                song.Score = (int[])current.score.Clone();
-            }
-            else
-            {
-                unlockSave.Songs.Add(new SaveData.SongSave(song.Path));
-            }
-        }
-        unlockSave.Songs[0].grade = new Grade[3] { Grade.S, Grade.S, Grade.D };
-        var jsonStr = JsonMapper.ToJson(unlockSave);
+        var jsonStr = Resources.Load<TextAsset>("save");
         StreamWriter sw = new StreamWriter(filePath);
-        sw.Write(jsonStr);
+        sw.Write(jsonStr.text);
         sw.Close();
         sw.Dispose();
     }
@@ -85,18 +58,20 @@ public class Utils : MonoBehaviour
         NoteController.speed = save.SystemSettings.speed;
         NoteController.hitVolume = (float)save.SystemSettings.hitVol;
         MainSceneManager.secret = save.SystemSettings.secret;
+        Debug.Log(sCount);
+        Debug.Log(MainSceneManager.ending);
         MainSceneManager.ending = sCount >= 2;
         save.SystemSettings = new SaveData.Settings
         {
             isAutoPlay = save.SystemSettings.isAutoPlay,
             speed = save.SystemSettings.speed,
             hitVol = save.SystemSettings.hitVol,
-            ending = MainSceneManager.ending,
+            ending = save.SystemSettings.ending,
             secret = save.SystemSettings.secret,
             endingSeen = save.SystemSettings.endingSeen,
             tutFinished = save.SystemSettings.tutFinished
         };
-        SavePrefs();
+        //SavePrefs();
         SongManager.songList.Find(item => item.Path.Equals("wwb")).Unlock = save.SystemSettings.secret;
     }
     /// <summary>

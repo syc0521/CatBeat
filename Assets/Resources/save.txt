@@ -1,0 +1,1 @@
+{"SystemSettings":{"isAutoPlay":false,"speed":11,"hitVol":0.8,"secret":false,"ending":true,"tutFinished":false,"endingSeen":false},"Songs":[{"path":"withyour","score":[0,0,0],"grade":[0,0,4]},{"path":"wish","score":[0,0,0],"grade":[4,4,4]},{"path":"gc","score":[0,0,0],"grade":[4,4,4]},{"path":"wwb","score":[0,0,0],"grade":[4,4,4]}]}

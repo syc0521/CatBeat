@@ -47,7 +47,7 @@ public class SaveData
         systemSettings = new Settings
         {
             isAutoPlay = false,
-            speed = 4,
+            speed = 8,
             hitVol = 0.8,
             secret = false,
             ending = false,
