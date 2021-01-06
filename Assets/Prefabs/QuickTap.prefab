@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572660228068132284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -2.5973217, z: 0}
+  m_LocalScale: {x: 1.1846708, y: 1.2986608, z: 1.1201787}
   m_Children: []
   m_Father: {fileID: 4302448771280853487}
   m_RootOrder: 0
@@ -219,8 +219,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4302448771280853485}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 0.8441164, y: 0.770024, z: 0.89271474}
   m_Children:
   - {fileID: 1680596565528137830}
   m_Father: {fileID: 4302448771065904205}
@@ -265,7 +265,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 82c4cfeee61d345439c6de4e62c99e12, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 167b676e2c4107d41913c37af4efccbc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -478,13 +478,13 @@ MonoBehaviour:
   m_margin: {x: 9.292321, y: 1.7464283, z: 9.290701, w: 1.872747}
   m_textInfo:
     textComponent: {fileID: 5312526610062111311}
-    characterCount: 0
+    characterCount: 2
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

@@ -44,14 +44,8 @@ public class Utils : MonoBehaviour
             var current = save.Songs.Find(item => item.path.Equals(song.Path));
             if (current != null)
             {
-                for (int i = 0; i < current.grade.Length; i++)
-                {
-                    song.GradeLevel[i] = current.grade[i];
-                }
-                for (int i = 0; i < current.score.Length; i++)
-                {
-                    song.Score[i] = current.score[i];
-                }
+                song.GradeLevel = (Grade[])current.grade.Clone();
+                song.Score = (int[])current.score.Clone();
                 sCount += current.grade.Where(item => item.Equals(Grade.S)).Count();
             }
             else
@@ -76,7 +70,7 @@ public class Utils : MonoBehaviour
             endingSeen = save.SystemSettings.endingSeen,
             tutFinished = save.SystemSettings.tutFinished
         };
-        //SavePrefs();
+        SavePrefs();
         SongManager.songList.Find(item => item.Path.Equals("wwb")).Unlock = save.SystemSettings.secret;
     }
     /// <summary>

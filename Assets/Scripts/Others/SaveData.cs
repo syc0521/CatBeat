@@ -24,6 +24,10 @@ public class SaveData
         {
 
         }
+        public override string ToString()
+        {
+            return path + grade[0] + grade[1];
+        }
     }
     [Serializable]
     public struct Settings
