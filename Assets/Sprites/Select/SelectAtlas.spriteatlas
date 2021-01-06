@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SelectAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 21300000, guid: efeade409376928489032adef79f0128, type: 3}
+    - {fileID: 21300000, guid: 5f9eddb4a280d244985a943aed1670e2, type: 3}
+    - {fileID: 21300000, guid: 98902e72b1b8f814bac787c1b33c9668, type: 3}
+    - {fileID: 21300000, guid: 3e9c286ddc85527419c7af6b665f35af, type: 3}
+    - {fileID: 21300000, guid: 346d70e25c9356545a7cc8b22aed0957, type: 3}
+    - {fileID: 21300000, guid: 749db4b6641c33e43abb281b16a29861, type: 3}
+    totalSpriteSurfaceArea: 546332
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: efeade409376928489032adef79f0128, type: 3}
+  - {fileID: 21300000, guid: 98902e72b1b8f814bac787c1b33c9668, type: 3}
+  - {fileID: 21300000, guid: 346d70e25c9356545a7cc8b22aed0957, type: 3}
+  - {fileID: 21300000, guid: 5f9eddb4a280d244985a943aed1670e2, type: 3}
+  - {fileID: 21300000, guid: 749db4b6641c33e43abb281b16a29861, type: 3}
+  - {fileID: 21300000, guid: 3e9c286ddc85527419c7af6b665f35af, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - outside1
+  - outside3
+  - "\u5173\u95ED4"
+  - outside2
+  - "\u8BBE\u7F6E4"
+  - "\u95EE\u53F74"
+  m_Tag: SelectAtlas
+  m_IsVariant: 0
