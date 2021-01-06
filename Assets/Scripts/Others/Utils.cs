@@ -16,6 +16,39 @@ public class Utils : MonoBehaviour
         sw.Close();
         sw.Dispose();
     }
+    public static void SaveUnlockPrefs()
+    {
+        SaveData unlockSave = new SaveData();
+        unlockSave.SystemSettings = new SaveData.Settings
+        {
+            isAutoPlay = save.SystemSettings.isAutoPlay,
+            speed = save.SystemSettings.speed,
+            hitVol = save.SystemSettings.hitVol,
+            ending = true,
+            secret = false,
+            endingSeen = false,
+            tutFinished = true
+        };
+        foreach (var song in SongManager.songList)
+        {
+            var current = unlockSave.Songs.Find(item => item.path.Equals(song.Path));
+            if (current != null)
+            {
+                song.GradeLevel = (Grade[])current.grade.Clone();
+                song.Score = (int[])current.score.Clone();
+            }
+            else
+            {
+                unlockSave.Songs.Add(new SaveData.SongSave(song.Path));
+            }
+        }
+        unlockSave.Songs[0].grade = new Grade[3] { Grade.S, Grade.S, Grade.D };
+        var jsonStr = JsonMapper.ToJson(unlockSave);
+        StreamWriter sw = new StreamWriter(filePath);
+        sw.Write(jsonStr);
+        sw.Close();
+        sw.Dispose();
+    }
     public static void GetSave()
     {
         StreamReader sr = new StreamReader(filePath);
@@ -49,7 +82,8 @@ public class Utils : MonoBehaviour
             hitVol = save.SystemSettings.hitVol,
             ending = MainSceneManager.ending,
             secret = save.SystemSettings.secret,
-            endingSeen = save.SystemSettings.endingSeen
+            endingSeen = save.SystemSettings.endingSeen,
+            tutFinished = save.SystemSettings.tutFinished
         };
         SavePrefs();
         SongManager.songList.Find(item => item.Path.Equals("wwb")).Unlock = save.SystemSettings.secret;
@@ -154,13 +188,11 @@ public class Utils : MonoBehaviour
         if (time > end - 0.3f)
         {
             alpha = Mathf.Lerp(1.0f, 0.0f, Mathf.InverseLerp(end - 0.3f, end, time));
-            Debug.Log(alpha);
         }
         else
         {
             alpha = Mathf.Lerp(0.0f, 1.0f, Mathf.InverseLerp(start, start + 0.3f, time));
         }
-
         return alpha;
     }
 

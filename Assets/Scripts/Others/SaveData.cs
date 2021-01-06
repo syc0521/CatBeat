@@ -33,6 +33,7 @@ public class SaveData
         public double hitVol;
         public bool secret;
         public bool ending;
+        public bool tutFinished;
         public bool endingSeen;
     }
     private List<SongSave> songs;
@@ -50,7 +51,8 @@ public class SaveData
             hitVol = 0.8,
             secret = false,
             ending = false,
-            endingSeen = false//TODO endingseen
+            endingSeen = false,
+            tutFinished = false
         };
     }
 }

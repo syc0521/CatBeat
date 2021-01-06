@@ -18,7 +18,8 @@ public class ReturnButton : MonoBehaviour
                 hitVol = Utils.save.SystemSettings.hitVol,
                 ending = Utils.save.SystemSettings.ending,
                 secret = Utils.save.SystemSettings.secret,
-                endingSeen = true
+                endingSeen = true,
+                tutFinished = Utils.save.SystemSettings.tutFinished
             };
             Utils.SavePrefs();
         }

@@ -25,7 +25,7 @@ public class SettingButton : MonoBehaviour
     public void OnSpeedChanged()
     {
         NoteController.speed = (int)GetComponent<Slider>().value;
-        speedText.text = (NoteController.speed).ToString();
+        speedText.text = (NoteController.speed / 2.0f).ToString("F1");
     }
     public void OnVolumeChanged()
     {
@@ -44,7 +44,8 @@ public class SettingButton : MonoBehaviour
             hitVol = vol.value,
             ending = Utils.save.SystemSettings.ending,
             secret = Utils.save.SystemSettings.secret,
-            endingSeen = Utils.save.SystemSettings.endingSeen
+            endingSeen = Utils.save.SystemSettings.endingSeen,
+            tutFinished = Utils.save.SystemSettings.tutFinished
         };
         Utils.SavePrefs();
     }
@@ -64,6 +65,7 @@ public class SettingButton : MonoBehaviour
         NoteController.diff = Diff.Easy;
         LoadingManager.nextScene = "Play";
         NoteController.isAutoPlay = false;
+        NoteController.speed = 2;
         SceneManager.LoadScene("Loading");
     }
 }

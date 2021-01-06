@@ -24,7 +24,7 @@ public class SongManager : MonoBehaviour
     public static bool endingSeen;
     private void Awake()
     {
-        source = GetComponent<AudioSource>();//TODO tutorial
+        source = GetComponent<AudioSource>();
     }
     private void Start()
     {

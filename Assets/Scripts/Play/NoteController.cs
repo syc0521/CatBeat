@@ -20,7 +20,7 @@ public class NoteController : MonoBehaviour
     public Transform judgePos;
     public static List<NoteData> notes = new List<NoteData>();
     public static List<Note> noteObjs = new List<Note>();
-    public static float NoteSpeed => 3 - 0.3f * speed;
+    public static float NoteSpeed => 3.2f - 0.3f * (speed / 2.0f);
     public static int combo;
     public TextMeshPro comboText;
     public TextMeshPro scoreText;
@@ -73,6 +73,7 @@ public class NoteController : MonoBehaviour
         {
             tutCanvas.SetActive(false);
         }
+        isTutorial = false;
         foreach (NoteData note in notes)
         {
             StartCoroutine(CreateNote(note));
@@ -118,7 +119,6 @@ public class NoteController : MonoBehaviour
         yield return new WaitForSeconds(clip.length);
         if (isAutoPlay || path.Equals("tut"))
         {
-            isTutorial = false;
             LoadingManager.nextScene = "Select";
             SceneManager.LoadScene("Loading");
         }

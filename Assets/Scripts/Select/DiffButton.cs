@@ -27,6 +27,7 @@ public class DiffButton : MonoBehaviour
     }
     public void OnPlayPressed()
     {
+        NoteController.isTutorial = false;
         var controller = GameObject.FindWithTag("GameController").GetComponent<SongManager>();
         controller.JumpScene(NoteController.diff);
     }

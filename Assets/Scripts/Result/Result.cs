@@ -117,7 +117,8 @@ public class Result : MonoBehaviour
             hitVol = Utils.save.SystemSettings.hitVol,
             ending = MainSceneManager.ending,
             secret = Utils.save.SystemSettings.secret,
-            endingSeen = Utils.save.SystemSettings.endingSeen
+            endingSeen = Utils.save.SystemSettings.endingSeen,
+            tutFinished = Utils.save.SystemSettings.tutFinished
         };
         Utils.SavePrefs();
     }

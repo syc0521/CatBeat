@@ -32,9 +32,9 @@ public class MicInput : Note
         if (Time.timeSinceLevelLoad >= Data.Time + moveTime - NoteController.goodTime * 1.5f)
         {
             canInput = true;
-            if (MicrophoneController.realVolume >= 0.55f && canInput)
+            if (MicrophoneController.realVolume >= 0.38f && canInput)
             {
-                transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+                //transform.GetChild(1).GetComponent<ParticleSystem>().Play();
                 Debug.Log("mic-taping");
                 micAnim.Play("mic-taping");
                 holdTime += Time.deltaTime;
